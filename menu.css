@@ -74,11 +74,11 @@ body {
 
 .container {width: 1250px !important;}
 .facebook{
-    border: 1px solid black;
+   /* border: 1px solid black;
     margin: 3px;
     padding: 12px;
     width: 91px;
-    background: navy;
+    background: navy;*/
 
 }
 .twitter{
@@ -90,7 +90,7 @@ body {
  }
 .facebook a {padding: 0px !important; margin: 0px !important;}
 .twitter a {padding: 0px !important; margin: 0px !important;}
-
+.faceboook a img {}
 
 .column1{ border-right: 1px solid lightgrey; }
 .column2{ border-right: 1px solid lightgrey; }
@@ -110,4 +110,7 @@ body {
 .program-title{
   font-size: 16px;
   font-weight: bold;
+}
+.facebook img {
+    width: 96%;
 }

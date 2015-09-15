@@ -1,19 +1,19 @@
 <?php
-//Always place this code at the top of the Page
-session_start();
-if (isset($_SESSION['id'])) {
-    // Redirection to login page twitter or facebook
-    header("location: index.php");
-}
+// //Always place this code at the top of the Page
+// session_start();
+// if (isset($_SESSION['id'])) {
+//     // Redirection to login page twitter or facebook
+//     header("location: index.php");
+// }
 
-if (array_key_exists("login", $_GET)) {
-    $oauth_provider = $_GET['oauth_provider'];
-    if ($oauth_provider == 'twitter') {
-        header("Location: login-twitter.php");
-    } else if ($oauth_provider == 'facebook') {
-        header("Location: login-facebook.php");
-    }
-}
+// if (array_key_exists("login", $_GET)) {
+//     $oauth_provider = $_GET['oauth_provider'];
+//     if ($oauth_provider == 'twitter') {
+//         header("Location: login-twitter.php");
+//     } else if ($oauth_provider == 'facebook') {
+//         header("Location: login-facebook.php");
+//     }
+// }
 ?>
 <html>
 <head>
@@ -29,21 +29,21 @@ if (array_key_exists("login", $_GET)) {
 <body>
   <!-- Facebook Initialization -->
   <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : 'your-app-id',
-        xfbml      : true,
-        version    : 'v2.4'
-      });
-    };
+    // window.fbAsyncInit = function() {
+    //   FB.init({
+    //     appId      : 'your-app-id',
+    //     xfbml      : true,
+    //     version    : 'v2.4'
+    //   });
+    // };
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
+    // (function(d, s, id){
+    //    var js, fjs = d.getElementsByTagName(s)[0];
+    //    if (d.getElementById(id)) {return;}
+    //    js = d.createElement(s); js.id = id;
+    //    js.src = "//connect.facebook.net/en_US/sdk.js";
+    //    fjs.parentNode.insertBefore(js, fjs);
+    //  }(document, 'script', 'facebook-jssdk'));
   </script>
   <!-- Facebook Initialization Ends -->
   <div class="" style="background: red;">
@@ -214,7 +214,7 @@ if (array_key_exists("login", $_GET)) {
     		</ul>
         <ul class="nav navbar-nav navbar-right" style="">
           <li class="facebook">
-            <a href="?login&oauth_provider=facebook" aria-expanded="false">Facebook </a>
+            <a onclick="fbLogin()" aria-expanded="false"><img src="images/fb_login.png" alt="fblogin"/> </a>
           </li>
           <li class="twitter">
             <a href="#" aria-expanded="false">Twitter</a>
@@ -248,6 +248,15 @@ if (array_key_exists("login", $_GET)) {
       <div class="well programs"><img src="http://placehold.it/354x100/f0ad4e/f5f5f5/&text=Adv+2" class="img-responsive" alt="adv 2"></div>
     </div>
   </div>
+  <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
   <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
+  <script type="text/javascript">
+    function fbLogin(){
+      console.log("fb Login Clicked");
+      var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+      var apptaAgent = new ApptaAgent();
+      apptaAgent.login(api_key); 
+    }
+  </script>
 </body>
 </html>
