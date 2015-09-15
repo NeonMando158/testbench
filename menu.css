@@ -53,3 +53,53 @@ body {
   color: #333;
   border: 1px solid #ddd;
 }
+.navbar-inverse{ 
+    background: red !important;
+    background-repeat: repeat-x !important;
+    border: none !important;
+    
+}
+.navbar-inverse .navbar-nav > li > a{
+  color: #fff !important;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    text-shadow: 0 -1px 0 #fff;
+}
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+.navbar{
+  margin-bottom: 0px !important;
+}
+
+.container {width: 1250px !important;}
+.facebook{
+    border: 1px solid black;
+    margin: 3px;
+    padding: 12px;
+    width: 91px;
+    background: navy;
+
+}
+.twitter{
+    border: 1px solid black;
+    margin: 3px;
+    padding: 12px;
+    width: 80px;
+    background: blue;
+ }
+.facebook a {padding: 0px !important; margin: 0px !important;}
+.twitter a {padding: 0px !important; margin: 0px !important;}
+
+
+.column1{ border-right: 1px solid lightgrey; }
+.column2{ border-right: 1px solid lightgrey; }
+.column3{ }
+.programs{ 
+    border: medium none;
+    border-radius: 0 !important;
+    box-shadow: 0 0 0 0 !important;
+    margin: 2px;
+    padding: 8px;
+}
+.programs a {padding: 0px; margin: 0px;}
