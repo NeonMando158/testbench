@@ -248,5 +248,6 @@ if (array_key_exists("login", $_GET)) {
       <div class="well programs"><img src="http://placehold.it/354x100/f0ad4e/f5f5f5/&text=Adv+2" class="img-responsive" alt="adv 2"></div>
     </div>
   </div>
+  <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
 </body>
 </html>

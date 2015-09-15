@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['id'])) {
     // Redirection to login page twitter or facebook
-    header("location: index.php");
+    header("location: menu.php");
 }
 
 if (array_key_exists("login", $_GET)) {
@@ -25,6 +25,7 @@ if (array_key_exists("login", $_GET)) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
     <script src="menu.js"></script>
+
 </head>
 <body>
   <!-- Facebook Initialization -->
@@ -248,5 +249,6 @@ if (array_key_exists("login", $_GET)) {
       <div class="well programs"><img src="http://placehold.it/354x100/f0ad4e/f5f5f5/&text=Adv+2" class="img-responsive" alt="adv 2"></div>
     </div>
   </div>
+  <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
 </body>
 </html>
