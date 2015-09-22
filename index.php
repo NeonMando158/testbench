@@ -241,7 +241,7 @@
       </nav>
     </div>
   </div>
-  <div class="container" style="margin-top: 30px; ">
+  <div class="container" style="margin-top: 30px; padding: 0px; border-right: 1px solid lightgrey; border-left: 1px solid lighgrey; ">
     <div class="col-md-12" style="margin-bottom: 10px;">
         <img src="images/banner.png" alt="banner" style="width: 100%;"/>
     </div>
@@ -276,6 +276,26 @@
       var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
       var apptaAgent = new ApptaAgent();
       apptaAgent.login(api_key); 
+
+      FB.getLoginStatus(function (){
+        if (response.status === 'connected') {
+          // the user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire
+          console.log("successfully loggedin: "+response.status);
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+        } else if (response.status === 'not_authorized') {
+          // the user is logged in to Facebook, 
+          // but has not authenticated your app
+          console.log("not authorized: "+response.status);
+        } else {
+          // the user isn't logged in to Facebook.
+          console.log("not loggedin: "+response.status);
+        }
+      });
     }
   </script>
 </body>
