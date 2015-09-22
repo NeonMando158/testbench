@@ -54,16 +54,19 @@ body {
   border: 1px solid #ddd;
 }
 .navbar-inverse{ 
-    background: red !important;
+    background: #f90f00 !important;
     background-repeat: repeat-x !important;
     border: none !important;
     
 }
 .navbar-inverse .navbar-nav > li > a{
   color: #fff !important;
+    font-size: 13px;
+    padding: 16px 18px;
 }
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
     text-shadow: 0 -1px 0 #fff;
+    text-transform: uppercase;
 }
 .navbar-inverse .navbar-brand {
     color: #fff;
@@ -113,4 +116,24 @@ body {
 }
 .facebook img {
     width: 96%;
+}
+.dropdown-menu.mega-dropdown-menu > li {
+    display: inline !important;
+    float: left;
+}
+
+.dropdown-menu.mega-dropdown-menu {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border: 1px dotted grey;
+    padding: 0;
+}
+
+.customwell{
+    background: lightgrey none repeat scroll 0 0;
+    border-left: 1px solid grey;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 3px;
+    text-align: center;
+
 }
