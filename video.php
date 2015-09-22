@@ -276,6 +276,33 @@
               <span style="font-size: 12px; color: grey;">EMITIDO : LUNES, 09/14/2015</span><br/>
               <span style="font-size: 14px; color: #222; text-align: justify">Casillas le dice a Venegas que le va cobrar meterse con su familia</span><br/>
           </div>
+          <div class="col-sm-12" style="border-bottom: 1px solid lightgrey; ">
+               <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
+          </div>
+          <div class="col-sm-12" style="padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
+            <span>5 Friends saw this video</span>
+          </div>
+          <div class="col-sm-12 chatconversation" style=" border-bottom: 1px solid lightgrey;">
+              <ul class="">
+                <li><span>Whats going on</span></li>
+                <li><span>Hi Kim, Lets meet this Friday</span></li>
+                <li><span>for 5hrs discussion</span></li>
+              </ul>
+          </div>
+          <div class="conversationcontrol col-sm-12">
+            <div class="col-sm-1" style="padding: 10px;">
+              <i class="fa fa-star"></i>
+            </div>
+            <div class="col-sm-1" style="padding: 10px;">
+              <i class="fa fa-star"></i>
+            </div>
+            <div class="col-sm-8 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
+                <input type="text" placeholder="Chat with your friends"/>
+            </div>
+            <div class="enterConversation col-sm-2" style="padding: 10px;">
+                  <a class="btn btn-sm btn-primary">Submit</a>
+            </div>
+          </div>
         </div>
     </div>
     <div class="col-md-12 ">
