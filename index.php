@@ -228,7 +228,7 @@
             <a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; "></i></a>
           </li>
           <li style="background: #3b5958; padding: 11px;">
-            <a onclick="getLoungeInfo()" style="padding: 0px;">
+            <a onclick="fbLogin()" style="padding: 0px;">
               <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               <span style="font-size: 15px; text-transform: lowercase;">login</span>
             </a>
