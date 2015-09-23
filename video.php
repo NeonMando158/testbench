@@ -337,6 +337,24 @@
   <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
   <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
   <script type="text/javascript">
+    $( document ).ready(function(){
+        getProgramDetails(window.location.search.replace("?id=", ""));
+    });
+  </script>
+  <script type="text/javascript">
+    var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+    var apptaAgent = new ApptaAgent(api_key);
+
+    function getProgramDetails(id){
+        apptaAgent.getProgram(id, function sendData(data){
+          renderProgramData(data);
+        });
+    }
+    function renderProgramData(data){
+        console.log(data);
+        var details = JSON.parse(data);
+        console.log(details.program.name);
+    }
     function fbLogin(){
       console.log("fb Login Clicked");
       var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
