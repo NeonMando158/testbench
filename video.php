@@ -1,53 +1,19 @@
-<?php
-// //Always place this code at the top of the Page
-// session_start();
-// if (isset($_SESSION['id'])) {
-//     // Redirection to login page twitter or facebook
-//     header("location: index.php");
-// }
-
-// if (array_key_exists("login", $_GET)) {
-//     $oauth_provider = $_GET['oauth_provider'];
-//     if ($oauth_provider == 'twitter') {
-//         header("Location: login-twitter.php");
-//     } else if ($oauth_provider == 'facebook') {
-//         header("Location: login-facebook.php");
-//     }
-// }
-?>
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
     <script src="script.js"></script>
+    <script src="program.js"></script>
     <script src="menu.js"></script>
 </head>
 <body>
-  <!-- Facebook Initialization -->
-  <script>
-    // window.fbAsyncInit = function() {
-    //   FB.init({
-    //     appId      : 'your-app-id',
-    //     xfbml      : true,
-    //     version    : 'v2.4'
-    //   });
-    // };
-
-    // (function(d, s, id){
-    //    var js, fjs = d.getElementsByTagName(s)[0];
-    //    if (d.getElementById(id)) {return;}
-    //    js = d.createElement(s); js.id = id;
-    //    js.src = "//connect.facebook.net/en_US/sdk.js";
-    //    fjs.parentNode.insertBefore(js, fjs);
-    //  }(document, 'script', 'facebook-jssdk'));
-  </script>
-  <!-- Facebook Initialization Ends -->
   <div class="" style="background: #f90f00;">
     <div class="container" style="background: #f90f00;">
       <nav class="navbar navbar-inverse">
@@ -224,13 +190,16 @@
           <li><a href="#">Talentos</a></li>
           <li><a href="#">Mas</a></li>
           <li><a href="#">Tu Canal</a></li>
-          <li style="background: darkred; padding: 11px;">
-            <a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; "></i></a>
+          <li style="background: darkred; padding: 11px; cursor: pointer;" >
+            <!-- onclick="settings()" -->
+            <a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
+              <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox"></i>
+            </a>
           </li>
           <li style="background: #3b5958; padding: 11px;">
             <a onclick="fbLogin()" style="padding: 0px;">
               <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
-              <span style="font-size: 15px; text-transform: lowercase;">login</span>
+              <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
             </a>
           </li>
           <li style="background: #9cbdff; padding: 3px;">
@@ -242,24 +211,22 @@
     </div>
   </div>
   <div class="container" style="margin-top: 30px; ">
-    <!-- <div class="col-md-12" style="margin-bottom: 10px;">
-        <img src="images/banner.png" alt="banner" style="width: 100%;"/>
-    </div> -->
     <!-- main program video wrapper -->
     <div class="col-md-12" style="border: 1px solid lightgrey; padding: 0px;">
         <div class="col-md-8" style="padding: 0px;">
-            <div class="col-md-12" style="padding: 0px;">
+            <div class="col-md-12 program_video" style="padding: 0px;">
               <!-- <img src="images/video.png" alt="video" style="width: 100%;"/> -->
-<!-- 
+              <!-- 
               <video width="400" controls>
                 <source src="mov_bbb.mp4" type="video/mp4">
                 <source src="mov_bbb.ogg" type="video/ogg">
                 Your browser does not support HTML5 video.
-              </video> -->
+              </video> 
+              -->
               <iframe width="813" height="415" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
             </div>
 
-            <div class="col-md-12" style="padding: 0px;">
+            <div class="col-md-12 program-video-parts" style="padding: 0px;">
               <div class="col-md-2 customwell">PARTE: </div>
               <div class="col-md-2 customwell">1</div>
               <div class="col-md-2 customwell">2</div>
@@ -268,104 +235,141 @@
               <div class="col-md-2 customwell">5</div>
             </div>
         </div>
-        <div class="col-md-4" style="padding: 0px;">
-          <div class="col-md-6" style="background: red none repeat scroll 0% 0%; color: white; font-weight: bold; text-align: left; padding: 3px 8px; font-size: 18px;">ULTIMO CAPITULO</div>
-          <div class="col-md-12" style="border-bottom: 1px solid lightgrey">
-              <span style="margin-top: 20px; font-weight: bold; font-size: 14px; color: red; text-transform: lowercase;">EL SenoR DE LOS CApitulos</span><br/>
-              <span style="font-size: 30px; font-weight: bold; color: black;">Capitulo 99</span><br/>
-              <span style="font-size: 12px; color: grey;">EMITIDO : LUNES, 09/14/2015</span><br/>
-              <span style="font-size: 14px; color: #222; text-align: justify">Casillas le dice a Venegas que le va cobrar meterse con su familia</span><br/>
+        <div class="col-md-4 program-meta" style="padding: 0px;">
+          <div class="col-md-6 program-meta-channel" style="background: red none repeat scroll 0% 0%; color: white; font-weight: bold; text-align: left; padding: 3px 8px; font-size: 18px;">ULTIMO CAPITULO</div>
+          <div class="col-md-12 program-meta-details" style="border-bottom: 1px solid lightgrey">
+              <span class="program-meta-caption" style="margin-top: 20px; font-weight: bold; font-size: 14px; color: red; text-transform: lowercase;">EL SenoR DE LOS CApitulos</span><br/>
+              <span class="program-meta-episode" style="font-size: 30px; font-weight: bold; color: black;">Capitulo 99</span><br/>
+              <span class="program-meta-time" style="font-size: 12px; color: grey;">EMITIDO : LUNES, 09/14/2015</span><br/>
+              <span class="program-meta-description" style="font-size: 14px; color: #222; text-align: justify">Casillas le dice a Venegas que le va cobrar meterse con su familia</span><br/>
           </div>
-          <div class="col-sm-12" style="border-bottom: 1px solid lightgrey; ">
+          <div class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; ">
                <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
           </div>
-          <div class="col-sm-12" style="padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
+          <div class="col-sm-12 program-meta-friends" style="padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
             <span>5 Friends saw this video</span>
           </div>
-          <div class="col-sm-12 chatconversation" style=" border-bottom: 1px solid lightgrey;">
+          <div class="col-sm-12 chatconversation program-meta-conversations" style=" border-bottom: 1px solid lightgrey;">
               <ul class="">
                 <li><span>Whats going on</span></li>
                 <li><span>Hi Kim, Lets meet this Friday</span></li>
                 <li><span>for 5hrs discussion</span></li>
               </ul>
           </div>
-          <div class="conversationcontrol col-sm-12">
-            <div class="col-sm-1" style="padding: 10px;">
-              <i class="fa fa-star"></i>
+          <div class="conversationcontrol col-sm-12" style="margin: 2px 0px;">
+            <div class="col-sm-2" style="padding: 10px 15px; font-size: 28px; color: lightgrey;">
+              <i class="fa fa-calendar"></i>
             </div>
-            <div class="col-sm-1" style="padding: 10px;">
-              <i class="fa fa-star"></i>
+            <div class="col-sm-2" style="padding: 10px 15px; font-size: 30px; color: lightgrey;">
+              <i class="fa fa-image"></i>
             </div>
-            <div class="col-sm-8 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
+            <div class="col-sm-6 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
                 <input type="text" placeholder="Chat with your friends"/>
             </div>
             <div class="enterConversation col-sm-2" style="padding: 10px;">
                   <a class="btn btn-sm btn-primary">Submit</a>
             </div>
           </div>
+          <div class="program-meta-calendar col-sm-12" style="background: orange;">
+              <span style="padding: 10px;"><i class="fa fa-calendar" style="font-size: 29px; color: white; padding: 5px"></i><span style="padding: 05px; font-size: 21px; color: white; font-weight: bold">CALENDARIO DE EPISODES </span><a href="#" style="font-size: 28px; color: white; font-weight: bold; position: relative; top: 1px; left: 20px">&gt;</a></span>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="padding: 0px;">
+        <div class="col-md-3 program-social">
+            <div class="col-md-12 program-social-icons">
+              <div class="col-md-4 program-social-icon">
+                <i class="fa fa-thumbs-up"></i><span>30</span>
+              </div>
+              <div class="col-md-4 program-social-icon">
+                <i class="fa fa-eye"></i><span>30</span>
+              </div>
+              <div class="col-md-4 program-social-icon no-right-border" >
+                <i class="fa fa-comments"></i><span>30</span>
+              </div>
+              
+            </div>
+            <div class="col-md-12 program-social-actions">
+              <div class="col-md-3 program-social-action">
+                <a href="#">LIKE</a>
+              </div>
+              <div class="col-md-4 program-social-action">
+                <a href="#">COMMENT</a>
+              </div>
+              <div class="col-md-4 program-social-action">
+                <a href="#">LEADERBOARD</a>
+              </div>
+            </div>
+            <div class="col-md-12 program-social-data">
+              <div class="col-md-12" style="padding: 18px 0px; margin: 4px 0px; background: white;">
+                <div class="col-md-3 program-social-data-image">
+                  <img src="http://placehold.it/50x50/2ecc71/f5f5f5" alt="" style="border-radius: 50px;"/>
+                </div>
+                <div class="col-md-7 program-social-data-name">
+                  <span>John Nash</span>
+                </div>
+                <div class="col-md-2 program-social-data-srcmedia">
+                  <img src="http://placehold.it/25x25/234ff3/f5f5f5" alt="" style="border-radius: 50px;"/>
+                </div>
+                <div class="col-md-12">
+                    Text data from social content with description
+                </div>
+              </div>
+              <div class="col-md-12" style="padding: 18px 0px; margin: 4px 0px; background: white;">
+                <div class="col-md-3 program-social-data-image">
+                  <img src="http://placehold.it/50x50/2ecc71/f5f5f5" alt="" style="border-radius: 50px;"/>
+                </div>
+                <div class="col-md-7 program-social-data-name">
+                  <span>Jake</span>
+                </div>
+                <div class="col-md-2 program-social-data-srcmedia">
+                  <img src="http://placehold.it/25x25/234ff3/f5f5f5/?F" alt="" style="border-radius: 50px;"/>
+                </div>
+                <div class="col-md-12">
+                    Text data from social content with description
+                </div>
+              </div>
+              <div class="col-md-12" style="padding: 18px 0px; margin: 4px 0px; background: white;">
+                <div class="col-md-3 program-social-data-image">
+                  <img src="http://placehold.it/50x50/2ecc71/f5f5f5/?F" alt="" style="border-radius: 50px;"/>
+                </div>
+                <div class="col-md-7 program-social-data-name">
+                  <span>Joe Brownski</span>
+                </div>
+                <div class="col-md-2 program-social-data-srcmedia">
+                  <img src="http://placehold.it/25x25/234ff3/f5f5f5/?T" alt="" style="border-radius: 50px;"/>
+                </div>
+                <div class="col-md-12">
+                    Text data from social content with description
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-9 program-grid">
+          <div class="col-md-12 program-grid-control">
+              <div class="col-md-3 btn btn-large btn-warning">All Episodes</div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3 btn btn-large btn-default">Temporada 3 <i class="fa fa-down"></i></div>
+              <div class="col-md-3 btn btn-large btn-default">Recently Viewed <i class="fa fa-down"></i></div>
+          </div>
+          <div class="col-md-12 program-grid-view">
+            <ul class="col-md-12 program-grid-programs">
+              <li class="item"></li>
+              <li class="item"></li>
+              <li class="item"></li>
+              <li class="item"></li>
+              <li class="item"></li>
+              <li class="item"></li>
+              <li class="item"></li>
+              <li class="item"></li>
+              
+            </ul>
+          </div>
         </div>
     </div>
     <div class="col-md-12 ">
-
+        
     </div>
-    <div class="col-md-12 ">
-
-    </div>
-    <!-- <div class="col-md-4 column1">
-        <div class="well programs">
-          <span class="program-type"><a href="#">DECISION 2016</a></span>
-          <h5 class="program-title">Hillary Clinton popular entre los latinos</h5>
-          <img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+1" class="img-responsive" alt="program 1">
-        </div>
-        <div class="well programs"><img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+2" class="img-responsive" alt="program 2"></div>
-        <div class="well programs"><img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+3" class="img-responsive" alt="program 3"></div>
-        <div class="well programs"><img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+4" class="img-responsive" alt="program 4"></div>
-        <div class="well programs"><img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+5" class="img-responsive" alt="program 5"></div>
-    </div> -->
-    <!-- <div class="col-md-4 column2">
-      <div class="well"><img src="images/ad1.png" style="width: 100%;" class="img-responsive" alt="adv 1"></div>
-      <div class="well programs"><img src="http://placehold.it/354x200/d9534f/f5f5f5/&text=Program+6" class="img-responsive" alt="program 6"></div>
-      <div class="well programs"><img src="http://placehold.it/354x100/1caf9a/f5f5f5/&text=Adv+2" class="img-responsive" alt="adv 2"></div>
-      <div class="well programs"><img src="http://placehold.it/354x200/f0ad4e/f5f5f5/&text=Program+6" class="img-responsive" alt="program 6"></div>
-    </div> -->
-    <!-- <div class="col-md-4 column3">
-      <div class="well programs"><img src="http://placehold.it/354x354/f0ad4e/f5f5f5/&text=Adv+1" class="img-responsive" alt="adv 1"></div>
-      <div class="well programs"><img src="http://placehold.it/354x354/d9534f/f5f5f5/&text=Program+7" class="img-responsive" alt="program 6"></div>
-      <div class="well programs"><img src="http://placehold.it/354x100/f0ad4e/f5f5f5/&text=Adv+2" class="img-responsive" alt="adv 2"></div>
-    </div> -->
   </div>
-  <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
-  <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
-  <script type="text/javascript">
-    $( document ).ready(function(){
-        getProgramDetails(window.location.search.replace("?id=", ""));
-    });
-  </script>
-  <script type="text/javascript">
-    var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-    var apptaAgent = new ApptaAgent(api_key);
-
-    function getProgramDetails(id){
-        apptaAgent.getProgram(id, function sendData(data){
-          renderProgramData(data);
-        });
-    }
-    function renderProgramData(data){
-        console.log(data);
-        var details = JSON.parse(data);
-        console.log(details.program.name);
-    }
-    function fbLogin(){
-      console.log("fb Login Clicked");
-      var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-      var apptaAgent = new ApptaAgent();
-      apptaAgent.login(api_key); 
-    }
-    $(document).ready( function(){
-      $(".custompageclicked").show(); 
-    });
-      
-    
-  </script>
 </body>
 </html>
