@@ -40,7 +40,6 @@
                         <div class="item active">
                             <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="programs 1"></a>
                             <h4><small>Some Text</small></h4>                                        
-                            <!-- <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> </button>        -->
                         </div><!-- End Item -->
                         <div class="item">
                             <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="programs 2"></a>
@@ -142,17 +141,14 @@
                         <div class="item active">
                             <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="program 1"></a>
                             <h4><small>asdasd</small></h4>                                        
-                            <!-- <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>        -->
                         </div><!-- End Item -->
                         <div class="item">
                             <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="program 2"></a>
                             <h4><small>asdasdasd</small></h4>                                        
-                            <!-- <button class="btn btn-primary" type="button">9,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>         -->
                         </div><!-- End Item -->
                         <div class="item">
                             <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="program 3"></a>
                             <h4><small>asdasded</small></h4>                                        
-                            <!-- <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>       -->
                         </div><!-- End Item -->                                
                       </div><!-- End Carousel Inner -->
                       <!-- Controls -->
@@ -236,7 +232,7 @@
             </div>
         </div>
         <div class="col-md-4 program-meta" style="padding: 0px;">
-          <div class="col-md-6 program-meta-channel" style="background: red none repeat scroll 0% 0%; color: white; font-weight: bold; text-align: left; padding: 3px 8px; font-size: 18px;">ULTIMO CAPITULO</div>
+          <div class="col-md-6 program-meta-channel" style="background: red none repeat scroll 0% 0%; color: white; font-weight: bold; text-align: left; padding: 3px 8px; font-size: 18px;">Latest Chapter</div>
           <div class="col-md-12 program-meta-details" style="border-bottom: 1px solid lightgrey">
               <span class="program-meta-caption" style="margin-top: 20px; font-weight: bold; font-size: 14px; color: red; text-transform: lowercase;">EL SenoR DE LOS CApitulos</span><br/>
               <span class="program-meta-episode" style="font-size: 30px; font-weight: bold; color: black;">Capitulo 99</span><br/>

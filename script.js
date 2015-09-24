@@ -47,7 +47,7 @@
       var event_type = 'CHECK_IN_TO_PROGRAM';
       console.log(event_data);
       apptaAgent.eventLog(event_type, event_data);
-      window.location.href = "http://localhost/testbench/testbench/video.php?id="+id;
+      window.location.href = "http://telemundo.teletango.com/testbench/video.php?id="+id;
     }
 
     function renderLoungeData(data){
