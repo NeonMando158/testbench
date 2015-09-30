@@ -1,15 +1,3 @@
-    $( document ).ready(function(){
-		var likefriends = $(".likefriends").children().length;
-		$(".program-meta-friends > span").text(length+" friends like this video");
-		userlikes();
-		$(".program-meta-friends").click(function() { 
-   		 // assumes element with id='button'
-		    $(".leaderboard").toggle();
-		});
-		
-        getProgramDetails(window.location.search.replace("?id=", ""));
-		checkCookie();
-    });
 
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
     var apptaAgent = new ApptaAgent(api_key, "414920308635429");
@@ -21,6 +9,16 @@
 	var facebook_object_id;
 	var link =window.location.href;
 	var message="";
+	var likeuserlist;
+
+    $( document ).ready(function(){
+        getProgramDetails(window.location.search.replace("?id=", ""));
+		$(".program-meta-friends").click(function() { 
+		    $(".leaderboard").toggle();
+		});
+		checkCookie();
+    });
+
 
 	function getCookie(cname) {
     	var name = cname + "=";
@@ -37,23 +35,23 @@
 	    var fbToken=getCookie("fbToken");
 		
 	    if (fbToken!="") {
-			console.log("facebook token if not empty");
-	        console.log(fbToken);
+			//console.log("facebook token if not empty");
+	        //console.log(fbToken);
 	    }else{
-			console.log("facebook token if empty");
-			console.log(fbToken);
+			//console.log("facebook token if empty");
+			//console.log(fbToken);
     	}
 	} 
 	
 	function fbLogin(){
       apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
-			console.log("false status fb");
-			console.log(data);
+			//console.log("false status fb");
+			//console.log(data);
       		//apptaAgent.login();
         }else{
-			console.log("true status fb");
-          	console.log(data);
+			//console.log("true status fb");
+          	//console.log(data);
 			firstname = data.first_name;
 			lastname = data.last_name;
 			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
@@ -76,24 +74,26 @@
 		apptaAgent.postFBShare(program_id,program_name,link,message);
 	}
 
-	function userlikes(){
+	function userlikes(data){
 		html='<ul class="likefriends">';
-		html+='  <li>Shiv Ratri</li>';
-		html+='  <li>Vrandesh</li>';
-		html+='  <li>Andy Hayden</li>';
-		html+='  <li>Smith Belkin</li>';
+		for(var m=0; m<data.length;m++){
+		  html+='<li><img src="http://graph.facebook.com/'+data[m].fb_user_id+'/picture?type=small" alt="" style="height: 30px; width: 30px; border-radius: 50px; padding: 1px;"/></li>';
+		}
 		html+='</ul>'; 
 		$(".leaderboard").append(html);
 		$(".program-meta-friends").attr('style','padding: 0px; margin: 0px; background: grey; color: white; text-align: center; font-size: 14px; cursor: pointer;');
+		var likefriends = $(".likefriends").children().length;
+		$(".program-meta-friends > span").text(likefriends+" friends like this video");
 	}
 
 
     function renderProgramData(data){
         var details = data;
-		console.log("program details");
+		//console.log("program details");
 		program_id=details.program.id;
 		program_name=details.program.name;
 		facebook_object_id=details.program.fb_page_url;
+		likeuserlist=details.like_user_list;
 		var conversations = data.conversations;
 		renderConversations(conversations);
 		for(var x=0; x<data.twittercomments.comments.length;x++){
@@ -105,6 +105,7 @@
 		friendsfootprint.push(data.friendsfootprint);	
 		renderTwitterComments(twitterdata);
 		renderFacebookComments(facebookcomments);
+		userlikes(likeuserlist);
 		
     }
 		
@@ -116,11 +117,11 @@
 			'Authorization':'OAuth oauth_consumer_key="Dv0qgHLVONdRuScuSruGhdJYM",oauth_token="72164110-Gyy2Uw480HqEOcEydx9zhKF5cNHeZky8O5XVoAYrf",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1443517065",oauth_nonce="87a2e5d71cecd0fee8bb36553ae1a875",oauth_version="1.0",oauth_signature="RuELno7ZGY9Wt5mGOH1Ur540iHA%3D"'
 		  },
 		  success: function(data) {
-			console.log(data);
-			console.log(headers);
+			//console.log(data);
+			//console.log(headers);
 		  },
 		  error: function(e) {
-			console.log(e.message);
+			//console.log(e.message);
 		  }
 		});	
 	}
@@ -149,9 +150,9 @@
 	}
 
 	function renderFacebookComments(facebook){
-		console.log(facebook);
+		//console.log(facebook);
 		for(var f=0; f<facebook.length;f++){
-			console.log(facebook[f].fbuserid);
+			//console.log(facebook[f].fbuserid);
 			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12">';
 			html += '	<div class="col-md-3 program-social-data-image">';
 			html += '	  <img style="border-radius: 50px;" alt="" src="'+facebook[f].thumbnail+'">';
@@ -181,7 +182,7 @@
 	}
 
     function fbLogin(){
-      console.log("fb Login Clicked");
+      //console.log("fb Login Clicked");
       var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
       var apptaAgent = new ApptaAgent();
       apptaAgent.login(api_key); 
@@ -195,7 +196,7 @@
 
 	function programComment(){
 		//apptaAgent.likeProgramComment(program_id,program_name,comment_id,type);	
-		apptaAgent.getFBComments(program_id,program_name,facebook_object_id,function(data){console.log(data);});
+		//apptaAgent.getFBComments(program_id,program_name,facebook_object_id,function(data){console.log(data);});
 	}
 
 	function leaderboard(){

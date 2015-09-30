@@ -245,12 +245,12 @@
           <div  class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; cursor: pointer" onclick="fbshare();">
                <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
           </div>
-          <div class="col-sm-12 program-meta-friends" style="cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
+          <div onclick="userlikes();" class="col-sm-12 program-meta-friends" style="cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
             <span> Friends who like this video</span>
 			<div class="leaderboard" style="display: none;"></div>
           </div>
           <div class="col-sm-12 chatconversation program-meta-conversations" style=" border-bottom: 1px solid lightgrey;">
-              <ul class="chatconversationslist">
+              <ul class="chatconversationslist" style="overflow-y: scroll;">
                 <li><span>Currently no Conversations</span></li>
               </ul>
           </div>
@@ -292,7 +292,7 @@
                 <a href="#" onclick="programLike();">LIKE</a>
               </div>
               <div class="col-md-4 program-social-action">
-                <a href="#" onclick="programComment()">COMMENT</a>
+                <a data-toggle="modal" data-target="#myModal" href="#" onclick="programComment()">COMMENT</a>
               </div>
               <div class="col-md-4 program-social-action">
                 <a href="#" onclick="leaderboard()">LEADERBOARD</a>
@@ -368,18 +368,48 @@
     <div class="col-md-12 ">
         
     </div>
+	<!-- Dialog -->
+	<div id="dialog" title="Basic dialog">
+	  <h4>Post a Comment</h4>
+	</div>
+	<!-- Dialog ends -->
 	<!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Post A Comment</h4>
         </div>
         <div class="modal-body">
-			<a href="#">Facebook</a>
-			<a href="#">Teletango</a>
-			<a href="#">Twitter</a>
+			<div>
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#teletango" aria-controls="teletango" role="tab" data-toggle="tab">Teletango</a></li>
+			    <li role="presentation"><a href="#facebook" aria-controls="facebook" role="tab" data-toggle="tab">Facebook</a></li>
+			    <li role="presentation"><a href="#twitter" aria-controls="twitter" role="tab" data-toggle="tab">Twitter</a></li>
+			  </ul>
+			  <!-- Tab panes -->
+			  <div class="tab-content" style="padding: 10px;">
+			    <div role="tabpanel" class="tab-pane active" id="teletango">
+					<div class="form-group">
+					  <label class="col-md-4 control-label" for="textarea">Text Area</label>
+					  <div class="col-md-4">                     
+					    <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
+					  </div>
+					</div>
+			      <a href="#" onclick="" class="btn btn-sm btn-warning">POST to Teletango</a>
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="facebook">
+			      <a href="#" onclick="" class="btn btn-sm btn-default">Comment on Facebook</a>
+			
+				</div>
+			    <div role="tabpanel" class="tab-pane" id="twitter">
+			      <a href="#" onclick="" class="btn btn-sm btn-danger">Tweet here</a>
+					
+				</div>
+			  </div>
+			</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
