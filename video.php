@@ -250,8 +250,7 @@
 			<div class="leaderboard" style="display: none;"></div>
           </div>
           <div class="col-sm-12 chatconversation program-meta-conversations" style=" border-bottom: 1px solid lightgrey;">
-              <ul class="chatconversationslist" style="overflow-y: scroll;">
-                <li><span>Currently no Conversations</span></li>
+              <ul class="chatconversationslist" style="overflow-y: scroll; padding: 0px;">
               </ul>
           </div>
           <div class="conversationcontrol col-sm-12" style="margin: 2px 0px;">
@@ -292,7 +291,7 @@
                 <a href="#" onclick="programLike();">LIKE</a>
               </div>
               <div class="col-md-4 program-social-action">
-                <a data-toggle="modal" data-target="#myModal" href="#" onclick="programComment()">COMMENT</a>
+                <a data-toggle="modal" data-target="#myModal" href="#">COMMENT</a>
               </div>
               <div class="col-md-4 program-social-action">
                 <a href="#" onclick="leaderboard()">LEADERBOARD</a>
@@ -393,19 +392,28 @@
 			  <div class="tab-content" style="padding: 10px;">
 			    <div role="tabpanel" class="tab-pane active" id="teletango">
 					<div class="form-group">
-					  <label class="col-md-4 control-label" for="textarea">Text Area</label>
-					  <div class="col-md-4">                     
-					    <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
+					  <div class="">                     
+					    <textarea class="form-control teletangocomment" id="textarea" name="textarea" placeholder="Enter your comment here"></textarea>
 					  </div>
 					</div>
-			      <a href="#" onclick="" class="btn btn-sm btn-warning">POST to Teletango</a>
+			      <a href="#" onclick="programComments()" class="btn btn-sm btn-warning">POST to Teletango</a>
 			    </div>
 			    <div role="tabpanel" class="tab-pane" id="facebook">
-			      <a href="#" onclick="" class="btn btn-sm btn-default">Comment on Facebook</a>
+					<div class="form-group">
+					  <div class="">                     
+					    <textarea class="form-control facebookcomment" id="textarea" name="textarea" placeholder="Enter your facebook message  here"></textarea>
+					  </div>
+					</div>
+			      <a href="#" onclick="postToFacebook()" class="btn btn-sm btn-default">Comment on Facebook</a>
 			
 				</div>
 			    <div role="tabpanel" class="tab-pane" id="twitter">
-			      <a href="#" onclick="" class="btn btn-sm btn-danger">Tweet here</a>
+					<div class="form-group">
+					  <div class="">                     
+					    <textarea class="form-control twittercomment" id="textarea" name="textarea" placeholder="Enter your tweet here"></textarea>
+					  </div>
+					</div>
+			      <a href="#" onclick="postToTwitter()" class="btn btn-sm btn-danger">Tweet here</a>
 					
 				</div>
 			  </div>

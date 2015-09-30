@@ -150,12 +150,13 @@ body {
   border-radius: 10px;
     margin: 10px 0;
     padding: 4px 10px;
+    background: wheat none repeat scroll 0 0;
 }
 .chatconversation ul li span{
-    background: wheat none repeat scroll 0 0;
     border-radius: 10px;
     margin: 10px 0;
     padding: 4px 10px;
+	
   }
 
 

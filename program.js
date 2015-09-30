@@ -10,6 +10,7 @@
 	var link =window.location.href;
 	var message="";
 	var likeuserlist;
+	var conversations;
 
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
@@ -48,7 +49,7 @@
         if(data.is_logged_in === false){
 			//console.log("false status fb");
 			//console.log(data);
-      		//apptaAgent.login();
+      		apptaAgent.login();
         }else{
 			//console.log("true status fb");
           	//console.log(data);
@@ -94,7 +95,7 @@
 		program_name=details.program.name;
 		facebook_object_id=details.program.fb_page_url;
 		likeuserlist=details.like_user_list;
-		var conversations = data.conversations;
+		conversations = data.conversations;
 		renderConversations(conversations);
 		for(var x=0; x<data.twittercomments.comments.length;x++){
 			twitterdata.push(data.twittercomments.comments[x]);
@@ -172,7 +173,7 @@
 	}
 		
 	function renderConversations(data){
-		$(".chatconversationslist").empty();
+		//$(".chatconversationslist").empty();
 		for(var b=0; b<data.length;b++){
 			html = '<li>';
 			html +='<span>'+data[b].text+'</span>';
@@ -194,9 +195,11 @@
 		apptaAgent.likeProgram(program_id,program_name);	
 	}
 
-	function programComment(){
-		//apptaAgent.likeProgramComment(program_id,program_name,comment_id,type);	
-		//apptaAgent.getFBComments(program_id,program_name,facebook_object_id,function(data){console.log(data);});
+	function programComments(){
+		var comment_text = $(".teletangocomment").val();
+		var type="public";
+		apptaAgent.postComment(program_id,program_name,comment_text,type);
+		apptaAgent.getComments(program_id,program_name,type, function(data){renderConversations(data);});
 	}
 
 	function leaderboard(){
@@ -205,4 +208,12 @@
 
 	function submitcomment(){
 		apptaAgent.postComment(program_id,program_name,comment_id,comment_text,type);
+	}
+	function postToFacebook(){
+		var facebook_message=$(".facebookcomment").val();
+		apptaAgent.postFBComment(program_id,program_name,facebook_object_id,facebook_message);
+	}
+	function postToTwitter(){
+		var twitter_text = $(".twittercomment").val();
+		apptaAgent.postTweet(program_id,program_name,twitter_text);
 	}
