@@ -1,5 +1,14 @@
     $( document ).ready(function(){
+		var likefriends = $(".likefriends").children().length;
+		$(".program-meta-friends > span").text(length+" friends like this video");
+		userlikes();
+		$(".program-meta-friends").click(function() { 
+   		 // assumes element with id='button'
+		    $(".leaderboard").toggle();
+		});
+		
         getProgramDetails(window.location.search.replace("?id=", ""));
+		checkCookie();
     });
 
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
@@ -13,12 +22,37 @@
 	var link =window.location.href;
 	var message="";
 
-    function fbLogin(){
+	function getCookie(cname) {
+    	var name = cname + "=";
+    	var ca = document.cookie.split(';');
+    	for(var i=0; i<ca.length; i++) {
+    	    var c = ca[i];
+    	    while (c.charAt(0)==' ') c = c.substring(1);
+    	    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    	}
+    	return "";
+	} 
+
+    function checkCookie() {
+	    var fbToken=getCookie("fbToken");
+		
+	    if (fbToken!="") {
+			console.log("facebook token if not empty");
+	        console.log(fbToken);
+	    }else{
+			console.log("facebook token if empty");
+			console.log(fbToken);
+    	}
+	} 
+	
+	function fbLogin(){
       apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
+			console.log("false status fb");
+			console.log(data);
       		//apptaAgent.login();
-          	console.log(data);
         }else{
+			console.log("true status fb");
           	console.log(data);
 			firstname = data.first_name;
 			lastname = data.last_name;
@@ -36,7 +70,6 @@
           renderProgramData(data);
         });
         //check if the user is logged in
-        fbLogin();
     }
 
 	function fbshare(){
@@ -44,15 +77,16 @@
 	}
 
 	function userlikes(){
-		console.log("show all user likes");
-		html='<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">';
-		html+='  <div class="modal-dialog modal-sm">';
-		html+='    <div class="modal-content">';
-		html+='    </div>';
-		html+='  </div>';
-		html+='</div>'; 
+		html='<ul class="likefriends">';
+		html+='  <li>Shiv Ratri</li>';
+		html+='  <li>Vrandesh</li>';
+		html+='  <li>Andy Hayden</li>';
+		html+='  <li>Smith Belkin</li>';
+		html+='</ul>'; 
 		$(".leaderboard").append(html);
+		$(".program-meta-friends").attr('style','padding: 0px; margin: 0px; background: grey; color: white; text-align: center; font-size: 14px; cursor: pointer;');
 	}
+
 
     function renderProgramData(data){
         var details = data;

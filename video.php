@@ -245,14 +245,13 @@
           <div  class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; cursor: pointer" onclick="fbshare();">
                <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
           </div>
-          <div data-toggle="modal" data-target="#myModal" class="col-sm-12 program-meta-friends" style="padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;" onclick="userlikes();">
-            <span>5 Friends like this video</span>
+          <div class="col-sm-12 program-meta-friends" style="cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
+            <span> Friends who like this video</span>
+			<div class="leaderboard" style="display: none;"></div>
           </div>
           <div class="col-sm-12 chatconversation program-meta-conversations" style=" border-bottom: 1px solid lightgrey;">
               <ul class="chatconversationslist">
-                <li><span>Whats going on</span></li>
-                <li><span>Hi Kim, Lets meet this Friday</span></li>
-                <li><span>for 5hrs discussion</span></li>
+                <li><span>Currently no Conversations</span></li>
               </ul>
           </div>
           <div class="conversationcontrol col-sm-12" style="margin: 2px 0px;">
@@ -375,11 +374,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Post A Comment</h4>
         </div>
         <div class="modal-body">
-          <p>This is a small modal.</p>
-			<div class="leaderboard"></div>
+			<a href="#">Facebook</a>
+			<a href="#">Teletango</a>
+			<a href="#">Twitter</a>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
