@@ -1,5 +1,6 @@
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
+        fbLogin();
     });
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
     var apptaAgent = new ApptaAgent(api_key);
@@ -8,6 +9,29 @@
         apptaAgent.getProgram(id, function sendData(data){
           renderProgramData(data);
         });
+    }
+
+    function fbLogin(){
+      // var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+      // var apptaAgent = new ApptaAgent(api_key, "760586213");
+      apptaAgent.getLoginDetails(function(data){
+        if(data.is_logged_in === false){
+      		apptaAgent.login();
+          	console.log(data);
+        }else{
+          	console.log(data);
+			firstname = data.first_name;
+			lastname = data.last_name;
+			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+			
+			$(".userimagecontainer").empty();
+          	$(".customfblogin").text(firstname);
+			html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+			$(".userimagecontainer").append(html);
+		
+			updateFriendsListInPrograms(data.is_logged_in);	
+        }
+      });
     }
 
 	var twitterdata = [];
