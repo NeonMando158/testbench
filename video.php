@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
-    <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
+    <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
     <script src="script.js"></script>
     <script src="program.js"></script>
     <script src="menu.js"></script>
@@ -192,7 +192,7 @@
               <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox"></i>
             </a>
           </li>
-          <li style="background: #3b5958; padding: 11px;">
+          <li style="background: #3b5958; padding: 11px; cursor: pointer;">
             <a onclick="fbLogin()" style="padding: 0px;">
               <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
@@ -239,14 +239,15 @@
               <span class="program-meta-time" style="font-size: 12px; color: grey;">EMITIDO : LUNES, 09/14/2015</span><br/>
               <span class="program-meta-description" style="font-size: 14px; color: #222; text-align: justify">Casillas le dice a Venegas que le va cobrar meterse con su familia</span><br/>
           </div>
-          <div class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; ">
+		
+          <div  class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; cursor: pointer" onclick="fbshare();">
                <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
           </div>
-          <div class="col-sm-12 program-meta-friends" style="padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
-            <span>5 Friends saw this video</span>
+          <div data-toggle="modal" data-target="#myModal" class="col-sm-12 program-meta-friends" style="padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;" onclick="userlikes();">
+            <span>5 Friends like this video</span>
           </div>
           <div class="col-sm-12 chatconversation program-meta-conversations" style=" border-bottom: 1px solid lightgrey;">
-              <ul class="">
+              <ul class="chatconversationslist">
                 <li><span>Whats going on</span></li>
                 <li><span>Hi Kim, Lets meet this Friday</span></li>
                 <li><span>for 5hrs discussion</span></li>
@@ -256,14 +257,14 @@
             <div class="col-sm-2" style="padding: 10px 15px; font-size: 28px; color: lightgrey;">
               <i class="fa fa-calendar"></i>
             </div>
-            <div class="col-sm-2" style="padding: 10px 15px; font-size: 30px; color: lightgrey;">
+            <div class="col-sm-2" style="padding: 10px 15px; font-size: 30px; color: lightgrey;" onclick="uploadImage()">
               <i class="fa fa-image"></i>
             </div>
             <div class="col-sm-6 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
                 <input type="text" placeholder="Chat with your friends"/>
             </div>
             <div class="enterConversation col-sm-2" style="padding: 10px;">
-                  <a class="btn btn-sm btn-primary">Submit</a>
+                  <a class="btn btn-sm btn-primary" onclick="submitComment()">Submit</a>
             </div>
           </div>
           <div class="program-meta-calendar col-sm-12" style="background: orange;">
@@ -287,13 +288,13 @@
             </div>
             <div class="col-md-12 program-social-actions">
               <div class="col-md-3 program-social-action">
-                <a href="#">LIKE</a>
+                <a href="#" onclick="programLike();">LIKE</a>
               </div>
               <div class="col-md-4 program-social-action">
-                <a href="#">COMMENT</a>
+                <a href="#" onclick="programComment()">COMMENT</a>
               </div>
               <div class="col-md-4 program-social-action">
-                <a href="#">LEADERBOARD</a>
+                <a href="#" onclick="leaderboard()">LEADERBOARD</a>
               </div>
             </div>
             <div class="col-md-12 program-social-data">
@@ -366,6 +367,24 @@
     <div class="col-md-12 ">
         
     </div>
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>This is a small modal.</p>
+			<div class="leaderboard"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </body>
 </html>

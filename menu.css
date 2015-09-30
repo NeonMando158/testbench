@@ -144,6 +144,7 @@ body {
     float: right;
     list-style: outside none none;
     text-align: right;
+	height:	124px;
 }
 .chatconversation ul li{
   border-radius: 10px;
@@ -316,4 +317,25 @@ body {
 }
 .program-grid-control div a{
 
+}
+.friendsList{
+	
+}	
+.friendsList ul{
+	list-style: none;
+	display: inline;
+	
+}
+.friendsList ul li{
+	background: grey none repeat scroll 0 0;
+    border-radius: 50px;
+    float: left;
+    font-size: 5px;
+    margin: 0 2px;
+}
+.friendsList ul li img {
+	height: 30px;
+	width: 30px;
+	border-radius: 50px;
+padding: 1px;
 }

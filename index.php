@@ -195,14 +195,14 @@
               <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
             </a>
           </li>
-          <li style="background: #3b5958; padding: 11px;">
+          <li style="background: #3b5958; padding: 11px; cursor: pointer;">
             <a onclick="fbLogin()" style="padding: 0px;">
               <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
             </a>
           </li>
-          <li style="background: #9cbdff; padding: 3px;">
-            <a href="#"><i class="fa fa-user"></i></a>
+          <li class="userimage" style="background: #9cbdff; padding: 3px;">
+            <a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
           </li>
     		</ul>
     	</div><!-- /.nav-collapse -->
