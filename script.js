@@ -13,16 +13,16 @@
           	console.log(data);
         }else{
           	console.log(data);
-			firstname = data.first_name;
-			lastname = data.last_name;
-			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+			      firstname = data.first_name;
+			      lastname = data.last_name;
+			      image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
 			
-			$(".userimagecontainer").empty();
-          	$(".customfblogin").text(firstname);
-			html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-			$(".userimagecontainer").append(html);
-		
-			updateFriendsListInPrograms(data.is_logged_in);	
+      			$(".userimagecontainer").empty();
+                	$(".customfblogin").text(firstname);
+      			html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+      			$(".userimagecontainer").append(html);
+      		
+      			updateFriendsListInPrograms(data.is_logged_in);	
         }
       });
     }
