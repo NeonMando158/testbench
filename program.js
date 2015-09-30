@@ -1,23 +1,20 @@
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
-        fbLogin();
     });
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-    var apptaAgent = new ApptaAgent(api_key);
+    var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 
     function getProgramDetails(id){
         apptaAgent.getProgram(id, function sendData(data){
           renderProgramData(data);
         });
+		fbLogin();
     }
 
     function fbLogin(){
-      // var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-      // var apptaAgent = new ApptaAgent(api_key, "760586213");
       apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
       		apptaAgent.login();
-          	console.log(data);
         }else{
           	console.log(data);
 			firstname = data.first_name;
@@ -145,7 +142,6 @@
 		}
 	}
 		
-	
 	function renderConversations(data){
 		$(".chatconversationslist").empty();
 		for(var b=0; b<data.length;b++){
@@ -155,33 +151,26 @@
 			$(".chatconversationslist").append(html);
 		}
 	}
+
     function fbLogin(){
       console.log("fb Login Clicked");
       var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
       var apptaAgent = new ApptaAgent();
       apptaAgent.login(api_key); 
     }
-    $(document).ready( function(){
-      $(".custompageclicked").show(); 
-    });
 	
 	function programLike(){
-			console.log('program like');
 		program_id=2;
 		program_name="Lets Go Places";
 		apptaAgent.likeProgram(program_id,program_name);	
 	}
 	function programComment(){
-		console.log('program comment');
 		//apptaAgent.likeProgramComment(program_id,program_name,comment_id,type);	
 		apptaAgent.getFBComments(program_id,program_name,facebook_object_id,function(data){console.log(data);});
-		
 	}
 	function leaderboard(){
-			console.log('program leaderboard');
 	}
 
 	function submitcomment(){
-			console.log('submitcomment');
 		apptaAgent.postComment(program_id,program_name,comment_id,comment_text,type);
 	}
