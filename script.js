@@ -7,8 +7,6 @@
     var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 
     function fbLogin(){
-      // var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-      // var apptaAgent = new ApptaAgent(api_key, "760586213");
       apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
       		apptaAgent.login();
@@ -29,24 +27,24 @@
       });
     }
 
-	function updateFriendsListInPrograms(logged_in_status){
-		console.log("updateFriendsListInPrograms");
-		console.log(logged_in_status);
-		console.log(defaultPrograms);
-		console.log(friendsFootPrint);
-		//get all the programs in the current view
-      	for(var x=0; x<friendsFootPrint.length;x++){
-			console.log(friendsFootPrint[x].program.id);			
-			console.log(friendsFootPrint[x].friendswatching);
-			html = '<ul>';
-			html += '<li><img src="http://graph.facebook.com/10205352910559157/picture?type=small" /></li>';
-			html += '<li><img src="http://graph.facebook.com/10203529817677626/picture?type=small" /></li>';
-			html += '<li><img src="http://graph.facebook.com/311511622372166/picture?type=small" /></li>';
-			html += '</ul>';
-			$("#friendsListForPrg-"+friendsFootPrint[x].program.id).append(html);
-		}
+  	function updateFriendsListInPrograms(logged_in_status){
+  		console.log("updateFriendsListInPrograms");
+  		console.log(logged_in_status);
+  		console.log(defaultPrograms);
+  		console.log(friendsFootPrint);
+  		//get all the programs in the current view
+        	for(var x=0; x<friendsFootPrint.length;x++){
+  			console.log(friendsFootPrint[x].program.id);			
+  			console.log(friendsFootPrint[x].friendswatching);
+  			html = '<ul>';
+  			html += '<li><img src="http://graph.facebook.com/10205352910559157/picture?type=small" /></li>';
+  			html += '<li><img src="http://graph.facebook.com/10203529817677626/picture?type=small" /></li>';
+  			html += '<li><img src="http://graph.facebook.com/311511622372166/picture?type=small" /></li>';
+  			html += '</ul>';
+  			$("#friendsListForPrg-"+friendsFootPrint[x].program.id).append(html);
+  		}
+  	}
 
-	}
     function getLoungeInfo(){
       apptaAgent.getLounge(function sendData(data){
         renderLoungeData(data);
@@ -64,8 +62,6 @@
         console.log($("[name='privacy-checkbox']").is(':checked'));
         apptaAgent.postSettings(false);
       }
-      
-
     }
 
     function checkinProgram(id,name){
@@ -78,8 +74,9 @@
 
       var defaultPrograms = [];
       var friendsFootPrint = [];
+
     function renderLoungeData(data){
-//      var programs = JSON.parse(data);
+      //      var programs = JSON.parse(data);
       var programs = data;
       console.log(programs.loungePrograms.length);
       //var defaultPrograms = [];

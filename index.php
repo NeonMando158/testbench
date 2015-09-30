@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- <script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>-->
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta-min.js"></script>
     <script src="script.js"></script>
     <script src="menu.js"></script>

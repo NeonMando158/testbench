@@ -1,20 +1,26 @@
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
     });
+
+
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
     var apptaAgent = new ApptaAgent(api_key, "414920308635429");
-
-    function getProgramDetails(id){
-        apptaAgent.getProgram(id, function sendData(data){
-          renderProgramData(data);
-        });
-		fbLogin();
-    }
+	var twitterdata = [];
+	var facebookcomments = [];
+	var friendsfootprint = [];	
+	var program_id;
+	var program_name;
+	var facebook_object_id;
+	var link =window.location.href;
+	var message="";
 
     function fbLogin(){
+      // var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+      // var apptaAgent = new ApptaAgent(api_key, "760586213");
       apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
       		apptaAgent.login();
+          	console.log(data);
         }else{
           	console.log(data);
 			firstname = data.first_name;
@@ -31,23 +37,16 @@
       });
     }
 
-	var twitterdata = [];
-	var facebookcomments = [];
-	var friendsfootprint = [];	
-	var program_id;
-	var program_name;
-	var facebook_object_id;
-	var link =window.location.href;
-	var message="";
-	
+    function getProgramDetails(id){
+        apptaAgent.getProgram(id, function sendData(data){
+          renderProgramData(data);
+        });
+    }
+
 	function fbshare(){
-		console.log("fbShare api called");
-		console.log(program_id);
-		console.log(program_name);
-		console.log(link);
-		console.log(message);
 		apptaAgent.postFBShare(program_id,program_name,link,message);
 	}
+
 	function userlikes(){
 		console.log("show all user likes");
 		html='<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">';
@@ -57,12 +56,11 @@
 		html+='  </div>';
 		html+='</div>'; 
 		$(".leaderboard").append(html);
-		
 	}
+
     function renderProgramData(data){
         var details = data;
 		console.log("program details");
-		
 		program_id=details.program.id;
 		program_name=details.program.name;
 		facebook_object_id=details.program.fb_page_url;
@@ -164,11 +162,14 @@
 		program_name="Lets Go Places";
 		apptaAgent.likeProgram(program_id,program_name);	
 	}
+
 	function programComment(){
 		//apptaAgent.likeProgramComment(program_id,program_name,comment_id,type);	
 		apptaAgent.getFBComments(program_id,program_name,facebook_object_id,function(data){console.log(data);});
 	}
+
 	function leaderboard(){
+
 	}
 
 	function submitcomment(){

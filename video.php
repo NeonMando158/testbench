@@ -16,28 +16,29 @@
     <div class="container" style="background: #f90f00;">
       <nav class="navbar navbar-inverse">
         <div class="navbar-header">
-        	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-    			<span class="sr-only">Toggle navigation</span>
-    			<span class="icon-bar"></span>
-    			<span class="icon-bar"></span>
-    			<span class="icon-bar"></span>
-    		</button>
-    		<a class="navbar-brand" href="#" style="padding: 4px;"><img src="images/logo.png" alt="Telemundo"/></a>
-    	</div>
-    	
-    	<div class="collapse navbar-collapse js-navbar-collapse">
-    		<ul class="nav navbar-nav">
-    			<li class="dropdown mega-dropdown">
-    				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Novels</a>				
-    				<ul class="dropdown-menu mega-dropdown-menu">
-    					<li class="col-sm-3">
-    						<ul>
-    							<li class="dropdown-header"></li>                            
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding: 4px;"><img src="images/logo.png" alt="Telemundo"/></a>
+      </div>
+      
+      <div class="collapse navbar-collapse js-navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown mega-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Novels</a>       
+            <ul class="dropdown-menu mega-dropdown-menu">
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header"></li>                            
                     <div id="menCollection" class="carousel slide" data-ride="carousel">
                       <div class="carousel-inner">
                         <div class="item active">
                             <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="programs 1"></a>
                             <h4><small>Some Text</small></h4>                                        
+                            <!-- <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> </button>        -->
                         </div><!-- End Item -->
                         <div class="item">
                             <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="programs 2"></a>
@@ -62,91 +63,94 @@
                     </div><!-- /.carousel -->
                     <li class="divider"></li>
                     <li><a href="#">View all Programs <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-    						</ul>
-    					</li>
-    					<li class="col-sm-3">
-    						<ul>
-    							<li class="dropdown-header">INICIO</li>
-    							<li><a href="#">EL sENOR DE lOS cIELOS3 </a></li>
+                </ul>
+              </li>
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header">INICIO</li>
+                  <li><a href="#">EL sENOR DE lOS cIELOS3 </a></li>
                   <li><a href="#">Bajo el Mismo Cielo</a></li>
                   <li><a href="#">Avendia Brasil</a></li>
                   <li><a href="#">Senora Acero 2</a></li>
-    							<li class="divider"></li>
-    							<li class="dropdown-header">Capitulos</li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Capitulos</li>
                   <li><a href="#"></a></li>
-    							<li><a href="#">Google Fonts</a></li>
-    						</ul>
-    					</li>
-    					<li class="col-sm-3">
-    						<ul>
-    							<li class="dropdown-header">Plus</li>
-    							<li><a href="#">Navbar Inverse</a></li>
-    							<li><a href="#">Pull Right Elements</a></li>
-    							<li><a href="#">Coloured Headers</a></li>                            
-    							<li><a href="#">Primary Buttons & Default</a></li>							
-    						</ul>
-    					</li>
-    					<li class="col-sm-3">
-    						<ul>
-    							<li class="dropdown-header">Much more</li>
+                  <li><a href="#">Google Fonts</a></li>
+                </ul>
+              </li>
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header">Plus</li>
+                  <li><a href="#">Navbar Inverse</a></li>
+                  <li><a href="#">Pull Right Elements</a></li>
+                  <li><a href="#">Coloured Headers</a></li>                            
+                  <li><a href="#">Primary Buttons & Default</a></li>              
+                </ul>
+              </li>
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header">Much more</li>
                                 <li><a href="#">Easy to Customize</a></li>
-    							<li><a href="#">Calls to action</a></li>
-    							<li><a href="#">Custom Fonts</a></li>
-    							<li><a href="#">Slide down on Hover</a></li>                         
-    						</ul>
-    					</li>
-    				</ul>				
-    			</li>
+                  <li><a href="#">Calls to action</a></li>
+                  <li><a href="#">Custom Fonts</a></li>
+                  <li><a href="#">Slide down on Hover</a></li>                         
+                </ul>
+              </li>
+            </ul>       
+          </li>
           <li class="dropdown mega-dropdown">
-        	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows</a>				
-    				<ul class="dropdown-menu mega-dropdown-menu">
-    					<li class="col-sm-3">
-        					<ul>
-    							<li class="dropdown-header">Features</li>
-    							<li><a href="#">Auto Carousel</a></li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows</a>        
+            <ul class="dropdown-menu mega-dropdown-menu">
+              <li class="col-sm-3">
+                  <ul>
+                  <li class="dropdown-header">Features</li>
+                  <li><a href="#">Auto Carousel</a></li>
                                 <li><a href="#">Carousel Control</a></li>
                                 <li><a href="#">Left & Right Navigation</a></li>
-    							<li><a href="#">Four Columns Grid</a></li>
-    							<li class="divider"></li>
-    							<li class="dropdown-header">Fonts</li>
+                  <li><a href="#">Four Columns Grid</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Fonts</li>
                                 <li><a href="#">Glyphicon</a></li>
-    							<li><a href="#">Google Fonts</a></li>
-    						</ul>
-    					</li>
-    					<li class="col-sm-3">
-    						<ul>
-    							<li class="dropdown-header">Plus</li>
-    							<li><a href="#">Navbar Inverse</a></li>
-    							<li><a href="#">Pull Right Elements</a></li>
-    							<li><a href="#">Coloured Headers</a></li>                            
-    							<li><a href="#">Primary Buttons & Default</a></li>							
-    						</ul>
-    					</li>
-    					<li class="col-sm-3">
-    						<ul>
-    							<li class="dropdown-header">Much more</li>
-                                <li><a href="#">Easy to Customize</a></li>
-    							<li><a href="#">Calls to action</a></li>
-    							<li><a href="#">Custom Fonts</a></li>
-    							<li><a href="#">Slide down on Hover</a></li>                         
-    						</ul>
-    					</li>
+                  <li><a href="#">Google Fonts</a></li>
+                </ul>
+              </li>
               <li class="col-sm-3">
-        					<ul>
-    							<li class="dropdown-header">Live Program</li>                            
+                <ul>
+                  <li class="dropdown-header">Plus</li>
+                  <li><a href="#">Navbar Inverse</a></li>
+                  <li><a href="#">Pull Right Elements</a></li>
+                  <li><a href="#">Coloured Headers</a></li>                            
+                  <li><a href="#">Primary Buttons & Default</a></li>              
+                </ul>
+              </li>
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header">Much more</li>
+                                <li><a href="#">Easy to Customize</a></li>
+                  <li><a href="#">Calls to action</a></li>
+                  <li><a href="#">Custom Fonts</a></li>
+                  <li><a href="#">Slide down on Hover</a></li>                         
+                </ul>
+              </li>
+              <li class="col-sm-3">
+                  <ul>
+                  <li class="dropdown-header">Live Program</li>                            
                     <div id="womenCollection" class="carousel slide" data-ride="carousel">
                       <div class="carousel-inner">
                         <div class="item active">
                             <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="program 1"></a>
                             <h4><small>asdasd</small></h4>                                        
+                            <!-- <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>        -->
                         </div><!-- End Item -->
                         <div class="item">
                             <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="program 2"></a>
                             <h4><small>asdasdasd</small></h4>                                        
+                            <!-- <button class="btn btn-primary" type="button">9,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>         -->
                         </div><!-- End Item -->
                         <div class="item">
                             <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="program 3"></a>
                             <h4><small>asdasded</small></h4>                                        
+                            <!-- <button class="btn btn-primary" type="button">49,99 €</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>       -->
                         </div><!-- End Item -->                                
                       </div><!-- End Carousel Inner -->
                       <!-- Controls -->
@@ -161,17 +165,17 @@
                     </div><!-- /.carousel -->
                     <li class="divider"></li>
                     <li><a href="#">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-    						</ul>
-    					</li>
-    				</ul>				
-    			</li>
+                </ul>
+              </li>
+            </ul>       
+          </li>
           <li class="dropdown mega-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos</a>        
-            <ul class="dropdown-menu mega-dropdown-menu custompageclicked" style="display: visible;">
+            <ul class="dropdown-menu mega-dropdown-menu">
               <li><a href="#">Auto Carousel</a></li>
                   <li><a href="#">Carousel Control</a></li>
                   <li><a href="#">Left & Right Navigation</a></li>
-                  <li><a href="video.php" style="color: red; cursor: pointer;">Capitulo 99</a></li>
+                  <li><a href="video.php">Capitulo 99</a></li>
                   <li><a href="#">Glyphicon</a></li>
                   <li><a href="#">Google Fonts</a></li>
               
@@ -187,7 +191,7 @@
           <li style="background: darkred; padding: 11px; cursor: pointer;" >
             <!-- onclick="settings()" -->
             <a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
-              <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox"></i>
+              <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
             </a>
           </li>
           <li style="background: #3b5958; padding: 11px; cursor: pointer;">
@@ -196,14 +200,14 @@
               <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
             </a>
           </li>
-          <li style="background: #9cbdff; padding: 3px;">
-            <a href="#"><i class="fa fa-user"></i></a>
+          <li class="userimage" style="background: #9cbdff; padding: 3px;">
+            <a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
           </li>
-    		</ul>
-    	</div><!-- /.nav-collapse -->
+        </ul>
+      </div><!-- /.nav-collapse -->
       </nav>
     </div>
-  </div>
+  </div>  
   <div class="container" style="margin-top: 30px; ">
     <!-- main program video wrapper -->
     <div class="col-md-12" style="border: 1px solid lightgrey; padding: 0px;">
