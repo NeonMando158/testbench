@@ -1,7 +1,8 @@
 <html>
 <head>
-  <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://connect.facebook.net/en_US/sdk.js"></script>
+  	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
@@ -195,7 +196,7 @@
             </a>
           </li>
           <li style="background: #3b5958; padding: 11px; cursor: pointer;">
-            <a onclick="fbLogin()" style="padding: 0px;">
+            <a onclick="facebookLogin()" style="padding: 0px;">
               <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
             </a>
@@ -245,7 +246,7 @@
           <div  class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; cursor: pointer" onclick="fbshare();">
                <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
           </div>
-          <div onclick="userlikes();" class="col-sm-12 program-meta-friends" style="cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
+          <div onclick="userlikes(data);" class="col-sm-12 program-meta-friends" style="cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
             <span> Friends who like this video</span>
 			<div class="leaderboard" style="display: none;"></div>
           </div>
@@ -261,7 +262,7 @@
               <i class="fa fa-image"></i>
             </div>
             <div class="col-sm-6 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
-                <input type="text" placeholder="Chat with your friends"/>
+                <input class="privatechat" type="text" name="privecomments" placeholder="Chat with your friends"/>
             </div>
             <div class="enterConversation col-sm-2" style="padding: 10px;">
                   <a class="btn btn-sm btn-primary" onclick="submitComment()">Submit</a>
@@ -367,11 +368,6 @@
     <div class="col-md-12 ">
         
     </div>
-	<!-- Dialog -->
-	<div id="dialog" title="Basic dialog">
-	  <h4>Post a Comment</h4>
-	</div>
-	<!-- Dialog ends -->
 	<!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-md">

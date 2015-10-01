@@ -46,7 +46,7 @@
   	}
 
     function getLoungeInfo(){
-      apptaAgent.getLounge(function sendData(data){
+      apptaAgent.getLounge("Racing", function sendData(data){
         renderLoungeData(data);
       });
 

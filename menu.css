@@ -62,7 +62,7 @@ body {
 .navbar-inverse .navbar-nav > li > a{
   color: #fff !important;
     font-size: 13px;
-    padding: 16px;
+    padding: 11px;
 }
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
     text-shadow: 0 -1px 0 #fff;

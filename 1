@@ -15,21 +15,37 @@
 	var is_loggedin;
 	var fb_username;
 	var fb_profileurl;
-	var fb_user_id;
 
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
 		$(".program-meta-friends").click(function() { 
 		    $(".leaderboard").toggle();
 		});
+		checkCookie();
 		getCommentsData();
-		facebookLogin();
-		userlikes(likeuserlist);
+		
     });
 	
+	function getLoginData(){
+		apptaAgent.getLoginDetails(function(data){
+			is_loggedin = data.is_logged_in;
+			fb_profileurl=data.image_url;
+			fb_username=data.name;
+		});
+		console.log(is_loggedin);
+		console.log(fb_profileurl);
+		console.log(fb_username);
+	}
+
 	function getCommentsData(){
-		var type="program";
-		apptaAgent.getComments(program_id,program_name,type,function(data){console.log(data);});	
+		if(is_loggedin == true){
+			var type="friendsprogram";
+		}else{
+			var type="program";
+		}
+
+		apptaAgent.getComments(program_id,program_name,type,function(data){console.log("getComments"); console.log(data);});	
+		getLoginData();	
 	}
 
 	function getCookie(cname) {
@@ -43,28 +59,34 @@
     	return "";
 	} 
 
+    function checkCookie() {
+	    var fbToken=getCookie("fbToken");
+		
+	    if (fbToken!="") {
+			//console.log("facebook token if not empty");
+			 apptaAgent.getLoginDetails(function(data){console.log("facebook getLoginDetails"); console.log(data);});
+	    }else{
+			//console.log("facebook token if empty");
+    	}
+	} 
 	
-	function facebookLogin(){
-		console.log("fbLogin called by getProgramDetails api");
-		console.log(is_loggedin);
-        if(is_loggedin == false){
+	function fbLogin(){
+      apptaAgent.getLoginDetails(function(data){
+        if(data.is_logged_in === false){
       		apptaAgent.login();
         }else{
-			image = 'http://graph.facebook.com/'+fb_user_id+'/picture?type=small';
+			firstname = data.first_name;
+			lastname = data.last_name;
+			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
 			$(".userimagecontainer").empty();
-            $(".customfblogin").text(fb_username);
-      		html = '<img src="'+image+'" alt="'+fb_username+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+            $(".customfblogin").text(firstname);
+      		html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
       		$(".userimagecontainer").append(html);
         }
+      });
     }
 
     function getProgramDetails(id){
-		apptaAgent.getLoginDetails(function(data){
-			is_loggedin = data.is_logged_in;
-			fb_profileurl=data.image_url;
-			fb_username=data.name;
-			fb_user_id=data.fb_id;
-		});
         apptaAgent.getProgram(id, function sendData(data){
           renderProgramData(data);
         });
@@ -204,7 +226,7 @@
 
 	function programComments(){
 		var comment_text = $(".teletangocomment").val();
-		var type="program";
+		var type="public";
 		apptaAgent.postComment(program_id,program_name,comment_text,type);
 		apptaAgent.getComments(program_id,program_name,type, function(data){renderConversations(data);});
 	}
@@ -213,17 +235,8 @@
 
 	}
 
-	function submitcomment(chat_type){
-		console.log("private comment accessed");
-		if(is_loggedin === true){
-			console.log("logged in to make a private comment");
-			comment_text=$(".privatecomment").val();
-			type = "friendsprogram";
-			apptaAgent.postComment(program_id,program_name,comment_text,type);
-		}else if(is_loggedin === false){
-			console.log("not logged into to do private chat");
-			apptaAgent.login();
-		}
+	function submitcomment(){
+		apptaAgent.postComment(program_id,program_name,comment_id,comment_text,type);
 	}
 	function postToFacebook(){
 		var facebook_message=$(".facebookcomment").val();
