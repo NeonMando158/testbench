@@ -1,8 +1,11 @@
+	//Load Lounge on ready
     $( document ).ready(function(){
         getLoungeInfo();
     });
-
-
+	
+	//Declare Global Variables for the use
+    var defaultPrograms = [];
+    var friendsFootPrint = [];
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
     var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 
@@ -10,32 +13,21 @@
       apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
       		apptaAgent.login();
-          	console.log(data);
         }else{
-          	console.log(data);
-			      firstname = data.first_name;
-			      lastname = data.last_name;
-			      image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-			
-      			$(".userimagecontainer").empty();
-                	$(".customfblogin").text(firstname);
-      			html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-      			$(".userimagecontainer").append(html);
-      		
-      			updateFriendsListInPrograms(data.is_logged_in);	
+			firstname = data.first_name;
+			lastname = data.last_name;
+			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+      		$(".userimagecontainer").empty();
+            $(".customfblogin").text(firstname);
+      		html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+      		$(".userimagecontainer").append(html);
+      		updateFriendsListInPrograms(data.is_logged_in);	
         }
       });
     }
 
   	function updateFriendsListInPrograms(logged_in_status){
-  		console.log("updateFriendsListInPrograms");
-  		console.log(logged_in_status);
-  		console.log(defaultPrograms);
-  		console.log(friendsFootPrint);
-  		//get all the programs in the current view
-        	for(var x=0; x<friendsFootPrint.length;x++){
-  			console.log(friendsFootPrint[x].program.id);			
-  			console.log(friendsFootPrint[x].friendswatching);
+        for(var x=0; x<friendsFootPrint.length;x++){
   			html = '<ul>';
   			html += '<li><img src="http://graph.facebook.com/10205352910559157/picture?type=small" /></li>';
   			html += '<li><img src="http://graph.facebook.com/10203529817677626/picture?type=small" /></li>';
@@ -49,17 +41,14 @@
       apptaAgent.getLounge("Racing", function sendData(data){
         renderLoungeData(data);
       });
-
     }
 
     function settings(){
       if($("[name='privacy-checkbox']").is(':checked') === true){
         //if checked or true => privacy enabled
-        console.log($("[name='privacy-checkbox']").is(':checked'));
         apptaAgent.postSettings(true);
       }else{
         //if unchecked or false => privacy disabled 
-        console.log($("[name='privacy-checkbox']").is(':checked'));
         apptaAgent.postSettings(false);
       }
     }
@@ -67,39 +56,30 @@
     function checkinProgram(id,name){
       var event_data = {'program_id':id, 'program_name':name };
       var event_type = 'CHECK_IN_TO_PROGRAM';
-      console.log(event_data);
       apptaAgent.eventLog(event_type, event_data);
       window.location.href = "http://telemundo.teletango.com/testbench/video.php?id="+id;
     }
 
-      var defaultPrograms = [];
-      var friendsFootPrint = [];
-
     function renderLoungeData(data){
-      //      var programs = JSON.parse(data);
       var programs = data;
-      console.log(programs.loungePrograms.length);
-      //var defaultPrograms = [];
-      var servicePrograms = [];
       for(var b=0; b<programs.loungePrograms.length;b++){
         if(programs.loungePrograms[b].program_type=="default"){
           defaultPrograms.push(programs.loungePrograms[b]);
 		  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
-        }else
-        if(programs.loungePrograms[b].program_type=="web_service"){
+        }
+		else if(programs.loungePrograms[b].program_type=="web_service")
+		{
           servicePrograms.push(programs.loungePrograms[b]);
 		  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
         }
         
       }
       updateDefaultPrograms(defaultPrograms);
-        updateServicePrograms(servicePrograms);
-
+      updateServicePrograms(servicePrograms);
     }
 
     function updateDefaultPrograms(defaultPrograms){
       for(var a=0; a<defaultPrograms.length;a++){
-		
         html = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
         html +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
         html +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
@@ -124,6 +104,7 @@
         $(".column3").append(html);
       }
     }
+
     function updateServicePrograms(servicePrograms){
       for(var c=0; c<servicePrograms.length;c++){
         html = '<div class="service programs" style="cursor:pointer;" onclick="checkinProgram('+servicePrograms[c].id+')">';
@@ -135,5 +116,4 @@
         html +='</div>';
         $(".column2").append(html);
       }
-
     }
