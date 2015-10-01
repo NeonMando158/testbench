@@ -127,7 +127,9 @@
     function updateServicePrograms(servicePrograms){
       for(var c=0; c<servicePrograms.length;c++){
         html = '<div class="service programs" style="cursor:pointer;" onclick="checkinProgram('+servicePrograms[c].id+')">';
-        // html +='  <img src="'+servicePrograms[c].thumbnail+'" class="img-responsive" style="width: 100% ">';
+		if(servicePrograms[c].thumbnail){
+        	html +='  <img src="'+servicePrograms[c].thumbnail+'" class="img-responsive" style="width: 100% ">';
+		}
         html +='  <span style="font-weight: 10px; color: red;">'+servicePrograms[c].channel+'</span><br/>';
         html +='  <span style="font-size: 20px; font-weight: bold;">'+servicePrograms[c].name+'</span><br/>';
         html +='</div>';

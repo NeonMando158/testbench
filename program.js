@@ -22,9 +22,9 @@
 		$(".program-meta-friends").click(function() { 
 		    $(".leaderboard").toggle();
 		});
-		getCommentsData();
+		getPrivateComments();
 		facebookLogin();
-		userlikes(likeuserlist);
+		//userlikes(likeuserlist);
     });
 	
 	function getCommentsData(){
@@ -95,7 +95,6 @@
 		likeuserlist=details.like_user_list;
 		conversations = data.conversations;
 		
-		renderConversations(conversations);
 		for(var x=0; x<data.twittercomments.comments.length;x++){
 			twitterdata.push(data.twittercomments.comments[x]);
 		}
@@ -105,6 +104,7 @@
 		friendsfootprint.push(data.friendsfootprint);	
 		renderTwitterComments(twitterdata);
 		renderFacebookComments(facebookcomments);
+		renderConversations(conversations);
 		userlikes(likeuserlist);
 		
     }
@@ -126,19 +126,38 @@
 		});	
 	}
 
-	function renderPublicComments(public_conversations){
+	function getPublicComments(){
+		type="public";
+		apptaAgent.getComments(program_id,program_name,type, function(data){
+			console.log(data); console.log("public conversations");
+		});
+	}
+	
+	function getPrivateComments(){
+		type="private";
+		apptaAgent.getComments(program_id,program_name,type, function(data){
+			private_conversations=data.conversations;
+				
+			renderPrivateComments(private_conversations);
+		});
 
 	}
 	
-	function renderPrivateComments(private_conversations){
-
+	function renderPrivateComments(private_comments){
+		for(var n=0; n<private_comments.length; n++){
+			html = '<li>';
+			html +='	<span>'+private_comments[n].text+'</span>';
+			html +='</li>';
+			
+			$(".chatconversationslist").append(html);
+		}
 	}
-
+		
 	function renderTwitterComments(twitter){
 		$(".program-social-data").empty();
 		for(var d=0; d<twitter.length;d++){
 			//var name = findTwitterDetails(twitter[d].twuserid);
-			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12">';
+			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 twitter-data">';
 			html += '	<div class="col-md-3 program-social-data-image">';
 			html += '	  <img style="border-radius: 50px;" alt="" src="'+twitter[d].profileurl+'">';
 			html += '	</div>';
@@ -151,6 +170,10 @@
 			html += '	<div class="col-md-12">';
 			html += '	    '+twitter[d].comment+' ';
 			html += '	</div>';
+			html += '	<div class="social-actions col-md-12">';
+			html += '		<a class="twitterReply" onclick="twitterReply();">Reply</a>';
+			html += '		<a class="twitterRetweet onclick="twitterRetweet();"">Retweet</a>';
+			html += '	</div>';
 			html += '</div>'; 
 			$(".program-social-data").append(html);
 
@@ -161,7 +184,7 @@
 		//console.log(facebook);
 		for(var f=0; f<facebook.length;f++){
 			//console.log(facebook[f].fbuserid);
-			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12">';
+			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 facebook-data">';
 			html += '	<div class="col-md-3 program-social-data-image">';
 			html += '	  <img style="border-radius: 50px;" alt="" src="'+facebook[f].thumbnail+'">';
 			html += '	</div>';
@@ -174,18 +197,37 @@
 			html += '	<div class="col-md-12">';
 			html += '	    '+facebook[f].comment+' ';
 			html += '	</div>';
+			html += '	<div class="social-actions col-md-12">';
+			html += '		<a class="facebookLike" onlick="facebookLike();">Like</a>';
+			html += '	</div>';
 			html += '</div>'; 
 			$(".program-social-data").append(html);
 		}
 	}
 		
 	function renderConversations(data){
-		//$(".chatconversationslist").empty();
+		console.log("data from renderConversations");
+		console.log(data);
 		for(var b=0; b<data.length;b++){
-			html = '<li>';
-			html +='<span>'+data[b].text+'</span>';
-			html +='</li>';
-			$(".chatconversationslist").append(html);
+			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
+			chtml += '	<div class="col-md-3 program-social-data-image">';
+			chtml += '	  <img style="border-radius: 50px;" alt="" src="'+data[b].app_user_id+'">';
+			chtml += '	</div>';
+			chtml += '	<div class="col-md-7 program-social-data-name">';
+			chtml += '	  <span>'+data[b].name+'</span>';
+			chtml += '	</div>';
+			chtml += '	<div class="col-md-2 program-social-data-srcmedia">';
+			chtml += '	  <img style="border-radius: 50px; height: 20px; width: 20px;" alt="" src="images/logo.png">';
+			chtml += '	</div>';
+			chtml += '	<div class="col-md-12">';
+			chtml += '	    '+data[b].text+' ';
+			chtml += '	</div>';
+			chtml += '	<div class="social-actions col-md-12">';
+			chtml += '		<a class="teletangoLike" onclick="teletangoLike();"">Reply</a>';
+			chtml += '	</div>';
+			chtml += '</div>'; 
+			//$(".chatconversationslist").append(html);
+			$(".program-social-data").append(chtml);
 		}
 	}
 
@@ -213,12 +255,12 @@
 
 	}
 
-	function submitcomment(chat_type){
+	function submitComment(chat_type){
 		console.log("private comment accessed");
 		if(is_loggedin === true){
 			console.log("logged in to make a private comment");
-			comment_text=$(".privatecomment").val();
-			type = "friendsprogram";
+			comment_text=$(".privatechat").val();
+			type = "private";
 			apptaAgent.postComment(program_id,program_name,comment_text,type);
 		}else if(is_loggedin === false){
 			console.log("not logged into to do private chat");
