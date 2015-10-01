@@ -1,5 +1,6 @@
 	//Load Lounge on ready
     $( document ).ready(function(){
+		//make a call to lounge
         getLoungeInfo();
     });
 	
@@ -8,6 +9,13 @@
     var friendsFootPrint = [];
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
     var apptaAgent = new ApptaAgent(api_key, "414920308635429");
+	var column1=[];
+	var column2=[];
+	var column3=[];
+	var columnPrograms1=[];
+	var columnPrograms2=[];
+	var columnPrograms3=[];
+	var requested_page_size=10;
 
     function fbLogin(){
       apptaAgent.getLoginDetails(function(data){
@@ -21,7 +29,9 @@
             $(".customfblogin").text(firstname);
       		html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
       		$(".userimagecontainer").append(html);
-      		updateFriendsListInPrograms(data.is_logged_in);	
+			if($(".friendsList").children().length === 0){
+      			updateFriendsListInPrograms(data.is_logged_in);	
+			}
         }
       });
     }
@@ -38,10 +48,47 @@
   	}
 
     function getLoungeInfo(){
-      apptaAgent.getLounge("Racing", function sendData(data){
-        renderLoungeData(data);
-      });
+		getColumn1();
+		getColumn2();
+		getColumn3();
     }
+
+	function getColumn1(){
+		var filter_data={
+	 		channel_name:'Racing',
+	 		page_size:requested_page_size,
+		 };
+		//get lounge data with the right filters
+      	apptaAgent.getLounge(filter_data, function sendData(data){
+			column1.push(data);
+			renderLoungeData(filter_data.channel_name, data);
+      	});
+		
+	}
+	function getColumn2(){
+		var filter_data={
+	 		channel_name:'Hybrids',
+	 		page_size:requested_page_size,
+		 };
+		//get lounge data with the right filters
+      	apptaAgent.getLounge(filter_data, function sendData(data){
+			column2.push(data);
+			renderLoungeData(filter_data.channel_name, data);
+      	});
+		
+	}
+	function getColumn3(){
+		var filter_data={
+	 		channel_name:'Lets Go Places',
+	 		page_size:requested_page_size,
+		 };
+		//get lounge data with the right filters
+      	apptaAgent.getLounge(filter_data, function sendData(data){
+			column3.push(data);
+			renderLoungeData(filter_data.channel_name, data);
+      	});
+		
+	}
 
     function settings(){
       if($("[name='privacy-checkbox']").is(':checked') === true){
@@ -60,49 +107,114 @@
       window.location.href = "http://telemundo.teletango.com/testbench/video.php?id="+id;
     }
 
-    function renderLoungeData(data){
-      var programs = data;
-      for(var b=0; b<programs.loungePrograms.length;b++){
-        if(programs.loungePrograms[b].program_type=="default"){
-          defaultPrograms.push(programs.loungePrograms[b]);
-		  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
-        }
-		else if(programs.loungePrograms[b].program_type=="web_service")
-		{
-          servicePrograms.push(programs.loungePrograms[b]);
-		  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
-        }
-        
-      }
-      updateDefaultPrograms(defaultPrograms);
-      updateServicePrograms(servicePrograms);
+    function renderLoungeData(channel, data){
+      	var programs = data;
+		console.log(channel);
+		if(channel === "Racing"){
+    	  	for(var b=0; b<programs.loungePrograms.length;b++){
+    		      columnPrograms1.push(programs.loungePrograms[b]);
+				  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
+      		}
+      		updateDefaultPrograms(columnPrograms1);
+	  	}
+	  	if(channel === "Hybrids"){
+    	  	for(var b=0; b<programs.loungePrograms.length;b++){
+    		      columnPrograms2.push(programs.loungePrograms[b]);
+				  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
+      		}
+      		updateDefaultPrograms(columnPrograms2);
+		}
+	  	if(channel === "Lets Go Places"){
+    	  	for(var b=0; b<programs.loungePrograms.length;b++){
+    		      columnPrograms3.push(programs.loungePrograms[b]);
+				  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
+      		}
+      		updateDefaultPrograms(columnPrograms3);
+		}
+		
     }
-
+	
     function updateDefaultPrograms(defaultPrograms){
-      for(var a=0; a<defaultPrograms.length;a++){
-        html = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
-        html +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
-        html +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
-        html +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
-        html +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
-        html +='  </div>';
-        html +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
-        html +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
-        html +='    </div>';
-        html +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
-        html +='      <div class="col-md-6 metaviews">';
-        html +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
-        html +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
-        html +='      </div>';
-        html +='      <div class="col-md-6 metaConversations">';
-        html +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
-        html +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
-        html +='      </div>';
-        html +='    </div>';
-        html +='  </div>';
-        html +='</div>';
-        $(".column3").append(html);
-      }
+		console.log(defaultPrograms);
+	    for(var a=0; a<defaultPrograms.length;a++){
+			if(defaultPrograms[a].channel==="Racing"){
+				if(defaultPrograms[a].thumbnail){
+        			ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+        			ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
+        			ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
+        			ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
+        			ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
+        			ahtml +='  </div>';
+        			ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
+        			ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
+        			ahtml +='    </div>';
+        			ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
+        			ahtml +='      <div class="col-md-6 metaviews">';
+        			ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
+        			ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
+        			ahtml +='      </div>';
+        			ahtml +='      <div class="col-md-6 metaConversations">';
+        			ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
+        			ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
+        			ahtml +='      </div>';
+        			ahtml +='    </div>';
+        			ahtml +='  </div>';
+        			ahtml +='</div>';
+	    			$(".column1").append(ahtml);
+				}
+			}else if(defaultPrograms[a].channel==="Hybrids"){
+				if(defaultPrograms[a].thumbnail){
+        			bhtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+        			bhtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
+        			bhtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
+        			bhtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
+        			bhtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
+        			bhtml +='  </div>';
+        			bhtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
+        			bhtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
+        			bhtml +='    </div>';
+        			bhtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
+        			bhtml +='      <div class="col-md-6 metaviews">';
+        			bhtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
+        			bhtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
+        			bhtml +='      </div>';
+        			bhtml +='      <div class="col-md-6 metaConversations">';
+        			bhtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
+        			bhtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
+        			bhtml +='      </div>';
+        			bhtml +='    </div>';
+        			bhtml +='  </div>';
+        			bhtml +='</div>';
+	    			$(".column2").append(bhtml);
+				}
+			}else if(defaultPrograms[a].channel==="Lets Go Places"){
+				if(defaultPrograms[a].thumbnail){
+        			chtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+        			chtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
+        			chtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
+        			chtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
+        			chtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
+        			chtml +='  </div>';
+        			chtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
+        			chtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
+        			chtml +='    </div>';
+        			chtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
+        			chtml +='      <div class="col-md-6 metaviews">';
+        			chtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
+        			chtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
+        			chtml +='      </div>';
+        			chtml +='      <div class="col-md-6 metaConversations">';
+        			chtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
+        			chtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
+        			chtml +='      </div>';
+        			chtml +='    </div>';
+        			chtml +='  </div>';
+        			chtml +='</div>';
+	    			$(".column3").append(chtml);
+				}
+
+			}
+      	}	
     }
 
     function updateServicePrograms(servicePrograms){

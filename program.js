@@ -1,4 +1,4 @@
-
+	//Declare all global variables required for program page
     var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
     var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 	var twitterdata = [];
@@ -24,7 +24,6 @@
 		});
 		getPrivateComments();
 		facebookLogin();
-		//userlikes(likeuserlist);
     });
 	
 	function getCommentsData(){
@@ -43,10 +42,7 @@
     	return "";
 	} 
 
-	
 	function facebookLogin(){
-		console.log("fbLogin called by getProgramDetails api");
-		console.log(is_loggedin);
         if(is_loggedin == false){
       		apptaAgent.login();
         }else{
@@ -117,11 +113,8 @@
 			'Authorization':'OAuth oauth_consumer_key="Dv0qgHLVONdRuScuSruGhdJYM",oauth_token="72164110-Gyy2Uw480HqEOcEydx9zhKF5cNHeZky8O5XVoAYrf",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1443517065",oauth_nonce="87a2e5d71cecd0fee8bb36553ae1a875",oauth_version="1.0",oauth_signature="RuELno7ZGY9Wt5mGOH1Ur540iHA%3D"'
 		  },
 		  success: function(data) {
-			//console.log(data);
-			//console.log(headers);
 		  },
 		  error: function(e) {
-			//console.log(e.message);
 		  }
 		});	
 	}
@@ -137,18 +130,17 @@
 		type="private";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
 			private_conversations=data.conversations;
-				
 			renderPrivateComments(private_conversations);
 		});
 
 	}
 	
 	function renderPrivateComments(private_comments){
+		$(".chatconversationslist").empty();
 		for(var n=0; n<private_comments.length; n++){
 			html = '<li>';
 			html +='	<span>'+private_comments[n].text+'</span>';
 			html +='</li>';
-			
 			$(".chatconversationslist").append(html);
 		}
 	}
@@ -249,6 +241,9 @@
 		var type="program";
 		apptaAgent.postComment(program_id,program_name,comment_text,type);
 		apptaAgent.getComments(program_id,program_name,type, function(data){renderConversations(data);});
+		$("#myModal").attr('class','modal fade');
+		$("#myModal").attr('style','display: none');
+	
 	}
 
 	function leaderboard(){
@@ -262,6 +257,7 @@
 			comment_text=$(".privatechat").val();
 			type = "private";
 			apptaAgent.postComment(program_id,program_name,comment_text,type);
+			getPrivateComments();
 		}else if(is_loggedin === false){
 			console.log("not logged into to do private chat");
 			apptaAgent.login();

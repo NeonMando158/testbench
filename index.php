@@ -60,7 +60,7 @@
             </a>
           </li>
           <li style="background: #3b5958; padding: 11px; cursor: pointer;">
-            <a onclick="facebookLogin()" style="padding: 0px;">
+            <a onclick="fbLogin()" style="padding: 0px;">
               <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
             </a>
@@ -78,12 +78,6 @@
         <img src="images/banner.png" alt="banner" style="width: 100%;"/>
     </div>
     <div class="col-md-4 column1">
-        <div class="well programs">
-          <span class="program-type"><a href="#">DECISION 2016</a></span>
-          <h5 class="program-title">Hillary Clinton popular entre los latinos</h5>
-          <img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+1" class="img-responsive" alt="program 1">
-        </div>
-        <div class="well programs" onclick="apptaAgent.eventLog('CHECK_IN_TO_PROGRAM', 10);"><img src="http://placehold.it/354x200/2ecc71/f5f5f5/&text=Program+3" class="img-responsive" alt="program 3"></div>
     </div>
     <div class="col-md-4 column2">
       <div class="well"><img src="images/ad1.png" style="width: 100%;" class="img-responsive" alt="adv 1"></div>
