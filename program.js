@@ -163,8 +163,9 @@
 			html += '	    '+twitter[d].comment+' ';
 			html += '	</div>';
 			html += '	<div class="social-actions col-md-12">';
-			html += '		<a class="twitterReply" onclick="twitterReply();">Reply</a>';
-			html += '		<a class="twitterRetweet onclick="twitterRetweet();"">Retweet</a>';
+			html += '		<a class="twitterReply" onclick="twitterReply('+twitter[d].twuserid+');"></a>';
+			html += '		<a class="twitterRetweet" onclick="twitterRetweet('+twitter[d].twuserid+');""></a>';
+			html += '		<a class="twitterFav" onclick="twitterFav('+twitter[d].twuserid+');""></a>';
 			html += '	</div>';
 			html += '</div>'; 
 			$(".program-social-data").append(html);
@@ -190,7 +191,7 @@
 			html += '	    '+facebook[f].comment+' ';
 			html += '	</div>';
 			html += '	<div class="social-actions col-md-12">';
-			html += '		<a class="facebookLike" onlick="facebookLike();">Like</a>';
+			html += '		<a class="facebookLike" onlick="facebookLike();"></a>';
 			html += '	</div>';
 			html += '</div>'; 
 			$(".program-social-data").append(html);
@@ -215,7 +216,7 @@
 			chtml += '	    '+data[b].text+' ';
 			chtml += '	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
-			chtml += '		<a class="teletangoLike" onclick="teletangoLike();"">Reply</a>';
+			chtml += '		<a class="teletangoLike" onclick="teletangoLike();"">..</a>';
 			chtml += '	</div>';
 			chtml += '</div>'; 
 			//$(".chatconversationslist").append(html);
@@ -271,3 +272,16 @@
 		var twitter_text = $(".twittercomment").val();
 		apptaAgent.postTweet(program_id,program_name,twitter_text);
 	}
+	function twitterRetweet(id){
+		tweet_id=id;
+		apptaAgent.postReTweet(program_id,program_name,tweet_id);
+	}
+	function twitterReply(id){
+		tweet_id=id;
+		apptaAgent.postReplyTweet(program_id,program_name,twitter_text,tweet_id);
+	}
+	function twitterFav(id){
+		tweet_id=id;
+		apptaAgent.postFavouriteTweet(program_id,program_name,tweet_id);
+	}
+

@@ -55,7 +55,7 @@
 
 	function getColumn1(){
 		var filter_data={
-	 		channel_name:'Racing',
+	 		channel_name:'English',
 	 		page_size:requested_page_size,
 		 };
 		//get lounge data with the right filters
@@ -67,7 +67,7 @@
 	}
 	function getColumn2(){
 		var filter_data={
-	 		channel_name:'Hybrids',
+	 		channel_name:'Novelas',
 	 		page_size:requested_page_size,
 		 };
 		//get lounge data with the right filters
@@ -79,7 +79,7 @@
 	}
 	function getColumn3(){
 		var filter_data={
-	 		channel_name:'Lets Go Places',
+	 		channel_name:'Telemundo',
 	 		page_size:requested_page_size,
 		 };
 		//get lounge data with the right filters
@@ -110,21 +110,21 @@
     function renderLoungeData(channel, data){
       	var programs = data;
 		console.log(channel);
-		if(channel === "Racing"){
+		if(channel === "English"){
     	  	for(var b=0; b<programs.loungePrograms.length;b++){
     		      columnPrograms1.push(programs.loungePrograms[b]);
 				  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
       		}
       		updateDefaultPrograms(columnPrograms1);
 	  	}
-	  	if(channel === "Hybrids"){
+	  	if(channel === "Novelas"){
     	  	for(var b=0; b<programs.loungePrograms.length;b++){
     		      columnPrograms2.push(programs.loungePrograms[b]);
 				  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
       		}
       		updateDefaultPrograms(columnPrograms2);
 		}
-	  	if(channel === "Lets Go Places"){
+	  	if(channel === "Telemundo"){
     	  	for(var b=0; b<programs.loungePrograms.length;b++){
     		      columnPrograms3.push(programs.loungePrograms[b]);
 				  friendsFootPrint.push(programs.friendsfootprint.programs[b]);
@@ -137,7 +137,7 @@
     function updateDefaultPrograms(defaultPrograms){
 		console.log(defaultPrograms);
 	    for(var a=0; a<defaultPrograms.length;a++){
-			if(defaultPrograms[a].channel==="Racing"){
+			if(defaultPrograms[a].channel==="English"){
 				if(defaultPrograms[a].thumbnail){
         			ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
         			ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
@@ -162,7 +162,7 @@
         			ahtml +='</div>';
 	    			$(".column1").append(ahtml);
 				}
-			}else if(defaultPrograms[a].channel==="Hybrids"){
+			}else if(defaultPrograms[a].channel==="Novelas"){
 				if(defaultPrograms[a].thumbnail){
         			bhtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
         			bhtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
@@ -187,7 +187,7 @@
         			bhtml +='</div>';
 	    			$(".column2").append(bhtml);
 				}
-			}else if(defaultPrograms[a].channel==="Lets Go Places"){
+			}else if(defaultPrograms[a].channel==="Telemundo"){
 				if(defaultPrograms[a].thumbnail){
         			chtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
         			chtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
