@@ -16,6 +16,10 @@
 	var fb_username;
 	var fb_profileurl;
 	var fb_user_id;
+	var program_video_url;
+	var program_episode;
+	var program_channel;
+	var program_meta;
 
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
@@ -87,11 +91,22 @@
 		console.log(data);
         var details = data;
 		program_id=details.program.id;
-		program_name=details.program.name;
+		program_meta=details.program.name.split('|');
+		program_name=program_meta.pop(0);
+		program_episode=program_meta.pop(1);
+		program_channel=program_meta.pop(2);
+
+		$('.program-meta-caption').text(program_name);
+		$('.program-meta-time').text("ISSUED: "+details.program.start_time);
+		$('.program-meta-episode').text(program_episode);
+		$('.program-meta-channel').text(program_channel);
+		$(".program-meta-description").text(details.program.synopsis);
+		program_video_url="https://www.youtube.com/embed/"+details.program.live_video.split('v=').pop();
+	
+		$(".customprogramvideo").attr('src', program_video_url);
 		facebook_object_id=details.program.fb_page_url;
 		likeuserlist=details.like_user_list;
 		conversations = data.conversations;
-		
 		for(var x=0; x<data.twittercomments.comments.length;x++){
 			twitterdata.push(data.twittercomments.comments[x]);
 		}
@@ -158,7 +173,7 @@
 			html += '	  <span>'+twitter[d].twusername+'</span>';
 			html += '	</div>';
 			html += '	<div class="col-md-2 program-social-data-srcmedia">';
-			html += '	  <img style="border-radius: 50px; height: 20px; width: 20px;" alt="" src="http://telemundo.teletango.com/testbench/images/twitterlogo.png">';
+			html += '	  <img style="border-radius: 50px; height: 20px; width: 20px;" alt="" src="http://telemundo.teletango.com/reference/images/twitterlogo.png">';
 			html += '	</div>';
 			html += '	<div class="col-md-12">';
 			html += '	    '+twitter[d].comment+' ';
@@ -186,7 +201,7 @@
 			html += '	  <span>'+facebook[f].name+'</span>';
 			html += '	</div>';
 			html += '	<div class="col-md-2 program-social-data-srcmedia">';
-			html += '	  <img style="border-radius: 50px; height: 20px; width: 20px;" alt="" src="http://telemundo.teletango.com/testbench/images/facebooklogo.png">';
+			html += '	  <img style="border-radius: 50px; height: 20px; width: 20px;" alt="" src="http://telemundo.teletango.com/reference/images/facebooklogo.png">';
 			html += '	</div>';
 			html += '	<div class="col-md-12">';
 			html += '	    '+facebook[f].comment+' ';

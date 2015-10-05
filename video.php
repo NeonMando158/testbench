@@ -86,7 +86,7 @@
                 Your browser does not support HTML5 video.
               </video> 
               -->
-              <iframe width="813" height="415" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
+              <iframe width="813" height="415" class="customprogramvideo" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
             </div>
 
             <div class="col-md-12 program-video-parts" style="padding: 0px;">
@@ -99,18 +99,18 @@
             </div>
         </div>
         <div class="col-md-4 program-meta" style="padding: 0px;">
-          <div class="col-md-6 program-meta-channel" style="background: red none repeat scroll 0% 0%; color: white; font-weight: bold; text-align: left; padding: 3px 8px; font-size: 18px;">Latest Chapter</div>
-          <div class="col-md-12 program-meta-details" style="border-bottom: 1px solid lightgrey">
-              <span class="program-meta-caption" style="margin-top: 20px; font-weight: bold; font-size: 14px; color: red; text-transform: lowercase;">EL SenoR DE LOS CApitulos</span><br/>
-              <span class="program-meta-episode" style="font-size: 30px; font-weight: bold; color: black;">Capitulo 99</span><br/>
-              <span class="program-meta-time" style="font-size: 12px; color: grey;">EMITIDO : LUNES, 09/14/2015</span><br/>
-              <span class="program-meta-description" style="font-size: 14px; color: #222; text-align: justify">Casillas le dice a Venegas que le va cobrar meterse con su familia</span><br/>
+          <div class="col-md-6 program-meta-channel">...</div>
+          <div class="col-md-12 program-meta-details">
+              <span class="program-meta-caption">...</span><br/>
+              <span class="program-meta-episode">...</span><br/>
+              <span class="program-meta-time">ISSUED : ...</span><br/>
+              <span class="program-meta-description">...</span><br/>
           </div>
 		
-          <div  class="col-sm-12 program-meta-share" style="border-bottom: 1px solid lightgrey; cursor: pointer" onclick="fbshare();">
-               <img style="padding: 4px; position: relative; left: 31%;" class="share" src="images/share.png"/>
+          <div  class="col-sm-12 program-meta-share" onclick="fbshare();">
+               <img class="share" src="images/share.png"/>
           </div>
-          <div onclick="userlikes(data);" class="col-sm-12 program-meta-friends" style="cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align: center; font-size: 14px;">
+          <div onclick="userlikes(data);" class="col-sm-12 program-meta-friends">
             <span> Friends who like this video</span>
 			<div class="leaderboard" style="display: none;"></div>
           </div>
