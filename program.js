@@ -62,8 +62,6 @@
 			fb_user_id=data.fb_id;
 		});
         apptaAgent.getProgram(id, function sendData(data){
-			console.log("Program Data: ");
-			console.log(data);
           renderProgramData(data);
         });
     }
@@ -86,6 +84,7 @@
 
 
     function renderProgramData(data){
+		console.log(data);
         var details = data;
 		program_id=details.program.id;
 		program_name=details.program.name;
