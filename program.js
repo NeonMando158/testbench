@@ -20,6 +20,9 @@
 	var program_episode;
 	var program_channel;
 	var program_meta;
+	var program_views;
+	var program_comments;
+	var program_likes;
 
     $( document ).ready(function(){
         getProgramDetails(window.location.search.replace("?id=", ""));
@@ -83,7 +86,9 @@
 		$(".leaderboard").append(html);
 		$(".program-meta-friends").attr('style','padding: 0px; margin: 0px; background: grey; color: white; text-align: center; font-size: 14px; cursor: pointer;');
 		var likefriends = $(".likefriends").children().length;
-		$(".program-meta-friends > span").text(likefriends+" friends like this video");
+		if(likefriends != 0){
+			$(".program-meta-friends > span").text(likefriends+" friends like this video");
+		}
 	}
 
 
@@ -95,6 +100,9 @@
 		program_name=program_meta.pop(0);
 		program_episode=program_meta.pop(1);
 		program_channel=program_meta.pop(2);
+		program_views=details.program.nbr_views;
+		program_comments=details.program.nbr_conversations;
+		program_likes=details.program.nbr_favs;
 
 		$('.program-meta-caption').text(program_name);
 		$('.program-meta-time').text("ISSUED: "+details.program.start_time);
@@ -102,8 +110,11 @@
 		$('.program-meta-channel').text(program_channel);
 		$(".program-meta-description").text(details.program.synopsis);
 		program_video_url="https://www.youtube.com/embed/"+details.program.live_video.split('v=').pop();
-	
 		$(".customprogramvideo").attr('src', program_video_url);
+		$(".likeprogram").text(program_likes);
+		$(".commentprogram").text(program_comments);
+		$(".viewprogram").text(program_views);
+
 		facebook_object_id=details.program.fb_page_url;
 		likeuserlist=details.like_user_list;
 		conversations = data.conversations;
@@ -121,20 +132,6 @@
 		
     }
 		
-	function findTwitterDetails(id){
-		$.ajax({
-		  url: 'https://api.twitter.com/1.1/users/show.json?user_id=173354553',
-		  type: 'GET',
-		  headers: {
-			'Authorization':'OAuth oauth_consumer_key="Dv0qgHLVONdRuScuSruGhdJYM",oauth_token="72164110-Gyy2Uw480HqEOcEydx9zhKF5cNHeZky8O5XVoAYrf",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1443517065",oauth_nonce="87a2e5d71cecd0fee8bb36553ae1a875",oauth_version="1.0",oauth_signature="RuELno7ZGY9Wt5mGOH1Ur540iHA%3D"'
-		  },
-		  success: function(data) {
-		  },
-		  error: function(e) {
-		  }
-		});	
-	}
-
 	function getPublicComments(){
 		type="public";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
@@ -220,10 +217,13 @@
 		for(var b=0; b<data.length;b++){
 			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
-			chtml += '	  <img style="border-radius: 50px;" alt="" src="'+data[b].app_user_id+'">';
+			chtml += '		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
+			//chtml += '	  <img style="border-radius: 50px;" alt="" src="'+data[b].app_user_id+'">';
 			chtml += '	</div>';
 			chtml += '	<div class="col-md-7 program-social-data-name">';
-			chtml += '	  <span>'+data[b].name+'</span>';
+			if(data[b].name){
+				chtml += '	  <span>'+data[b].name+'</span>';
+			}
 			chtml += '	</div>';
 			chtml += '	<div class="col-md-2 program-social-data-srcmedia">';
 			chtml += '	  <img style="border-radius: 50px; height: 20px; width: 20px;" alt="" src="images/logo.png">';
@@ -232,7 +232,7 @@
 			chtml += '	    '+data[b].text+' ';
 			chtml += '	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
-			chtml += '		<a class="teletangoLike" onclick="teletangoLike();"">..</a>';
+			chtml += '		<a class="teletangoLike" onclick="teletangoLike();""></a>';
 			chtml += '	</div>';
 			chtml += '</div>'; 
 			//$(".chatconversationslist").append(html);
@@ -248,9 +248,9 @@
     }
 	
 	function programLike(){
-		program_id=2;
-		program_name="Lets Go Places";
 		apptaAgent.likeProgram(program_id,program_name);	
+		//getProgramDetails(program_id);
+		
 	}
 
 	function programComments(){
@@ -280,6 +280,7 @@
 			apptaAgent.login();
 		}
 	}
+
 	function postToFacebook(){
 		var facebook_message=$(".facebookcomment").val();
 		apptaAgent.postFBComment(program_id,program_name,facebook_object_id,facebook_message);

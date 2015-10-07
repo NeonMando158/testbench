@@ -86,10 +86,10 @@
                 Your browser does not support HTML5 video.
               </video> 
               -->
-              <iframe width="813" height="415" class="customprogramvideo" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
+              <iframe width="813" height="466" class="customprogramvideo" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
             </div>
 
-            <div class="col-md-12 program-video-parts" style="padding: 0px;">
+            <div class="col-md-12 program-video-parts" style="padding: 0px; display: none;">
               <div class="col-md-2 customwell">PARTE: </div>
               <div class="col-md-2 customwell">1</div>
               <div class="col-md-2 customwell">2</div>
@@ -110,7 +110,7 @@
           <div  class="col-sm-12 program-meta-share" onclick="fbshare();">
                <img class="share" src="images/share.png"/>
           </div>
-          <div onclick="userlikes(data);" class="col-sm-12 program-meta-friends">
+          <div onclick="userlikes(this);" class="col-sm-12 program-meta-friends">
             <span> Friends who like this video</span>
 			<div class="leaderboard" style="display: none;"></div>
           </div>
@@ -141,13 +141,13 @@
         <div class="col-md-3 program-social">
             <div class="col-md-12 program-social-icons">
               <div class="col-md-4 program-social-icon">
-                <i class="fa fa-thumbs-up"></i><span>30</span>
+                <i class="fa fa-thumbs-up"></i><span class="likeprogram">0</span>
               </div>
               <div class="col-md-4 program-social-icon">
-                <i class="fa fa-eye"></i><span>30</span>
+                <i class="fa fa-eye"></i><span class="viewprogram">0</span>
               </div>
               <div class="col-md-4 program-social-icon no-right-border" >
-                <i class="fa fa-comments"></i><span>30</span>
+                <i class="fa fa-comments"></i><span class="commentprogram">0</span>
               </div>
               
             </div>
