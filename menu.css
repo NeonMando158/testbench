@@ -276,7 +276,17 @@ body {
     padding: 10px;
 }
 .program-social-action a{
-
+	background: lightblue none repeat scroll 0 0;
+    border-radius: 5px;
+    padding: 1px 5px;
+    text-decoration: none;
+}
+.program-social-action a:hover{
+	background: blue none repeat scroll 0 0;
+	color: white;
+    border-radius: 5px;
+    padding: 1px 5px;
+    text-decoration: none;
 }
 
 .no-right-border{
@@ -291,6 +301,9 @@ body {
   font-size: 18px !important;
 }
 
+.program-social-icon i{
+	padding: 0px 10px;	
+}
 .program-grid-programs{padding: 0px;}
 .program-grid-programs li{
     /*background: #f5f5f5 none repeat scroll 0 0;
@@ -427,10 +440,8 @@ background: lightgrey none repeat scroll 0 0;
 
 }
 .teletangoLike{
-	background: rgba(0, 0, 0, 0) url("images/like.png") repeat scroll 0px 0px;
     cursor: pointer;
     height: 10px;
-    padding: 0 19px;
     width: 10px;
 
 }

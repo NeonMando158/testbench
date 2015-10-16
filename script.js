@@ -22,8 +22,7 @@
         if(data.is_logged_in === false){
       		apptaAgent.login();
         }else{
-			firstname = data.first_name;
-			lastname = data.last_name;
+			firstname = data.name;
 			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
       		$(".userimagecontainer").empty();
             $(".customfblogin").text(firstname);
@@ -109,7 +108,6 @@
 
     function renderLoungeData(channel, data){
       	var programs = data;
-		console.log(channel);
 		if(channel === "English"){
     	  	for(var b=0; b<programs.loungePrograms.length;b++){
     		      columnPrograms1.push(programs.loungePrograms[b]);
@@ -135,7 +133,6 @@
     }
 	
     function updateDefaultPrograms(defaultPrograms){
-		console.log(defaultPrograms);
 	    for(var a=0; a<defaultPrograms.length;a++){
 			if(defaultPrograms[a].channel==="English"){
 				if(defaultPrograms[a].thumbnail){

@@ -28,47 +28,45 @@
     	
     	<div class="collapse navbar-collapse js-navbar-collapse">
     		<ul class="nav navbar-nav">
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Novelas</a>       
-          </li>
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows</a>        
-          </li>
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos</a>        
-            <ul class="dropdown-menu mega-dropdown-menu">
-              <li><a href="#">Auto Carousel</a></li>
-                  <li><a href="#">Carousel Control</a></li>
-                  <li><a href="#">Left & Right Navigation</a></li>
-                  <li><a href="video.php">Capitulo 99</a></li>
-                  <li><a href="#">Glyphicon</a></li>
-                  <li><a href="#">Google Fonts</a></li>
-              
-            </ul>       
-          </li>
-          <li><a href="#">Entretenimiento</a></li>
-          <li><a href="#">Noticias</a></li>
-          <li><a href="#">Deportes</a></li>
-          <li><a href="#">Mujer</a></li>
-          <li><a href="#">Talentos</a></li>
-          <li><a href="#">Mas</a></li>
-          <li><a href="#">Tu Canal</a></li>
-          <li style="background: darkred; padding: 11px; cursor: pointer;" >
-            <!-- onclick="settings()" -->
-            <a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
-              <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
-            </a>
-          </li>
-          <li style="background: #3b5958; padding: 11px; cursor: pointer;">
-            <a onclick="fbLogin()" style="padding: 0px;">
-              <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
-              <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
-            </a>
-          </li>
-          <li class="userimage" style="background: #9cbdff; padding: 3px;">
-            <a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
-          </li>
-        </ul>
+          		<li class="dropdown mega-dropdown">
+          			<a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
+          		</li>
+          		<li class="dropdown mega-dropdown">
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">SHOWS</a>        
+          		</li>
+          		<li class="dropdown mega-dropdown">
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">ENTRETENIMIENTO</a>        
+            		<ul class="dropdown-menu mega-dropdown-menu">
+              			<li><a href="#">INICIA</a></li>
+              			<li><a href="#">VIDEOS</a></li>
+              			<li><a href="#">BILLBOARD EN ESPANOL</a></li>
+              			<li><a href="video.php">FANDANGO CINE</a></li>
+              			<li><a href="#">FARANDULA</a></li>
+              			<li><a href="#">LATIN AMAS</a></li>
+            		</ul>       
+          		</li>
+          		<li><a href="#">VIDEOS</a></li>
+          		<li><a href="#">NOTICIAS</a></li>
+          		<li><a href="#">DEPORTES</a></li>
+          		<li><a href="#">MUJER</a></li>
+          		<li><a href="#">TALENTOS</a></li>
+          		<li><a href="#">MAS</a></li>
+          		<li><a href="#">TU CANAL</a></li>
+          		<li style="background: darkred; padding: 11px; cursor: pointer;" >
+            		<a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
+ 	             		<input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
+            		</a>
+          		</li>
+          		<li style="background: #3b5958; padding: 11px; cursor: pointer;">
+           	 		<a onclick="fbLogin()" style="padding: 0px;">
+             	 		<i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
+              			<span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
+            		</a>
+          		</li>
+          		<li class="userimage" style="background: #9cbdff; padding: 3px;">
+           		 	<a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
+          		</li>
+        	</ul>
     	</div><!-- /.nav-collapse -->
       </nav>
     </div>

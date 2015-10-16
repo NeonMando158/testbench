@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
-    <script src="program.js"></script>
+    <script src="video.js"></script>
+    <script src="jquery.bootstrap-growl.js"></script>
     <script src="menu.js"></script>
+	<title>Telemundo Program </title>
 </head>
 <body>
   <div class="" style="background: #f90f00;">
@@ -23,53 +25,51 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" style="padding: 4px;"><img src="images/logo.png" alt="Telemundo"/></a>
+        <a class="navbar-brand" href="javascript:void(0)" style="padding: 4px;"><img src="images/logo.png" alt="Telemundo"/></a>
       </div>
       
       <div class="collapse navbar-collapse js-navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Novelas</a>       
-          </li>
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shows</a>        
-          </li>
-          <li class="dropdown mega-dropdown">
-           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos</a>        
-            <ul class="dropdown-menu mega-dropdown-menu">
-              <li><a href="#">Auto Carousel</a></li>
-                  <li><a href="#">Carousel Control</a></li>
-                  <li><a href="#">Left & Right Navigation</a></li>
-                  <li><a href="video.php">Capitulo 99</a></li>
-                  <li><a href="#">Glyphicon</a></li>
-                  <li><a href="#">Google Fonts</a></li>
-              
-            </ul>       
-          </li>
-          <li><a href="#">Entretenimiento</a></li>
-          <li><a href="#">Noticias</a></li>
-          <li><a href="#">Deportes</a></li>
-          <li><a href="#">Mujer</a></li>
-          <li><a href="#">Talentos</a></li>
-          <li><a href="#">Mas</a></li>
-          <li><a href="#">Tu Canal</a></li>
-          <li style="background: darkred; padding: 11px; cursor: pointer;" >
-            <!-- onclick="settings()" -->
-            <a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
-              <input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
-            </a>
-          </li>
-          <li style="background: #3b5958; padding: 11px; cursor: pointer;">
-            <a onclick="facebookLogin()" style="padding: 0px;">
-              <i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
-              <span class="customfblogin" style="font-size: 15px; text-transform: lowercase;">login</span>
-            </a>
-          </li>
-          <li class="userimage" style="background: #9cbdff; padding: 3px;">
-            <a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
-          </li>
-        </ul>
-      </div><!-- /.nav-collapse -->
+    		<ul class="nav navbar-nav">
+          		<li class="dropdown mega-dropdown">
+          			<a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
+          		</li>
+          		<li class="dropdown mega-dropdown">
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">SHOWS</a>        
+          		</li>
+          		<li class="dropdown mega-dropdown">
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">ENTRETENIMIENTO</a>        
+            		<ul class="dropdown-menu mega-dropdown-menu">
+              			<li><a href="#">INICIA</a></li>
+              			<li><a href="#">VIDEOS</a></li>
+              			<li><a href="#">BILLBOARD EN ESPANOL</a></li>
+              			<li><a href="video.php">FANDANGO CINE</a></li>
+              			<li><a href="#">FARANDULA</a></li>
+              			<li><a href="#">LATIN AMAS</a></li>
+            		</ul>       
+          		</li>
+          		<li><a onclick="videoPlay()" href="javascript:void(0)">VIDEOS</a></li>
+          		<li><a href="#">NOTICIAS</a></li>
+          		<li><a href="#">DEPORTES</a></li>
+          		<li><a href="#">MUJER</a></li>
+          		<li><a href="#">TALENTOS</a></li>
+          		<li><a href="#">MAS</a></li>
+          		<li><a href="#">TU CANAL</a></li>
+          		<li style="background: darkred; padding: 11px; cursor: pointer;" >
+            		<a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
+ 	             		<input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
+            		</a>
+          		</li>
+          		<li style="background: #3b5958; padding: 11px; cursor: pointer;">
+           	 		<a onclick="fbLogin()" style="padding: 0px;">
+             	 		<i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
+              			<span class="customfblogin" style="font-size: 15px; text-transform: Capitalize;">login</span>
+            		</a>
+          		</li>
+          		<li class="userimage" style="background: #9cbdff; padding: 3px;">
+           		 	<a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
+          		</li>
+        	</ul>
+    	</div><!-- /.nav-collapse -->
       </nav>
     </div>
   </div>  
@@ -86,7 +86,7 @@
                 Your browser does not support HTML5 video.
               </video> 
               -->
-              <iframe width="813" height="466" class="customprogramvideo" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
+              <iframe id="videoloaderiframe" width="813" height="466" class="customprogramvideo" src="https://www.youtube.com/embed/G4eoUTkD0MQ" frameborder="0" allowfullscreen></iframe>
             </div>
 
             <div class="col-md-12 program-video-parts" style="padding: 0px; display: none;">
@@ -110,20 +110,21 @@
           <div  class="col-sm-12 program-meta-share" onclick="fbshare();">
                <img class="share" src="images/share.png"/>
           </div>
-          <div onclick="userlikes(this);" class="col-sm-12 program-meta-friends">
+          <div onclick="userLikes(null);" class="col-sm-12 program-meta-friends">
             <span> Friends who like this video</span>
-			<div class="leaderboard" style="display: none;"></div>
+			<div class="leaderboard" style="display: none;">
+			</div>
           </div>
           <div class="col-sm-12 chatconversation program-meta-conversations" style=" border-bottom: 1px solid lightgrey;">
               <ul class="chatconversationslist" style="overflow-y: scroll; padding: 0px;">
               </ul>
           </div>
           <div class="conversationcontrol col-sm-12" style="margin: 2px 0px;">
-            <div class="col-sm-2" style="padding: 10px 15px;" onclick="uploadVideo();">
-				<img src="images/video.png" style=";"/>
+            <div class="col-sm-2" style="padding: 10px 15px; " onclick="uploadVideo();">
+				<!-- <img src="images/video.png" style=";"/>-->
             </div>
-            <div class="col-sm-2" style="padding: 12px 15px;" onclick="uploadImage();">
-				<img src="images/photo.png" style=""/>
+            <div class="col-sm-2" style="padding: 12px 15px; " onclick="uploadImage();">
+				<!-- <img src="images/photo.png" style=""/> -->
             </div>
             <div class="col-sm-6 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
                 <input class="privatechat" type="text" name="privecomments" placeholder="Chat with your friends"/>
@@ -133,7 +134,7 @@
             </div>
           </div>
           <div class="program-meta-calendar col-sm-12" style="background: orange;">
-              <span style="padding: 10px;"><i class="fa fa-calendar" style="font-size: 29px; color: white; padding: 5px"></i><span style="padding: 05px; font-size: 21px; color: white; font-weight: bold">CALENDARIO DE EPISODES </span><a href="#" style="font-size: 28px; color: white; font-weight: bold; position: relative; top: 1px; left: 20px">&gt;</a></span>
+              <span style="padding: 10px;"><i class="fa fa-calendar" style="font-size: 29px; color: white; padding: 5px"></i><span style="padding: 05px; font-size: 21px; color: white; font-weight: bold">CALENDARIO DE EPISODES </span><a href="javascript:void(0)" style="font-size: 28px; color: white; font-weight: bold; position: relative; top: 1px; left: 20px">&gt;</a></span>
           </div>
         </div>
     </div>
@@ -153,65 +154,23 @@
             </div>
             <div class="col-md-12 program-social-actions">
               <div class="col-md-3 program-social-action">
-                <a href="#" onclick="programLike();">LIKE</a>
+                <a href="javascript:void(0)" onclick="programLike();">LIKE</a>
               </div>
               <div class="col-md-4 program-social-action">
-                <a data-toggle="modal" data-target="#myModal" href="#">COMMENT</a>
+                <a data-toggle="modal" data-target="#myModal" href="javascript:void(0)">COMMENT</a>
               </div>
               <div class="col-md-4 program-social-action">
-                <a href="#" onclick="leaderboard()">LEADERBOARD</a>
+                <a href="javascript:void(0)" onclick="leaderboard()">LEADERBOARD</a>
               </div>
             </div>
-            <div class="col-md-12 program-social-data">
-              <div class="col-md-12" style="padding: 18px 0px; margin: 4px 0px; background: white;">
-                <div class="col-md-3 program-social-data-image">
-                  <img src="http://placehold.it/50x50/2ecc71/f5f5f5" alt="" style="border-radius: 50px;"/>
-                </div>
-                <div class="col-md-7 program-social-data-name">
-                  <span>John Nash</span>
-                </div>
-                <div class="col-md-2 program-social-data-srcmedia">
-                  <img src="http://placehold.it/25x25/234ff3/f5f5f5" alt="" style="border-radius: 50px;"/>
-                </div>
-                <div class="col-md-12">
-                    Text data from social content with description
-                </div>
-              </div>
-              <div class="col-md-12" style="padding: 18px 0px; margin: 4px 0px; background: white;">
-                <div class="col-md-3 program-social-data-image">
-                  <img src="http://placehold.it/50x50/2ecc71/f5f5f5" alt="" style="border-radius: 50px;"/>
-                </div>
-                <div class="col-md-7 program-social-data-name">
-                  <span>Jake</span>
-                </div>
-                <div class="col-md-2 program-social-data-srcmedia">
-                  <img src="http://placehold.it/25x25/234ff3/f5f5f5/?F" alt="" style="border-radius: 50px;"/>
-                </div>
-                <div class="col-md-12">
-                    Text data from social content with description
-                </div>
-              </div>
-              <div class="col-md-12" style="padding: 18px 0px; margin: 4px 0px; background: white;">
-                <div class="col-md-3 program-social-data-image">
-                  <img src="http://placehold.it/50x50/2ecc71/f5f5f5/?F" alt="" style="border-radius: 50px;"/>
-                </div>
-                <div class="col-md-7 program-social-data-name">
-                  <span>Joe Brownski</span>
-                </div>
-                <div class="col-md-2 program-social-data-srcmedia">
-                  <img src="http://placehold.it/25x25/234ff3/f5f5f5/?T" alt="" style="border-radius: 50px;"/>
-                </div>
-                <div class="col-md-12">
-                    Text data from social content with description
-                </div>
-              </div>
+            <div class="col-md-12 program-social-data" style="overflow-y: scroll; height: 400px; padding: 2px 3px; margin: 0px;">
             </div>
         </div>
         <div class="col-md-9 program-grid">
           <div class="col-md-12 program-grid-control">
               <div class="col-md-3 btn btn-large btn-warning">All Episodes</div>
               <div class="col-md-3"></div>
-              <div class="col-md-3 btn btn-large btn-default">Temporada 3 <i class="fa fa-down"></i></div>
+              <div class="col-md-3 btn btn-large btn-default">Channels <i class="fa fa-down"></i></div>
               <div class="col-md-3 btn btn-large btn-default">Recently Viewed <i class="fa fa-down"></i></div>
           </div>
           <div class="col-md-12 program-grid-view">
@@ -233,7 +192,7 @@
         
     </div>
 	<!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal" id="myModal" role="dialog">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
@@ -256,7 +215,7 @@
 					    <textarea class="form-control teletangocomment" id="textarea" name="textarea" placeholder="Enter your comment here"></textarea>
 					  </div>
 					</div>
-			      <a href="#" onclick="programComments()" class="btn btn-sm btn-warning">POST to Teletango</a>
+			      <a href="javascript:void(0)" onclick="programComments()" class="btn btn-sm btn-warning" data-dismiss="modal">POST to Teletango</a>
 			    </div>
 			    <div role="tabpanel" class="tab-pane" id="facebook">
 					<div class="form-group">
@@ -264,7 +223,7 @@
 					    <textarea class="form-control facebookcomment" id="textarea" name="textarea" placeholder="Enter your facebook message  here"></textarea>
 					  </div>
 					</div>
-			      <a href="#" onclick="postToFacebook()" class="btn btn-sm btn-default">Comment on Facebook</a>
+			      <a href="javascript:void(0)" onclick="postToFacebook()" class="btn btn-sm btn-default">Comment on Facebook</a>
 			
 				</div>
 			    <div role="tabpanel" class="tab-pane" id="twitter">
@@ -273,7 +232,7 @@
 					    <textarea class="form-control twittercomment" id="textarea" name="textarea" placeholder="Enter your tweet here"></textarea>
 					  </div>
 					</div>
-			      <a href="#" onclick="postToTwitter()" class="btn btn-sm btn-danger">Tweet here</a>
+			      <a href="javascript:void(0)" onclick="postToTwitter()" class="btn btn-sm btn-danger">Tweet here</a>
 					
 				</div>
 			  </div>
@@ -285,6 +244,30 @@
       </div>
     </div>
   </div>
+	<!-- twitter reply modal window -->
+ 	<div class="modal" id="myModalTwitter" role="dialog">
+    	<div class="modal-dialog modal-md">
+    	  <div class="modal-content">
+    	    <div class="modal-header">
+    	      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    	      <h4 class="modal-title">Reply to Tweet</h4>
+    	    </div>
+    	    <div class="modal-body">
+    	    	<div class="form-group">
+    	        	<textarea class="form-control replytweet" id="textarea" name="textarea" placeholder="Enter your tweet here"></textarea>
+    	        </div>
+	        </div>
+	        <div class="modal-footer">
+			  <input type="hidden" name="twitterIDinModal" class="twitterIDinModal" value="" id=""/>
+    	      <a id="" href="javascript:void(0)" onclick="twitterReply()" class="btn btn-sm btn-danger">Reply</a>
+	          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+
+	<!-- twiiter reply modal window closes -->
+
   </div>
 </body>
 </html>
