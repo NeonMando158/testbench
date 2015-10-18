@@ -51,16 +51,35 @@ function closeFBINFO(){
 	$(".custom-fb-message").hide();
 }
 
+function updatePrivacyStatus(){
+	var selectedvalue = $(".selectedprivacy").val();	
+	if(selectedvalue == 1){
+        console.log("disable presence");
+        apptaAgent.postSettings(false);
+    }else if(selectedvalue == 2){
+        console.log("enable presence");
+        apptaAgent.postSettings(true);
+    }else{
+        console.log("enable presence 3rd option");
+        apptaAgent.postSettings(true);
+
+    }
+	$(".custom-privacy-message").hide();
+	$(".maincontainer").attr('style','margin-top: 30px;');
+}
 function privacyUpdate(data){
 	if(data.value == 1){
 		console.log("disable presence");
-        apptaAgent.postSettings(false);
+		$(".selectedprivacy").val(data.value);
 	}else if(data.value == 2){
 		console.log("enable presence");
-        apptaAgent.postSettings(true);
+		$(".selectedprivacy").val(data.value);
 	}else{
 		console.log("enable presence 3rd option");
-        apptaAgent.postSettings(true);
+		$(".selectedprivacy").val(data.value);
 
 	}
+}
+function fbLogout(){
+	console.log("logout clicked");
 }
