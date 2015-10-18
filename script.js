@@ -89,7 +89,7 @@
 		
 	}
 
-    function settings(){
+/*    function settings(){
       if($("[name='privacy-checkbox']").is(':checked') === true){
         //if checked or true => privacy enabled
         apptaAgent.postSettings(true);
@@ -98,6 +98,7 @@
         apptaAgent.postSettings(false);
       }
     }
+*/
 
     function checkinProgram(id,name){
       var event_data = {'program_id':id, 'program_name':name };

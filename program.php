@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
-    <script src="video.js"></script>
+    <script src="program.js"></script>
+    <script src="common.js"></script>
     <script src="jquery.bootstrap-growl.js"></script>
     <script src="menu.js"></script>
+	<script src="jquery.timeago.js" type="text/javascript"></script>
 	<title>Telemundo Program </title>
 </head>
 <body>
@@ -54,12 +56,12 @@
           		<li><a href="#">TALENTOS</a></li>
           		<li><a href="#">MAS</a></li>
           		<li><a href="#">TU CANAL</a></li>
-          		<li style="background: darkred; padding: 11px; cursor: pointer;" >
+          		<li style="background: darkred; padding: 11px; cursor: pointer;" class="privacyOptions"  onmouseover="privacyCheck(this)">
             		<a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
- 	             		<input id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
+ 	             		<input style="display: none;" id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
             		</a>
           		</li>
-          		<li style="background: #3b5958; padding: 11px; cursor: pointer;">
+          		<li style="background: #3b5958; padding: 11px; cursor: pointer;" class="facebookLogin" onmouseover="infoFB(this)">
            	 		<a onclick="fbLogin()" style="padding: 0px;">
              	 		<i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               			<span class="customfblogin" style="font-size: 15px; text-transform: Capitalize;">login</span>
@@ -73,7 +75,49 @@
       </nav>
     </div>
   </div>  
-  <div class="container" style="margin-top: 30px; ">
+  <div class="container" style="background: lightblue; position: fixed; z-index: 99999; width: 500px !important; left: 50%; border-radius: 5px;">
+	<div id="custom-privacy" class="custom-privacy-message" style="display: none;">
+		 <div class="closePInfo" style="float: right; cursor: pointer;" onclick="closePINFO()"><i class="fa fa-remove"></i></div>
+		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
+		so that you can discuss and enjoy the shows together</p>
+		<div class="privacy-option-form" style="position: relative; left: 30px;">
+				<div class="radio">
+				  <label>
+					<input onclick="privacyUpdate(this)" type="radio" name="optradio" value="1" checked="true">Allow friends to see what I watch
+				</label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input onclick="privacyUpdate(this)" type="radio" name="optradio" value="2">Do not allow friends to see what I watch
+				  </label>
+				</div>
+				<div class="radio disabled">
+				  <label>
+					<input onclick="privacyUpdate(this)" type="radio" name="optradio" value="3" disabled>Do not track what I watch 
+				  </label>
+				</div>
+		</div>
+		<p style="width: 370px; text-align: justify;  font-size: 10px; position: relative; left: 70px; top: -10px;">If you choose this option,
+			 Telemundo will no longer know what you watch and hence will not offer 
+		you content customized for you. If you want your past  viewing history to be removed, send an email 
+		to Telemundo support.</p>
+		<div class="okPrivacy">
+			<a href="javascript:void(0)" onclick="updatePrivacyStatus()">OK</a>
+		</div>
+
+	</div>
+	<div class="custom-fb-message" style="display: none;">
+		<div class="closeFBInfo" style="float: right; cursor: pointer;" onclick="closeFBINFO()"><i class="fa fa-remove"></i></div>
+		<h4>Login using Facebook to see what your friends are watching!</h4>
+		
+		<p>Telemundo will collect a few basic information about you that you have shared with Facebook
+		to provide you with better recommendation on what you'd love to watch and allow you to interact
+		and watch together with your friends. Telemundo does not share your personal information  with anyone
+		without your permission. <br/> See more from here: <a href="privacy.php">Telemundo privacy policy</a></p>
+
+	</div>
+  </div>
+  <div class="container maincontainer" style="margin-top: 30px; ">
     <!-- main program video wrapper -->
     <div class="col-md-12" style="border: 1px solid lightgrey; padding: 0px;">
         <div class="col-md-8" style="padding: 0px;">
@@ -120,14 +164,14 @@
               </ul>
           </div>
           <div class="conversationcontrol col-sm-12" style="margin: 2px 0px;">
-            <div class="col-sm-2" style="padding: 10px 15px; " onclick="uploadVideo();">
-				<!-- <img src="images/video.png" style=";"/>-->
+            <!-- <div class="col-sm-2" style="padding: 10px 15px; " onclick="uploadVideo();">
+				<img src="images/video.png" style=";"/>
             </div>
             <div class="col-sm-2" style="padding: 12px 15px; " onclick="uploadImage();">
-				<!-- <img src="images/photo.png" style=""/> -->
-            </div>
-            <div class="col-sm-6 inputtextconversation" style="border-left: 1px solid lightgrey; padding: 10px;">
-                <input class="privatechat" type="text" name="privecomments" placeholder="Chat with your friends"/>
+				<img src="images/photo.png" style=""/>
+            </div> -->
+            <div class="col-sm-10 inputtextconversation" style="padding: 10px;">
+                <input style="width: 300px; padding: 6px;" class="privatechat" type="text" name="privecomments" placeholder="Chat with your friends"/>
             </div>
             <div class="enterConversation col-sm-2" style="padding: 10px;">
                   <a onclick="submitComment()"><img src="images/send.png" style=""></a>
@@ -142,24 +186,24 @@
         <div class="col-md-3 program-social">
             <div class="col-md-12 program-social-icons">
               <div class="col-md-4 program-social-icon">
-                <i class="fa fa-thumbs-up"></i><span class="likeprogram">0</span>
+                <i class="fa fa-thumbs-up likeprogramicon"></i><span class="likeprogram">0</span>
               </div>
               <div class="col-md-4 program-social-icon">
                 <i class="fa fa-eye"></i><span class="viewprogram">0</span>
               </div>
               <div class="col-md-4 program-social-icon no-right-border" >
-                <i class="fa fa-comments"></i><span class="commentprogram">0</span>
+                <i class="fa fa-comments commentprogramicon"></i><span class="commentprogram">0</span>
               </div>
               
             </div>
             <div class="col-md-12 program-social-actions">
               <div class="col-md-3 program-social-action">
-                <a href="javascript:void(0)" onclick="programLike();">LIKE</a>
+                <a class="programLikeText" href="javascript:void(0)" onclick="programLike();">LIKE</a>
               </div>
               <div class="col-md-4 program-social-action">
                 <a data-toggle="modal" data-target="#myModal" href="javascript:void(0)">COMMENT</a>
               </div>
-              <div class="col-md-4 program-social-action">
+              <div class="col-md-4 program-social-action" style="display: none;">
                 <a href="javascript:void(0)" onclick="leaderboard()">LEADERBOARD</a>
               </div>
             </div>
@@ -215,7 +259,7 @@
 					    <textarea class="form-control teletangocomment" id="textarea" name="textarea" placeholder="Enter your comment here"></textarea>
 					  </div>
 					</div>
-			      <a href="javascript:void(0)" onclick="programComments()" class="btn btn-sm btn-warning" data-dismiss="modal">POST to Teletango</a>
+			      <a href="javascript:void(0)" onclick="programComments()" class="btn btn-sm btn-warning" data-dismiss="modal">POST to Telemundo</a>
 			    </div>
 			    <div role="tabpanel" class="tab-pane" id="facebook">
 					<div class="form-group">

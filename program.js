@@ -24,10 +24,18 @@
 	var program_comments;
 	var program_likes;
 	var hash_tag;
+	var is_fav;
+	var program_data;
 
     $( document ).ready(function(){
 	//	callPlayer();
 		jQuery.noConflict();
+		setInterval(function() {
+		  	console.log("timere called");
+		}, 60000);
+		setInterval(function() {
+		  	getPublicComments();
+		}, 120000);
         apptaAgent.getLoginDetails(function(data){
         if(data.is_logged_in === false){
             apptaAgent.login();
@@ -69,7 +77,7 @@
 
 	function facebookLogin(){
         if(is_loggedin == false){
-      		apptaAgent.login();
+      		//apptaAgent.login();
         }else{
 			image = 'http://graph.facebook.com/'+fb_user_id+'/picture?type=small';
 			$(".userimagecontainer").empty();
@@ -92,7 +100,7 @@
     }
 
 	function fbshare(){
-		console.log(link);
+//		console.log(link);
 		apptaAgent.postFBShare(program_id,program_name,link,message);
 	}
 
@@ -119,6 +127,7 @@
 
     function renderProgramData(data){
         var details = data;
+		
 		program_id=details.program.id;
 		program_meta=details.program.name.split('|');
 		program_name=program_meta.pop(0);
@@ -127,13 +136,16 @@
 		program_views=details.program.nbr_views;
 		program_comments=details.program.nbr_conversations;
 		program_likes=details.program.nbr_favs;
-
+		is_fav=details.program.is_favorite;
+		if(is_fav == 1){
+			$(".programLikeText").text("LIKED");
+		}
 		$('.program-meta-caption').text(program_name);
 		$('.program-meta-time').text("ISSUED: "+details.program.start_time);
 		$('.program-meta-episode').text(program_episode);
 		$('.program-meta-channel').text(program_channel);
 		$(".program-meta-description").text(details.program.synopsis);
-		program_video_url="https://www.youtube.com/embed/"+details.program.live_video.split('v=').pop();
+		program_video_url="https://www.youtube.com/embed/"+details.program.recorded_video.split('v=').pop();
 		$(".customprogramvideo").attr('src', program_video_url);
 		$(".likeprogram").text(program_likes);
 		$(".commentprogram").text(program_comments);
@@ -152,11 +164,17 @@
 		//renderTwitterComments(twitterdata);
 		renderFacebookComments(facebookcomments);
 		renderConversations(conversations);
-		userLikes(likeuserlist);
 		hash_tag=details.program.twitter;
 		getTweets(hash_tag);
-		updateCommentCount();	
+		userLikes(likeuserlist);
+		updateCommentCount();
+		//getLeaderBoard();	
     }
+
+	function getLeaderBoard(){
+//		console.log("leaderboard called");
+		apptaAgent.getLeaderBoard(program_id,program_name,function(data){console.log(data);});
+	}
 
 	function updateCommentCount(){
 		var count=$(".program-social-data").children().length;
@@ -182,9 +200,25 @@
 	function getPublicComments(){
 		type="public";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
+			public_conversations=data.conversations;
+			console.log(public_conversations);
+			renderPublicComments(public_conversations);
+			reverseRenderedData();
 		});
 	}
-	
+	function reverseRenderedData(data){
+		var aData = $(".program-social-data").children().toArray();
+			aData.reverse();
+			$.each(aData, function(){
+				console.log(this);
+				$(".program-social-data").append(this);
+			});
+			
+	}
+	function renderPublicComments(public_conversations){
+		$(".teletango-data").remove();
+		renderConversations(public_conversations);
+	}
 	function getPrivateComments(){
 		type="private";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
@@ -207,6 +241,7 @@
 	function renderTwitterComments(twitter){
 		for(var d=0; d<twitter.length;d++){
 			//var name = findTwitterDetails(twitter[d].twuserid);
+			var time = timeAgo(twitter[d].created_time);
 			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 twitter-data">';
 			html += '	<div class="col-md-3 program-social-data-image">';
 			html += '	  <img style="border-radius: 50px;" alt="" src="'+twitter[d].profileurl+'">';
@@ -220,6 +255,9 @@
 			html += '	<div class="col-md-12">';
 			html += '	    '+twitter[d].comment+' ';
 			html += '	</div>';
+			html += '	<div class="time-ago col-md-12">';
+			html += ' 	<span class="timeago" style="font-size: 10px; float: right;">'+time+'</span>';
+			html += ' 	</div>';
 			html += '	<div class="social-actions col-md-12">';
 			html += '		<a class="twitterReply" data-toggle="modal" data-target="#myModalTwitter" id="'+twitter[d].twuserid+'" onclick="triggerReplyWindow('+twitter[d].twuserid+');"></a>';
 			html += '		<a class="twitterRetweet" onclick="twitterRetweet('+twitter[d].twuserid+');""></a>';
@@ -235,7 +273,41 @@
 		$(".twitterIDinModal").val(id);
 	}
 
+	function timeAgo(time){
+		var now_time = 	new Date(time);
+		current_time=$.now();
+		var cur_time = new Date(current_time);
+		var diff = cur_time - now_time;
+		if(diff > 60000)
+		{
+			var retVal =Math.floor(diff/60000)+" minutes ago";
+		}
+		else{
+			var retVal =Math.floor(diff/1000)+" seconds ago";
+		}
+
+		return retVal;
+	}
+
+	function timeAgoComments(time){
+		var my_date =time;
+		my_date = my_date.replace(/-/g, "/"); //this will replace "-" with "/"
+		var  javascript_date = new Date(my_date);
+		current_time=$.now();
+		var cur_time = new Date(current_time);
+		var diff = cur_time - javascript_date;
+		if(diff > 60000)
+		{
+			var retVal =Math.floor(diff/60000)+" min ago";
+		}
+		else{
+			var retVal =Math.floor(diff/1000)+" seconds ago";
+		}
+		return retVal;
+	}
+
 	function renderFacebookComments(facebook){
+		//var time = timeAgo(twitter[d].created_time);
 		for(var f=0; f<facebook.length;f++){
 			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 facebook-data">';
 			html += '	<div class="col-md-3 program-social-data-image">';
@@ -250,6 +322,9 @@
 			html += '	<div class="col-md-12">';
 			html += '	    '+facebook[f].comment+' ';
 			html += '	</div>';
+			html += '	<div class="time-ago col-md-12">';
+			html += ' 	<span style="font-size: 10px; float: right;">'+facebook[f].created+'</span>';
+			html += ' 	</div>';
 			html += '	<div class="social-actions col-md-12">';
 			html += '		<a class="facebookLike" onlick="facebookLike();"></a>';
 			html += '	</div>';
@@ -259,8 +334,8 @@
 	}
 		
 	function renderConversations(data){
-		console.log(data);
 		for(var b=0; b<data.length;b++){
+			var ctime = timeAgoComments(data[b].created);
 			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
 			chtml += '		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
@@ -277,6 +352,10 @@
 			chtml += '	<div class="col-md-12">';
 			chtml += '	    '+data[b].text+' ';
 			chtml += '	</div>';
+			chtml += '	<div class="time-ago col-md-12">';
+			//chtml += ' 	<span  style="font-size: 10px; float: right;">'+data[b].created+'</span>';
+			chtml += ' 	<span  style="font-size: 10px; float: right;">'+ctime+'</span>';
+			chtml += ' 	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
 			chtml += '		<a class="teletangoLike" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i> Like</a>';
 			chtml += '	</div>';
@@ -299,7 +378,15 @@
     }
 	
 	function programLike(){
-		apptaAgent.likeProgram(program_id,program_name);	
+		if(is_fav == 0){
+			apptaAgent.likeProgram(program_id,program_name);	
+			$(".likeprogramicon").attr('style','color: blue');
+			var likevalue = $(".likeprogram").text();
+			$(".likeprogram").text(parseInt(likevalue)+1);
+			$(".programLikeText").text("LIKED");
+		}else if(is_fav == 1){
+			$(".programLikeText").text("LIKED");
+		}
 		//getProgramDetails(program_id);
 		//$.bootstrapGrowl("Successfully liked the program");
 		
@@ -309,13 +396,13 @@
 		var comment_text = $(".teletangocomment").val();
 		var type="program";
 		apptaAgent.postComment(program_id,program_name,comment_text,type);
-		apptaAgent.getComments(program_id,program_name,type, function(data){renderConversations(data);});
+		apptaAgent.getComments(program_id,program_name,type, function(data){ 
+				getPublicComments();
+				$(".commentprogramicon").attr('style','color: blue');
+				var total_comment_count = $(".commentprogram").text();
+				$(".commentprogram").text(parseInt(total_comment_count)+1);
+		});
 		$('#myModal').hide();			
-		//$.bootstrapGrowl("Comment successfully posted");
-	//	$(".modal-backdrop").remove();
-		
-
-	
 	}
 
 	function leaderboard(){
@@ -328,7 +415,6 @@
 			type = "private";
 			apptaAgent.postComment(program_id,program_name,comment_text,type);
 			getPrivateComments();
-			//$.bootstrapGrowl("Comment successfully posted");
 		}else if(is_loggedin === false){
 			apptaAgent.login();
 		}
@@ -337,7 +423,6 @@
 	function postToFacebook(){
 		var facebook_message=$(".facebookcomment").val();
 		apptaAgent.postFBComment(program_id,program_name,facebook_object_id,facebook_message);
-		//$.bootstrapGrowl("Post to Facebook Successfull");
 	}
 	function postToTwitter(){
 		var twitter_text = $(".twittercomment").val();
@@ -359,6 +444,14 @@
 		tweet_id=id;
 		apptaAgent.postFavouriteTweet(program_id,program_name,tweet_id);
 		//$.bootstrapGrowl("Tweet Favourite Successfull");
+	}
+
+	function refresh(){
+		$(".teletango-data").empty();
+		//call tango comments public programs	
+		apptaAgent.getComments(program_id,program_name,type, function(data){renderConversations(data);});
+		//call facebook comments
+		//call getTweets
 	}
 
 	function videoPlay(){
