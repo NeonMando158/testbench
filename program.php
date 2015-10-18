@@ -11,10 +11,8 @@
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
     <script src="program.js"></script>
     <script src="common.js"></script>
-    <script src="jquery.bootstrap-growl.js"></script>
     <script src="menu.js"></script>
-	<script src="jquery.timeago.js" type="text/javascript"></script>
-	<title>Telemundo Program </title>
+    <title>Telemundo Program </title>
 </head>
 <body>
   <div class="" style="background: #f90f00;">
