@@ -230,13 +230,4 @@
       }
     }
 
-	function loadEnglish(){
-		console.log("load english channel");
-	}
-	function loadEnt(){
-		console.log("load english channel");
-	}
-	function loadNovelas(){
-		console.log("load english channel");
-	}
 
