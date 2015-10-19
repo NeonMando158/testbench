@@ -545,3 +545,6 @@ background: lightgrey none repeat scroll 0 0;
     transform: scale(1.05);
 
 }
+.teletango-data:hover{background: lightgrey !important;}
+.twitter-data:hover{background: lightgrey !important;}
+.facebook-data:hover{background: lightgrey !important;}

@@ -55,6 +55,7 @@
 		});
 		getPrivateComments();
 		facebookLogin();
+		//getProgramsofChannel(program_channel);
     });
 	
 	function getCommentsData(){
@@ -454,6 +455,28 @@
 		//call getTweets
 	}
 
+	function getProgramsofChannel(channel_passed){
+		console.log("getProgramsofChannel");
+		var filter_object={
+			channel_name:channel_passed,
+			page_size:15,
+		};
+		apptaAgent.getLounge(filter_object,function(data){
+			console.log(data);
+			renderProgramsinChannel(data.loungePrograms);
+		});			
+	}	
+
+	function renderProgramsinChannel(programs){
+		
+		for(var a=0; a<programs.length;a++){
+			html = '<li class="item">';
+			html += '<img src="'+programs[a].thumbnail+'" alt="'+programs[a].name+'"/>';
+			$(".program-grid-programs").append(html);
+		}
+		
+		
+	}
 	function videoPlay(){
 		$("#videoloaderiframe").playVideo();
 	
@@ -544,4 +567,5 @@
  		    (add ? window.attachEvent : window.detachEvent)('onmessage', listener);
 		}
 	}
+		
 
