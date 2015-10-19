@@ -95,5 +95,6 @@ function privacyUpdate(data){
 	}
 }
 function fbLogout(){
+	apptaAgent.logout();
 	console.log("logout clicked");
 }
