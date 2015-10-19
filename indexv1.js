@@ -107,7 +107,7 @@
       var event_data = {'program_id':id, 'program_name':name };
       var event_type = 'CHECK_IN_TO_PROGRAM';
       apptaAgent.eventLog(event_type, event_data);
-      window.location.href = "http://telemundo.teletango.com/ref_01_01/program.php?id="+id;
+      window.location.href = "http://telemundo.teletango.com/ref_01_02/program.php?id="+id;
     }
 
     function renderLoungeData(channel, data){

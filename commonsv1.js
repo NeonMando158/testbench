@@ -73,6 +73,7 @@ function closeFBINFO(){
 
 function updatePrivacyStatus(){
 	var selectedvalue = $(".selectedprivacy").val();	
+	$(".privystatus").val(99);
 	if(selectedvalue == 1){
         console.log("disable presence");
         apptaAgent.postSettings(false);
