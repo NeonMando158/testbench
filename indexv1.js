@@ -1,22 +1,23 @@
-	//Load Lounge on ready
+    //Declare Global Variables for the use
+    var defaultPrograms = [];
+    var friendsFootPrint = [];
+    var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+    var apptaAgent = new ApptaAgent(api_key, "414920308635429");
+    var column1=[];
+    var column2=[];
+    var column3=[];
+    var columnPrograms1=[];
+    var columnPrograms2=[];
+    var columnPrograms3=[];
+    var requested_page_size=10;
+    var is_loggedin;
+	
+//Load Lounge on ready
     $( document ).ready(function(){
 		//make a call to lounge
         getLoungeInfo();
     });
 	
-	//Declare Global Variables for the use
-    var defaultPrograms = [];
-    var friendsFootPrint = [];
-    var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-    var apptaAgent = new ApptaAgent(api_key, "414920308635429");
-	var column1=[];
-	var column2=[];
-	var column3=[];
-	var columnPrograms1=[];
-	var columnPrograms2=[];
-	var columnPrograms3=[];
-	var requested_page_size=10;
-	var is_loggedin;
     function fbLogin(){
       apptaAgent.getLoginDetails(function(data){
 		is_loggedin=data.is_logged_in;
@@ -106,7 +107,7 @@
       var event_data = {'program_id':id, 'program_name':name };
       var event_type = 'CHECK_IN_TO_PROGRAM';
       apptaAgent.eventLog(event_type, event_data);
-      window.location.href = "http://telemundo.teletango.com/reference/program.php?id="+id;
+      window.location.href = "http://telemundo.teletango.com/ref_01_01/program.php?id="+id;
     }
 
     function renderLoungeData(channel, data){

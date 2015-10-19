@@ -56,8 +56,11 @@ function infoFB(){
 		}
 	}else if(is_loggedin == true){
 		//enable the privacy options button
+		var privy=$(".privystatus").val();
 		$(".privacyOptions").show();
-		privacyCheck();
+		if(privy!=99){
+			privacyCheck();
+		}
 		$(".custom-fb-message").hide();
 
 	}
@@ -96,6 +99,7 @@ function privacyUpdate(data){
 		$(".selectedprivacy").val(data.value);
 
 	}
+	$(".privystatus").val(99);
 }
 	function fbLogout(){
 		apptaAgent.logout();

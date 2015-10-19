@@ -28,6 +28,7 @@
 	var program_data;
 
     $( document ).ready(function(){
+		console.log("Login Status:"+is_loggedin);
 	//	callPlayer();
 		jQuery.noConflict();
 		setInterval(function() {
@@ -211,7 +212,6 @@
 		var aData = $(".program-social-data").children().toArray();
 			aData.reverse();
 			$.each(aData, function(){
-				console.log(this);
 				$(".program-social-data").append(this);
 			});
 			
@@ -279,15 +279,21 @@
 		current_time=$.now();
 		var cur_time = new Date(current_time);
 		var diff = cur_time - now_time;
+		console.log(diff);
+		var retVal;
 		if(diff > 60000)
 		{
-			var retVal =Math.floor(diff/60000)+" minutes ago";
+			retVal =Math.floor(diff/60000)+" minutes ago";
 		}
 		else{
-			var retVal =Math.floor(diff/1000)+" seconds ago";
+			retVal =Math.floor(diff/1000)+" seconds ago";
 		}
-
-		return retVal;
+		if(retVal>=0){	
+			return retVal;	
+		}else{
+			retVal=0;
+			return retVal;
+		}
 	}
 
 	function timeAgoComments(time){

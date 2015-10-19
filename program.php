@@ -76,6 +76,7 @@
   </div>  
   <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; left: 50%; border-radius: 5px; background: lightgrey none repeat scroll 0px 0px; font-family: Open Sans;">
 	<div id="custom-privacy" class="custom-privacy-message" style="display: none;">
+		<input type="hidden" value="0" class="privystatus" name="privystatus"/>
 		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
 		so that you can discuss and enjoy the shows together</p>
 		<div class="privacy-option-form" style="position: relative; left: 30px;">
