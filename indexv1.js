@@ -16,12 +16,14 @@
 	var columnPrograms2=[];
 	var columnPrograms3=[];
 	var requested_page_size=10;
-
+	var is_loggedin;
     function fbLogin(){
       apptaAgent.getLoginDetails(function(data){
+		is_loggedin=data.is_logged_in;
         if(data.is_logged_in === false){
       		apptaAgent.login();
         }else{
+		
 			firstname = data.name;
 			image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
       		$(".userimagecontainer").empty();
@@ -227,3 +229,14 @@
         $(".column2").append(html);
       }
     }
+
+	function loadEnglish(){
+		console.log("load english channel");
+	}
+	function loadEnt(){
+		console.log("load english channel");
+	}
+	function loadNovelas(){
+		console.log("load english channel");
+	}
+

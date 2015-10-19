@@ -38,17 +38,31 @@ function closePINFO(){
 }
 
 function infoFB(){
-	console.log("info Facebook Called");
-	if(is_loggedin == false){
-		$(".custom-fb-message").show();
-		//setTimeout(function(){ $(".custom-fb-message").hide(); }, 2000);
+	var facebookOnce = $(".facebookOnce").val();
+	console.log(facebookOnce+": facebookOnce status");
+	if(is_loggedin == false || typeof is_loggedin == "undefined"){
+		//disable the eye button
+		$(".privacyOptions").hide();
+		if(facebookOnce == 0){
+			console.log("if facebookOnce is first time show the message");
+			$(".custom-fb-message").show();
+			setTimeout(function(){ $(".custom-fb-message").hide(); }, 5000);
+		}else{
+			console.log("if the facebookOnce is marked then do not show the message");
+			$(".custom-fb-message").hide();
+		}
 	}else if(is_loggedin == true){
+		//enable the privacy options button
+		$(".privacyOptions").show();
+		privacyCheck();
 		$(".custom-fb-message").hide();
+
 	}
 }
 
 function closeFBINFO(){
 	$(".custom-fb-message").hide();
+	$(".facebookOnce").val(1);
 }
 
 function updatePrivacyStatus(){

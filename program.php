@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
-    <script src="program.js"></script>
-    <script src="common.js"></script>
+    <script src="programv1.js"></script>
+    <script src="commonsv1.js"></script>
     <script src="menu.js"></script>
     <title>Telemundo Program </title>
 </head>
@@ -74,9 +74,8 @@
       </nav>
     </div>
   </div>  
-  <div class="container" style="background: lightblue; position: fixed; z-index: 99999; width: 500px !important; left: 50%; border-radius: 5px;">
+  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; left: 50%; border-radius: 5px; background: lightgrey none repeat scroll 0px 0px; border: 1px solid lightgrey; font-family: Open Sans;">
 	<div id="custom-privacy" class="custom-privacy-message" style="display: none;">
-		 <div class="closePInfo" style="float: right; cursor: pointer;" onclick="closePINFO()"><i class="fa fa-remove"></i></div>
 		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
 		so that you can discuss and enjoy the shows together</p>
 		<div class="privacy-option-form" style="position: relative; left: 30px;">
