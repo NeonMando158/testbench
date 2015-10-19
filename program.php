@@ -25,19 +25,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="javascript:void(0)" style="padding: 4px;"><img src="images/logo.png" alt="Telemundo"/></a>
+        <a class="navbar-brand" href="index.php" style="padding: 4px;"><img src="images/logo.png" alt="Telemundo"/></a>
       </div>
       
       <div class="collapse navbar-collapse js-navbar-collapse">
     		<ul class="nav navbar-nav">
           		<li class="dropdown mega-dropdown">
-          			<a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
+          			<a href="javascript:void(0)" onclick="loadNovelas()" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
           		</li>
           		<li class="dropdown mega-dropdown">
-            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">SHOWS</a>        
+            		<a href="javascript:void(0)" onclick="loadEnglish()" class="dropdown-toggle" data-toggle="dropdown">SHOWS</a>        
           		</li>
           		<li class="dropdown mega-dropdown">
-            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">ENTRETENIMIENTO</a>        
+            		<a href="javascript:void(0)" onclick="loadEnt()" class="dropdown-toggle" data-toggle="dropdown">ENTRETENIMIENTO</a>        
             		<ul class="dropdown-menu mega-dropdown-menu">
               			<li><a href="#">INICIA</a></li>
               			<li><a href="#">VIDEOS</a></li>
@@ -74,7 +74,7 @@
       </nav>
     </div>
   </div>  
-  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; left: 50%; border-radius: 5px; background: lightgrey none repeat scroll 0px 0px; border: 1px solid lightgrey; font-family: Open Sans;">
+  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; left: 50%; border-radius: 5px; background: lightgrey none repeat scroll 0px 0px; font-family: Open Sans;">
 	<div id="custom-privacy" class="custom-privacy-message" style="display: none;">
 		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
 		so that you can discuss and enjoy the shows together</p>

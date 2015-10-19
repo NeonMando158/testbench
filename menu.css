@@ -104,6 +104,66 @@ body {
     box-shadow: 0 0 0 0 !important;
     margin: 2px;
     padding: 8px;
+	/* Firefox */
+	-moz-transition: all 1s ease;
+	/* WebKit */
+	-webkit-transition: all 1s ease;
+	/* Opera */
+	-o-transition: all 1s ease;
+	/* Standard */
+	transition: all 1s ease;
+}
+.programs:hover{
+    border: medium none;
+    border-radius: 0 !important;
+    box-shadow: 0 0 0 0 !important;
+    margin: 2px;
+    padding: 8px;
+/* Firefox */
+	-moz-transform: scale(1.05);
+	/* WebKit */
+	-webkit-transform: scale(1.05);
+	/* Opera */
+	-o-transform: scale(1.05);
+	/* Standard */
+	transform: scale(1.05);
+}
+.img-responsive{
+
+	/* Firefox */
+	-moz-transition: all 1s ease;
+	/* WebKit */
+	-webkit-transition: all 1s ease;
+	/* Opera */
+	-o-transition: all 1s ease;
+	/* Standard */
+	transition: all 1s ease;
+}
+.img-responsive:hover{
+	/* Firefox */
+	-moz-transition: all 1s ease;
+	/* WebKit */
+	-webkit-transition: all 1s ease;
+	/* Opera */
+	-o-transition: all 1s ease;
+	/* Standard */
+	transition: all 1s ease;
+/* Firefox */
+	-moz-transform: scale(1.05);
+	/* WebKit */
+	-webkit-transform: scale(1.05);
+	/* Opera */
+	-o-transform: scale(1.05);
+	/* Standard */
+	transform: scale(1.05);
+
+}
+.metaviews i:hover{
+	color: black !important;
+}
+.metaConversations i:hover{
+	color: black !important;
+
 }
 .programs a {padding: 0px; margin: 0px;}
 .program-type{
@@ -456,4 +516,32 @@ background: lightgrey none repeat scroll 0 0;
 .program-meta-share img{padding: 4px; position: relative; left: 31%;}
 .program-meta-friends{cursor: pointer; padding: 0px; margin: 0px; height: 20px; background: grey; color: white; text-align    : center; font-size: 14px;}
 
+.custom-banner-image{
+    /* Firefox */
+    -moz-transition: all 1s ease;
+    /* WebKit */
+    -webkit-transition: all 1s ease;
+    /* Opera */
+    -o-transition: all 1s ease;
+    /* Standard */
+    transition: all 1s ease;
+}
+.custom-banner-image:hover{
+    /* Firefox */
+    -moz-transition: all 1s ease;
+    /* WebKit */
+    -webkit-transition: all 1s ease;
+    /* Opera */
+    -o-transition: all 1s ease;
+    /* Standard */
+    transition: all 1s ease;
+	/* Firefox */
+    -moz-transform: scale(1.05);
+    /* WebKit */
+    -webkit-transform: scale(1.05);
+    /* Opera */
+    -o-transform: scale(1.05);
+    /* Standard */
+    transform: scale(1.05);
 
+}
