@@ -1,5 +1,8 @@
 //Declare Global Variables if required here
 var is_loggedin;
+var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+var apptaAgent = new ApptaAgent(api_key, "414920308635429");
+
 //On Ready
 $( document ).ready(function(){
 	console.log("common.js");
@@ -94,7 +97,29 @@ function privacyUpdate(data){
 
 	}
 }
-function fbLogout(){
-	apptaAgent.logout();
-	console.log("logout clicked");
-}
+	function fbLogout(){
+		apptaAgent.logout();
+		$(".customfblogin").text("Login");
+		var is_loggedin=false;
+		console.log("logout clicked");
+	}
+
+    function loadEnglish(){
+        console.log("load english channel");
+		
+    }
+    function loadEnt(){
+        console.log("load entretinmiento channel");
+    }
+    function loadNovelas(){
+        console.log(" load novelas channel");
+		var filter_object={
+			channel_name:'Novelas',
+			page_size:30,
+		};
+		apptaAgent.getLounge(filter_object,function(data){
+			console.log("novelas data"); 
+			console.log(data);
+		});
+    }
+
