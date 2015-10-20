@@ -5,7 +5,6 @@ var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 
 //On Ready
 $( document ).ready(function(){
-	console.log("common.js");
 	infoFB();
 	$(".custom-privacy-message").hover(function(){
 		$(".custom-privacy-message").show();	
@@ -29,7 +28,6 @@ $( document ).ready(function(){
 
 
 function privacyCheck(){
-	console.log("Privacy Called");
 	$(".custom-privacy-message").show();
 	//setTimeout(function(){ $(".custom-privacy-message").hide(); }, 1000);
 	$(".maincontainer").attr('style','margin-top: 30px; pointer-events: none;');
@@ -42,16 +40,12 @@ function closePINFO(){
 
 function infoFB(){
 	var facebookOnce = $(".facebookOnce").val();
-	console.log(facebookOnce+": facebookOnce status");
 	if(is_loggedin == false || typeof is_loggedin == "undefined"){
 		//disable the eye button
 		$(".privacyOptions").hide();
 		if(facebookOnce == 0){
-			console.log("if facebookOnce is first time show the message");
 			$(".custom-fb-message").show();
-			setTimeout(function(){ $(".custom-fb-message").hide(); }, 5000);
 		}else{
-			console.log("if the facebookOnce is marked then do not show the message");
 			$(".custom-fb-message").hide();
 		}
 	}else if(is_loggedin == true){
@@ -75,13 +69,10 @@ function updatePrivacyStatus(){
 	var selectedvalue = $(".selectedprivacy").val();	
 	$(".privystatus").val(99);
 	if(selectedvalue == 1){
-        console.log("disable presence");
         apptaAgent.postSettings(false);
     }else if(selectedvalue == 2){
-        console.log("enable presence");
         apptaAgent.postSettings(true);
     }else{
-        console.log("enable presence 3rd option");
         apptaAgent.postSettings(true);
 
     }
@@ -90,13 +81,10 @@ function updatePrivacyStatus(){
 }
 function privacyUpdate(data){
 	if(data.value == 1){
-		console.log("disable presence");
 		$(".selectedprivacy").val(data.value);
 	}else if(data.value == 2){
-		console.log("enable presence");
 		$(".selectedprivacy").val(data.value);
 	}else{
-		console.log("enable presence 3rd option");
 		$(".selectedprivacy").val(data.value);
 
 	}
@@ -105,8 +93,10 @@ function privacyUpdate(data){
 	function fbLogout(){
 		apptaAgent.logout();
 		$(".customfblogin").text("Login");
+		html = '<i style="font-size: 36px; padding: 2px;" class="fa fa-user"></i>';
+		$(".userimagecontainer").empty();
+		$(".userimagecontainer").append(html);
 		var is_loggedin=false;
-		console.log("logout clicked");
 	}
 
     function loadEnglish(){
@@ -115,7 +105,6 @@ function privacyUpdate(data){
 			page_size:30,
 		};
 		apptaAgent.getLounge(filter_object,function(data){
-			console.log(data);
 			renderChannelLounge(data.loungePrograms);
 		});
 		$(".custom-banner-image").attr('src','images/english.png');
@@ -127,7 +116,6 @@ function privacyUpdate(data){
 			page_size:30,
 		};
 		apptaAgent.getLounge(filter_object,function(data){
-			console.log(data);
 			renderChannelLounge(data.loungePrograms);
 		});
 		$(".custom-banner-image").attr('src','images/ent.png');
@@ -138,7 +126,6 @@ function privacyUpdate(data){
 			page_size:30,
 		};
 		apptaAgent.getLounge(filter_object,function(data){
-			console.log(data);
 			renderChannelLounge(data.loungePrograms);
 		});
 		$(".custom-banner-image").attr('src','images/novelas.png');

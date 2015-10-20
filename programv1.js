@@ -243,6 +243,7 @@
 		for(var d=0; d<twitter.length;d++){
 			//var name = findTwitterDetails(twitter[d].twuserid);
 			var time = timeAgo(twitter[d].created_time);
+			if(parseInt(time)<0){time=0;}
 			html = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 twitter-data">';
 			html += '	<div class="col-md-3 program-social-data-image">';
 			html += '	  <img style="border-radius: 50px;" alt="" src="'+twitter[d].profileurl+'">';
@@ -279,7 +280,7 @@
 		current_time=$.now();
 		var cur_time = new Date(current_time);
 		var diff = cur_time - now_time;
-		console.log(diff);
+		if(diff < 0){diff=0;}
 		var retVal;
 		if(diff > 60000)
 		{
@@ -343,6 +344,8 @@
 	function renderConversations(data){
 		for(var b=0; b<data.length;b++){
 			var ctime = timeAgoComments(data[b].created);
+			console.log(ctime);
+			if(parseInt(ctime)<0){ctime=0+" seconds ago";}
 			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
 			chtml += '		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
@@ -364,7 +367,7 @@
 			chtml += ' 	<span  style="font-size: 10px; float: right;">'+ctime+'</span>';
 			chtml += ' 	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
-			chtml += '		<a class="teletangoLike" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i> Like</a>';
+			chtml += '		<a class="teletangoLike" id="comment-'+data[b].conversation_id+'" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i> Like</a>';
 			chtml += '	</div>';
 			chtml += '</div>'; 
 			//$(".chatconversationslist").append(html);
@@ -376,7 +379,9 @@
 		console.log("teletango like clicked");
 		var comment_id=id;
 		var type="public";
-		apptaAgent.likeProgramComment(program_id,program_name,comment_id,type);
+		apptaAgent.likeProgramComment(program_id,program_name,comment_id,type, function(){
+			alert("Liked");
+		});
 	}
     function fbLogin(){
       var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
