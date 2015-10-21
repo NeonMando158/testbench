@@ -31,7 +31,7 @@
       <div class="collapse navbar-collapse js-navbar-collapse">
     		<ul class="nav navbar-nav">
           		<li class="dropdown mega-dropdown">
-          			<a href="javascript:void(0)" onclick="loadNovelas()" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
+          			<a href="http://telemundo.teletango.com/ref_01_03/" onclick="loadNovelas()" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
           		</li>
           		<li class="dropdown mega-dropdown">
             		<a href="javascript:void(0)" onclick="loadEnglish()" class="dropdown-toggle" data-toggle="dropdown">SHOWS</a>        

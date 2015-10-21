@@ -14,7 +14,21 @@
 	
 //Load Lounge on ready
     $( document ).ready(function(){
-        getLoungeInfo();
+		var channel_name = location.href.split('?channel_name=')[1];
+		console.log(channel_name);
+		if(channel_name === "Entretenimiento"){
+			console.log("entretenimiento loaded");
+			loadEnt();
+		}else if(channel_name === "English"){
+			console.log("english loaded");
+			loadEnglish();
+		}else if(channel_name === "Novelas"){
+			console.log("novelas loaded");
+			loadNovelas();
+		}else if(channel_name === "all" || channel_name == undefined){
+			console.log("default loaded");
+        	getLoungeInfo();
+		}
 		apptaAgent.getLoginDetails(function(data){
         	if(data.is_logged_in === false){
 
@@ -133,7 +147,7 @@
       var event_data = {'program_id':id, 'program_name':name };
       var event_type = 'CHECK_IN_TO_PROGRAM';
       apptaAgent.eventLog(event_type, event_data);
-      window.location.href = "http://telemundo.teletango.com/ref_01_02/program.php?id="+id;
+      window.location.href = "http://telemundo.teletango.com/ref_01_03/program.php?id="+id;
     }
 
     function renderLoungeData(channel, data){

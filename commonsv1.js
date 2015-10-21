@@ -100,35 +100,85 @@ function privacyUpdate(data){
 	}
 
     function loadEnglish(){
-		var filter_object={
-			channel_name:'Telemundo',
-			page_size:30,
-		};
-		apptaAgent.getLounge(filter_object,function(data){
-			renderChannelLounge(data.loungePrograms);
-		});
-		$(".custom-banner-image").attr('src','images/english.png');
+	    var url = location.href;
+        var loc = url.split('ref_01_03/');
+        var loc2 = loc[1].split('?');
+        if(loc2[0] === "program.php"){
+            document.location.href="http://telemundo.teletango.com/ref_01_03/index.php?channel_name=English";
+            var filter_object={
+                channel_name:'Telemundo',
+                page_size:30,
+            };
+            apptaAgent.getLounge(filter_object,function(data){
+                console.log("called from program page for novelas");
+                renderChannelLounge(data.loungePrograms);
+            });
+            $(".custom-banner-image").attr('src','images/english.png');
+        }else{
+            var filter_object={
+                channel_name:'Telemundo',
+                page_size:30,
+            };
+            apptaAgent.getLounge(filter_object,function(data){
+                renderChannelLounge(data.loungePrograms);
+            });
+			$(".custom-banner-image").attr('src','images/english.png');
+        }
+
 		
     }
     function loadEnt(){
-		var filter_object={
-			channel_name:'Entretenimiento',
-			page_size:30,
-		};
-		apptaAgent.getLounge(filter_object,function(data){
-			renderChannelLounge(data.loungePrograms);
-		});
-		$(".custom-banner-image").attr('src','images/ent.png');
+		        var url = location.href;
+        var loc = url.split('ref_01_03/');
+        var loc2 = loc[1].split('?');
+        if(loc2[0] === "program.php"){
+            document.location.href="http://telemundo.teletango.com/ref_01_03/index.php?channel_name=Novelas";
+            var filter_object={
+				channel_name:'Entretenimiento',
+                page_size:30,
+            };
+            apptaAgent.getLounge(filter_object,function(data){
+                console.log("called from program page for novelas");
+                renderChannelLounge(data.loungePrograms);
+            });
+			$(".custom-banner-image").attr('src','images/ent.png');
+        }else{
+            var filter_object={
+				channel_name:'Entretenimiento',
+                page_size:30,
+            };
+            apptaAgent.getLounge(filter_object,function(data){
+                renderChannelLounge(data.loungePrograms);
+            });
+			$(".custom-banner-image").attr('src','images/ent.png');
+        }
     }
+
     function loadNovelas(){
-		var filter_object={
-			channel_name:'Novelas',
-			page_size:30,
-		};
-		apptaAgent.getLounge(filter_object,function(data){
-			renderChannelLounge(data.loungePrograms);
-		});
-		$(".custom-banner-image").attr('src','images/novelas.png');
+		var url = location.href;
+		var loc = url.split('ref_01_03/');
+		var loc2 = loc[1].split('?');
+		if(loc2[0] === "program.php"){
+            document.location.href="http://telemundo.teletango.com/ref_01_03/index.php?channel_name=Novelas";
+			var filter_object={
+				channel_name:'Novelas',
+				page_size:30,
+			};
+			apptaAgent.getLounge(filter_object,function(data){
+				console.log("called from program page for novelas");
+				renderChannelLounge(data.loungePrograms);
+			});
+			$(".custom-banner-image").attr('src','images/novelas.png');
+		}else{
+			var filter_object={
+				channel_name:'Novelas',
+				page_size:30,
+			};
+			apptaAgent.getLounge(filter_object,function(data){
+				renderChannelLounge(data.loungePrograms);
+			});
+			$(".custom-banner-image").attr('src','images/novelas.png');
+		}
     }
 
 	function renderChannelLounge(defaultPrograms){

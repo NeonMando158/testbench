@@ -524,3 +524,7 @@ background: lightgrey none repeat scroll 0 0;
 .teletango-data:hover{background: lightgrey !important;}
 .twitter-data:hover{background: lightgrey !important;}
 .facebook-data:hover{background: lightgrey !important;}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: red !important;
+    color: #fff;
+}
