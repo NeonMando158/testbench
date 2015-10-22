@@ -42,7 +42,7 @@ function infoFB(){
 	var facebookOnce = $(".facebookOnce").val();
 	if(is_loggedin == false || typeof is_loggedin == "undefined"){
 		//disable the eye button
-		$(".privacyOptions").hide();
+		//$(".privacyOptions").hide();
 		if(facebookOnce == 0){
 			$(".custom-fb-message").show();
 		}else{
