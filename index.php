@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
-    <script src="indexv1.js"></script>
-    <script src="commonsv1.js"></script>
+    <script src="index.js"></script>
+    <script src="commons.js"></script>
     <script src="menu.js"></script>
     <title>Telemundo</title>
 </head>
-<body>
+<body class="mainbody">
    <div class="" style="background: #f90f00;">
-    <div class="container" style="background: #f90f00;">
+    <div class="container menucontainer" style="background: #f90f00;">
       <nav class="navbar navbar-inverse">
         <div class="navbar-header">
         	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -54,13 +54,13 @@
           		<li><a href="#">TALENTOS</a></li>
           		<li><a href="#">MAS</a></li>
           		<li><a href="#">TU CANAL</a></li>
-          		<li style="background: darkred; padding: 11px; cursor: pointer;" class="privacyOptions"  onmouseover="privacyCheck(this)">
+          		<li style="display: none;" class="privacyOptions"  onclick="checkPrivacySettings(this)">
             		<a style="padding: 4px;"><i class="fa fa-eye" style="font-size: 21px; ">
  	             		<input style="display: none;" id="toggle-event" checked data-toggle="toggle" data-size="mini" data-onstyle="warning" type="checkbox" name="privacy-checkbox" onclick="settings()"></i>
             		</a>
           		</li>
-          		<li style="background: #3b5958; padding: 11px; cursor: pointer; margin: 0px 10px;" class="facebookLogin" onmouseover="infoFB(this)">
-           	 		<a onclick="fbLogin()" style="padding: 0px;">
+          		<li style="background: #3b5958; padding: 11px; cursor: pointer; margin: 0px 10px;" class="facebookLogin" onclick="showFacebookInformation(this)">
+           	 		<a style="padding: 0px;">
              	 		<i class="fa fa-facebook" style="background: white none repeat scroll 0% 0%; color: rgb(59, 89, 88); padding: 4px 9px;font-size: 21px; border-radius: 50px;"></i>
               			<span class="customfblogin" style="font-size: 15px; text-transform: Capitalize;">login</span>
             		</a>
@@ -74,7 +74,7 @@
       </nav>
     </div>
   </div>  
-  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; left: 50%; border-radius: 5px; background: lightgrey none repeat scroll 0px 0px; font-family: Open Sans;">
+  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; border-radius: 5px; font-family: Open Sans;">
 	<div id="custom-privacy" class="custom-privacy-message" style="display: none;">
 		<input type="hidden" value="0" class="privystatus" name="privystatus"/>
 		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
@@ -107,13 +107,21 @@
 
 	</div>
 	<div class="custom-fb-message" style="display: none;">
-		<div class="closeFBInfo" style="float: right; cursor: pointer;" onclick="closeFBINFO()"><i class="fa fa-remove"></i></div>
 		<h4>Login using Facebook to see what your friends are watching!</h4>
-		
-		<p>Telemundo will collect a few basic information about you that you have shared with Facebook
-		to provide you with better recommendation on what you'd love to watch and allow you to interact
-		and watch together with your friends. Telemundo does not share your personal information  with anyone
-		without your permission. <br/> See more from here: <a href="privacy.php">Telemundo privacy policy</a></p>
+<p>By logging in through Facebook, Telemundo will receive your first and last name, your avatar, your location, your email address, and your friends list from your Facebook profile. Telemundo will collect these basic information to provide you with better recommendation on what you'd love to watch and allow you to interact and watch together with your friends. Telemundo does not share your personal information  with anyone without your permission. </p> 
+<p>Once you log in, your Facebook friends who are also logged into Telemundo.com will be able to see what content you are viewing unless you click on the privacy settings icon in the toolbar and turn this option off.</p>
+		 <label>
+            <input class="landingPrivacySetting" onclick="privacyUpdate(this)" type="radio" name="optradio" value="1"/>
+            <input class="landing" type="hidden" name="landing" value="999"/>
+			
+			<span>By checking here I agree that Telemundo may share personal information about me, including my viewing choices with third parties, and that I have read and agree to the Telemundo Terms of Use and Telemundo privacy policy.</span>
+			
+         </label>
+		<div class="" style="position: relative; left: 74%;">
+			<a href="javascript:void(0)" onclick="hideFacebookinformationalways()" class="hidefacebookinformationalways btn btn-sm btn-primary" style="width: 100px; display: none;">OK</a>
+			<a href="javascript:void(0)" onclick="hideFacebookinformationonce()" class="hidefacebookinformationonce btn btn-sm btn-warning" style="width: 100px;">Close</a>
+		</div>
+
 		<input type="hidden" class="facebookOnce" name="facebookOnce" value="0">
 	</div>
   </div>
