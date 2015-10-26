@@ -102,10 +102,10 @@ function fbLogout(){
 
 function loadEnglish(){
 	    var url = location.href;
-        var loc = url.split('ref_01_03/');
+        var loc = url.split('ref_01_04/');
         var loc2 = loc[1].split('?');
         if(loc2[0] === "program.php"){
-            document.location.href="http://telemundo.teletango.com/ref_01_03/index.php?channel_name=English";
+            document.location.href="http://telemundo.teletango.com/ref_01_04/index.php?channel_name=English";
             var filter_object={
                 channel_name:'Telemundo',
                 page_size:30,
@@ -129,10 +129,10 @@ function loadEnglish(){
 
 function loadEnt(){
         var url = location.href;
-        var loc = url.split('ref_01_03/');
+        var loc = url.split('ref_01_04/');
         var loc2 = loc[1].split('?');
         if(loc2[0] === "program.php"){
-            document.location.href="http://telemundo.teletango.com/ref_01_03/index.php?channel_name=Novelas";
+            document.location.href="http://telemundo.teletango.com/ref_01_04/index.php?channel_name=Novelas";
             var filter_object={
 				channel_name:'Entretenimiento',
                 page_size:30,
@@ -156,10 +156,10 @@ function loadEnt(){
 
 function loadNovelas(){
 		var url = location.href;
-		var loc = url.split('ref_01_03/');
+		var loc = url.split('ref_01_04/');
 		var loc2 = loc[1].split('?');
 		if(loc2[0] === "program.php"){
-            document.location.href="http://telemundo.teletango.com/ref_01_03/index.php?channel_name=Novelas";
+            document.location.href="http://telemundo.teletango.com/ref_01_04/index.php?channel_name=Novelas";
 			var filter_object={
 				channel_name:'Novelas',
 				page_size:30,
