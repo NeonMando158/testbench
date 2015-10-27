@@ -184,84 +184,81 @@ function loadNovelas(){
 }
 
 function renderChannelLounge(defaultPrograms){
-		$(".column1").empty();
-		$(".column2").empty();
-		$(".column3").empty();
-		for(var a=0; a<defaultPrograms.length;a++){
-		  if(defaultPrograms[a].thumbnail){
-			if(a<=9){
-          		ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
-            	ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
-            	ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
-            	ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
-            	ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
-            	ahtml +='  </div>';
-            	ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
-            	ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
-            	ahtml +='    </div>';
-            	ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
-            	ahtml +='      <div class="col-md-6 metaviews">';
-            	ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
-            	ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
-            	ahtml +='      </div>';
-            	ahtml +='      <div class="col-md-6 metaConversations">';
-            	ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
-            	ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
-            	ahtml +='      </div>';
-            	ahtml +='    </div>';
-            	ahtml +='  </div>';
-            	ahtml +='</div>';
-            	$(".column1").append(ahtml);
-			}else if(a <=19){
-          		ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
-            	ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
-            	ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
-            	ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
-            	ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
-            	ahtml +='  </div>';
-            	ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
-            	ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
-            	ahtml +='    </div>';
-            	ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
-            	ahtml +='      <div class="col-md-6 metaviews">';
-            	ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
-            	ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
-            	ahtml +='      </div>';
-            	ahtml +='      <div class="col-md-6 metaConversations">';
-            	ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
-            	ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
-            	ahtml +='      </div>';
-            	ahtml +='    </div>';
-            	ahtml +='  </div>';
-            	ahtml +='</div>';
-            	$(".column2").append(ahtml);
-			
-			}else if(a <=29){
-          		ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
-            	ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
-            	ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
-            	ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
-            	ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
-            	ahtml +='  </div>';
-            	ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
-            	ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
-            	ahtml +='    </div>';
-            	ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
-            	ahtml +='      <div class="col-md-6 metaviews">';
-            	ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
-            	ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
-            	ahtml +='      </div>';
-            	ahtml +='      <div class="col-md-6 metaConversations">';
-            	ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
-            	ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
-            	ahtml +='      </div>';
-            	ahtml +='    </div>';
-            	ahtml +='  </div>';
-            	ahtml +='</div>';
-            	$(".column3").append(ahtml);
-
-			}
-		 }
+	$(".column1").empty();
+	$(".column2").empty();
+	$(".column3").empty();
+	for(var a=0; a<defaultPrograms.length;a++){
+	  if(defaultPrograms[a].thumbnail){
+		if(a<=9){
+      		ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+        	ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
+        	ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
+        	ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
+        	ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
+        	ahtml +='  </div>';
+        	ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
+        	ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
+        	ahtml +='    </div>';
+        	ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
+        	ahtml +='      <div class="col-md-6 metaviews">';
+        	ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
+        	ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
+        	ahtml +='      </div>';
+        	ahtml +='      <div class="col-md-6 metaConversations">';
+        	ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
+        	ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
+        	ahtml +='      </div>';
+        	ahtml +='    </div>';
+        	ahtml +='  </div>';
+        	ahtml +='</div>';
+        	$(".column1").append(ahtml);
+		}else if(a <=19){
+      		ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+        	ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
+        	ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
+        	ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
+        	ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
+        	ahtml +='  </div>';
+        	ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
+        	ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
+        	ahtml +='    </div>';
+        	ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
+        	ahtml +='      <div class="col-md-6 metaviews">';
+        	ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
+        	ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
+        	ahtml +='      </div>';
+        	ahtml +='      <div class="col-md-6 metaConversations">';
+        	ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
+        	ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
+        	ahtml +='      </div>';
+        	ahtml +='    </div>';
+        	ahtml +='  </div>';
+        	ahtml +='</div>';
+        	$(".column2").append(ahtml);
+		}else if(a <=29){
+      		ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+        	ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
+        	ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
+        	ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';
+        	ahtml +='    <span style="font-size: 20px; font-weight: bold;">'+defaultPrograms[a].name+'</span><br/>';
+        	ahtml +='  </div>';
+        	ahtml +='  <div class="col-md-12 program-tile" style="padding: 9px 0px 0px 3px;  border-top: 1px solid lightgrey;  font-size: 17px;" >';
+        	ahtml +='    <div class="col-md-5 friendsList" id="friendsListForPrg-'+defaultPrograms[a].id+'" data-program-id="'+defaultPrograms[a].id+'">';
+        	ahtml +='    </div>';
+        	ahtml +='    <div class="col-md-7 metalist" style="border-left: 1px solid lightgrey; color: lightgrey;">';
+        	ahtml +='      <div class="col-md-6 metaviews">';
+        	ahtml +='       <i class="fa fa-eye" style="color: lightgrey;"></i>';
+        	ahtml +='       <span>'+defaultPrograms[a].nbr_views+'</span>';
+        	ahtml +='      </div>';
+        	ahtml +='      <div class="col-md-6 metaConversations">';
+        	ahtml +='       <i class="fa fa-comment" style="color: lightgrey;"></i>';
+        	ahtml +='       <span>'+defaultPrograms[a].nbr_conversations+'</span>';
+        	ahtml +='      </div>';
+        	ahtml +='    </div>';
+        	ahtml +='  </div>';
+        	ahtml +='</div>';
+        	$(".column3").append(ahtml);
+		}
 	  }
-
-	}
+    }
+}

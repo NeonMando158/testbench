@@ -1,115 +1,100 @@
-    //Declare Global Variables for the use
-    var defaultPrograms = [];
-    var friendsFootPrint = [];
-    var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
-    var apptaAgent = new ApptaAgent(api_key, "414920308635429");
-    var column1=[];
-    var column2=[];
-    var column3=[];
-    var columnPrograms1=[];
-    var columnPrograms2=[];
-    var columnPrograms3=[];
-    var requested_page_size=10;
-    var is_loggedin;
-	
+//Declare Global Variables for the use
+var defaultPrograms = [];
+var friendsFootPrint = [];
+var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
+var apptaAgent = new ApptaAgent(api_key, "414920308635429");
+var column1=[];
+var column2=[];
+var column3=[];
+var columnPrograms1=[];
+var columnPrograms2=[];
+var columnPrograms3=[];
+var requested_page_size=10;
+var is_loggedin;
+
 //Load Lounge on ready
-    $( document ).ready(function(){
+$( document ).ready(function(){
 		var channel_name = location.href.split('?channel_name=')[1];
-		console.log(channel_name);
 		if(channel_name === "Entretenimiento"){
-			console.log("entretenimiento loaded");
 			loadEnt();
 		}else if(channel_name === "English"){
-			console.log("english loaded");
 			loadEnglish();
 		}else if(channel_name === "Novelas"){
-			console.log("novelas loaded");
 			loadNovelas();
 		}else if(channel_name === "all" || channel_name == undefined){
-			console.log("default loaded");
-        	getLoungeInfo();
+     	getLoungeInfo();
 		}
 		apptaAgent.getLoginDetails(function(data){
-        	if(data.is_logged_in === false){
-				showFacebookInformation();
-			}else{
-				hideFacebookInformation();
-				$(".facebookOnce").val(1);
-				$(".privacyOptions").show();
-				$(".custom-fb-message").hide();
-				firstname = data.name;
-		        image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-    		    $(".userimagecontainer").empty();
-    		    $(".customfblogin").text(firstname);
-    		    html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-    		    $(".userimagecontainer").append(html);
-			}
-			
-			
-		});
-    });
+     	if(data.is_logged_in === false){
+			showFacebookInformation();
+		}else{
+			hideFacebookInformation();
+			$(".facebookOnce").val(1);
+			$(".privacyOptions").show();
+			$(".custom-fb-message").hide();
+			firstname = data.name;
+		  image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+      $(".userimagecontainer").empty();
+      $(".customfblogin").text(firstname);
+      html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+      $(".userimagecontainer").append(html);
+		}
+  });
+});
 	
-    function fbLogin(){
-      apptaAgent.getLoginDetails(function(data){
-		is_loggedin=data.is_logged_in;
-        if(data.is_logged_in === false){
-      		apptaAgent.login(function(data){
-				console.log("login api");
-				console.log(data);
-				if(data.is_logged_in=== true){
-				    firstname = data.name;
-		            image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-    		        $(".userimagecontainer").empty();
-    		        $(".customfblogin").text(firstname);
-    		        html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-    		        $(".userimagecontainer").append(html);
-				}
-
-			});
-        }else{
-		
-			//firstname = data.name;
-			//image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-      		//$(".userimagecontainer").empty();
-            //$(".customfblogin").text('Login');
-      		html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-      		$(".userimagecontainer").append(html);
-			if($(".friendsList").children().length === 0){
-      			updateFriendsListInPrograms(data.is_logged_in);	
-			}
-        }
-      });
-    }
-
-  	function updateFriendsListInPrograms(logged_in_status){
-        for(var x=0; x<friendsFootPrint.length;x++){
-  			html = '<ul>';
-  			html += '<li><img src="http://graph.facebook.com/10205352910559157/picture?type=small" /></li>';
-  			html += '<li><img src="http://graph.facebook.com/10203529817677626/picture?type=small" /></li>';
-  			html += '<li><img src="http://graph.facebook.com/311511622372166/picture?type=small" /></li>';
-  			html += '</ul>';
-  			$("#friendsListForPrg-"+friendsFootPrint[x].program.id).append(html);
+function fbLogin(){
+  apptaAgent.getLoginDetails(function(data){
+  	is_loggedin=data.is_logged_in;
+    if(data.is_logged_in === false){
+      apptaAgent.login(function(data){
+      	if(data.is_logged_in=== true){
+    	    firstname = data.name;
+    	    image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+          $(".userimagecontainer").empty();
+          $(".customfblogin").text(firstname);
+          html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+          $(".userimagecontainer").append(html);
+    		}
+  	  });
+    }else{
+      html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+      $(".userimagecontainer").append(html);
+  		if($(".friendsList").children().length === 0){
+        updateFriendsListInPrograms(data.is_logged_in);	
   		}
-  	}
-
-    function getLoungeInfo(){
-		getColumn1();
-		getColumn2();
-		getColumn3();
     }
+  });
+}
 
-	function getColumn1(){
-		var filter_data={
-	 		channel_name:'English',
-	 		page_size:requested_page_size,
-		 };
-		//get lounge data with the right filters
-      	apptaAgent.getLounge(filter_data, function sendData(data){
-			column1.push(data);
-			renderLoungeData(filter_data.channel_name, data);
-      	});
-		
-	}
+function updateFriendsListInPrograms(logged_in_status){
+    for(var x=0; x<friendsFootPrint.length;x++){
+  		html = '<ul>';
+  		html += '<li><img src="http://graph.facebook.com/10205352910559157/picture?type=small" /></li>';
+  		html += '<li><img src="http://graph.facebook.com/10203529817677626/picture?type=small" /></li>';
+  		html += '<li><img src="http://graph.facebook.com/311511622372166/picture?type=small" /></li>';
+  		html += '</ul>';
+  		$("#friendsListForPrg-"+friendsFootPrint[x].program.id).append(html);
+    }
+}
+
+function getLoungeInfo(){
+  getColumn1();
+	getColumn2();
+	getColumn3();
+}
+
+function getColumn1(){
+	var filter_data={
+ 	  channel_name:'English',
+ 	  page_size:requested_page_size,
+	};
+  //get lounge data with the right filters
+  apptaAgent.getLounge(filter_data, function sendData(data){
+	  column1.push(data);
+	 renderLoungeData(filter_data.channel_name, data);
+  });
+	
+}
 	function getColumn2(){
 		var filter_data={
 	 		channel_name:'Novelas',
