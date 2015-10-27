@@ -74,56 +74,58 @@
       </nav>
     </div>
   </div>  
-  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; border-radius: 5px; font-family: Open Sans;">
-	<div id="custom-privacy" class="custom-privacy-message" style="display: none;">
-		<input type="hidden" value="0" class="privystatus" name="privystatus"/>
-		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
-		so that you can discuss and enjoy the shows together</p>
-		<div class="privacy-option-form" style="position: relative; left: 30px;">
-				<div class="radio">
-				  <label>
-					<input onclick="privacyUpdate(this)" type="radio" name="optradio" value="1" checked="true">Allow friends to see what I watch
-				</label>
-				</div>
-				<div class="radio">
-				  <label>
-					<input onclick="privacyUpdate(this)" type="radio" name="optradio" value="2">Do not allow friends to see what I watch
-				  </label>
-				</div>
-				<div class="radio disabled">
-				  <label>
-					<input onclick="privacyUpdate(this)" type="radio" name="optradio" value="3" disabled>Do not track what I watch 
-				  </label>
-				</div>
-		</div>
-		<p style="width: 370px; text-align: justify;  font-size: 10px; position: relative; left: 70px; top: -10px;">If you choose this option,
-			 Telemundo will no longer know what you watch and hence will not offer 
-		you content customized for you. If you want your past  viewing history to be removed, send an email 
-		to Telemundo support.</p>
-		<div class="okPrivacy">
-			<input type="hidden" class="selectedprivacy" name="selectedprivacy" value="1"/>
-			<a href="javascript:void(0)" onclick="updatePrivacyStatus()" style="float: right; padding: 5px; position: relative; top: -20px; cursor: pointer;" class="btn btn-sm btn-default">OK</a>
-		</div>
+    <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; border-radius: 5px; font-family: Open Sans;">
+   <div id="custom-privacy" class="custom-privacy-message" style="display: none;">
+    <input type="hidden" value="0" class="privystatus" name="privystatus"/>
+    <p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
+    so that you can discuss and enjoy the shows together</p>
+    <div class="privacy-option-form" style="position: relative; left: 30px;">
+        <div class="radio">
+          <label>
+          <input onclick="privacyUpdate(this)" type="radio" name="optradio" value="1" checked>Allow friends to see what I watch
+        </label>
+        </div>
+        <div class="radio">
+          <label>
+          <input onclick="privacyUpdate(this)" type="radio" name="optradio" value="2">Do not allow friends to see what I watch
+          </label>
+        </div>
+        <div class="radio disabled">
+          <label>
+          <input onclick="privacyUpdate(this)" type="radio" name="optradio" value="3" disabled>Do not track what I watch 
+          </label>
+        </div>
+    </div>
+    <p style="width: 370px; text-align: justify;  font-size: 10px; position: relative; left: 70px; top: -10px;">If you choose this option,
+       Telemundo will no longer know what you watch and hence will not offer you content customized for you. If you want your past viewing history to be removed, send an email 
+    to Telemundo support.</p>
+    <div class="okPrivacy">
+      <input type="hidden" class="selectedprivacy" name="selectedprivacy" value="1"/>
+      <a href="javascript:void(0)" onclick="updatePrivacyStatus()" style="float: right; padding: 5px; position: relative; top: -20px; cursor: pointer;" class="btn btn-sm btn-default">OK</a>
+    </div>
 
-	</div>
-	<div class="custom-fb-message" style="display: none;">
-		<h4>Login using Facebook to see what your friends are watching!</h4>
-<p>By logging in through Facebook, Telemundo will receive your first and last name, your avatar, your location, your email address, and your friends list from your Facebook profile. Telemundo will collect these basic information to provide you with better recommendation on what you'd love to watch and allow you to interact and watch together with your friends. Telemundo does not share your personal information  with anyone without your permission. </p> 
-<p>Once you log in, your Facebook friends who are also logged into Telemundo.com will be able to see what content you are viewing unless you click on the privacy settings icon in the toolbar and turn this option off.</p>
-		 <label>
-            <input class="landingPrivacySetting" onclick="privacyUpdate(this)" type="radio" name="optradio" value="1"/>
-            <input class="landing" type="hidden" name="landing" value="999"/>
-			
-			<span>By checking here I agree that Telemundo may share personal information about me, including my viewing choices with third parties, and that I have read and agree to the Telemundo Terms of Use and Telemundo privacy policy.</span>
-			
-         </label>
-		<div class="" style="position: relative; left: 74%;">
-			<a href="javascript:void(0)" onclick="hideFacebookinformationalways()" class="hidefacebookinformationalways btn btn-sm btn-primary" style="width: 100px; display: none;">OK</a>
-			<a href="javascript:void(0)" onclick="hideFacebookinformationonce()" class="hidefacebookinformationonce btn btn-sm btn-warning" style="width: 100px;">Close</a>
-		</div>
+  </div>
+  <div class="custom-fb-message" style="display: none;">
+    <h4>Login using Facebook to see what your friends are watching!</h4>
+    <p>
+      By logging in through Facebook, Telemundo will receive your first and last name, your avatar, your email address, and your friends list from your Facebook profile. Telemundo will collect these basic information to provide you with better recommendation on what you'd love to watch and allow you to interact and watch together with your friends. 
+      </p> 
+      <p>
+      Once you log in, your Facebook friends who are also logged into Telemundo.com will be able to see what content you are viewing unless you click on the privacy settings 
+      icon <i class="fa fa-eye" style="padding: 2px; background: darkred; color: white;"></i> in the toolbar and turn this option off.
+      </p>
+      <label>
+        <input class="landingPrivacySetting" onclick="privacyUpdate(this)" type="radio" name="optradio" value="1"/>
+        <input class="landing" type="hidden" name="landing" value="999"/>
+        <span>By checking here I agree that Telemundo may share personal information about me, including my viewing choices with third parties, and that I have read and agree to the <a href="http://www.nbcuniversal.com/terms">Telemundo Terms of Use</a> and <a href="http://www.telemundocolumbus.tv/politica-de-privacidad/">Telemundo privacy policy</a>.</span>
+      </label>
+      <div class="" style="position: relative; left: 74%;">
+        <a href="javascript:void(0)" onclick="hideFacebookinformationalways()" class="hidefacebookinformationalways btn btn-sm btn-primary" style="width: 100px; display: none;">OK</a>
+        <a href="javascript:void(0)" onclick="hideFacebookinformationonce()" class="hidefacebookinformationonce btn btn-sm btn-warning" style="width: 100px;">Close</a>
+      </div>
 
-		<input type="hidden" class="facebookOnce" name="facebookOnce" value="0">
-	</div>
+      <input type="hidden" class="facebookOnce" name="facebookOnce" value="0">
+  </div>
   </div>
   <div class="container maincontainer" style="margin-top: 30px; ">
     <!-- main program video wrapper -->
