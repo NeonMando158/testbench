@@ -38,17 +38,23 @@
 		  	getPublicComments();
 		}, 120000);
         apptaAgent.getLoginDetails(function(data){
-        if(data.is_logged_in === false){
-            apptaAgent.login();
-        }else{
-            firstname = data.name;
-            image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-            $(".userimagecontainer").empty();
-            $(".customfblogin").text(firstname);
-            html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-            $(".userimagecontainer").append(html);
-        }
-      });
+	     	if(data.is_logged_in === false){
+	        	is_loggedin=data.is_logged_in;
+				showFacebookInformation();
+	  		}else{
+	        	is_loggedin=data.is_logged_in;
+	  			hideFacebookInformation();
+	  			$(".facebookOnce").val(1);
+	  			$(".privacyOptions").show();
+	  			$(".custom-fb-message").hide();
+	  			firstname = data.name;
+	  		  	image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+	        	$(".userimagecontainer").empty();
+	        	$(".customfblogin").text(firstname);
+	        	html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+	        	$(".userimagecontainer").append(html);
+	  		}
+	    });
 
         getProgramDetails(window.location.search.replace("?id=", ""));
 		$(".program-meta-friends").click(function() { 
