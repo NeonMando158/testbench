@@ -31,17 +31,18 @@
 		}
 		apptaAgent.getLoginDetails(function(data){
         	if(data.is_logged_in === false){
-
+				showFacebookInformation();
 			}else{
-					$(".facebookOnce").val(1);
-					$(".privacyOptions").show();
-					$(".custom-fb-message").hide();
-				    firstname = data.name;
-		            image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-    		        $(".userimagecontainer").empty();
-    		        $(".customfblogin").text(firstname);
-    		        html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-    		        $(".userimagecontainer").append(html);
+				hideFacebookInformation();
+				$(".facebookOnce").val(1);
+				$(".privacyOptions").show();
+				$(".custom-fb-message").hide();
+				firstname = data.name;
+		        image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+    		    $(".userimagecontainer").empty();
+    		    $(".customfblogin").text(firstname);
+    		    html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+    		    $(".userimagecontainer").append(html);
 			}
 			
 			

@@ -1,17 +1,17 @@
 //Declare Global Variables if required here
-var is_loggedin;
 var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
 var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 
 //On Ready
 $( document ).ready(function(){
 	//get the modal window on loading of this script
-	var facebookShowStatus = $('.facebookOnce').val();
+/*	var facebookShowStatus = $('.facebookOnce').val();
 	if(facebookShowStatus == 0){
 		showFacebookInformation();
 	}else if(facebookShowStatus == 1){
 		hideFacebookInformation();
 	}
+*/
 });
 
 function settings(){
@@ -37,9 +37,13 @@ function hidePrivacySettings(){
 
 function showFacebookInformation(){
 	//check if the radio button is clicked
-	$(".custom-fb-message").show();
-	$(".menucontainer").attr('style','background: grey; opacity: 0.5');
-	$(".maincontainer").attr('style','background: grey; opacity: 0.5');
+	console.log("Is Logged In: "+is_loggedin);
+	if(is_loggedin == false){
+		$(".custom-fb-message").show();
+		$(".menucontainer").attr('style','background: grey; opacity: 0.5; pointer-events: none;');
+		$(".maincontainer").attr('style','background: grey; opacity: 0.5; pointer-events: none;');
+	}
+		
 }
 
 function hideFacebookInformation(){
@@ -78,8 +82,6 @@ function updatePrivacyStatus(){
 }
 
 function privacyUpdate(data){
-	console.log('privacy Update');
-	console.log(data);
 	if(data.value == 1){
 		$(".selectedprivacy").val(data.value);
 		$(".hidefacebookinformationalways").show();
