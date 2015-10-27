@@ -1,10 +1,20 @@
 //Declare Global Variables if required here
+var is_loggedin;
 var api_key="ac2fdfd5fec83138415b9f98c82f0aac";
 var apptaAgent = new ApptaAgent(api_key, "414920308635429");
 
 //On Ready
 $( document ).ready(function(){
 	//get the modal window on loading of this script
+	apptaAgent.getLoginDetails(function(data){
+		if(data.is_logged_in === false){
+	        is_loggedin=data.is_logged_in;	
+			showFacebookInformation();
+		}else{
+			is_loggedin=data.is_logged_in;
+			hideFacebookInformation();
+		}
+	});
 /*	var facebookShowStatus = $('.facebookOnce').val();
 	if(facebookShowStatus == 0){
 		showFacebookInformation();
@@ -12,6 +22,7 @@ $( document ).ready(function(){
 		hideFacebookInformation();
 	}
 */
+		
 });
 
 function settings(){
@@ -36,14 +47,19 @@ function hidePrivacySettings(){
 }
 
 function showFacebookInformation(){
-	//check if the radio button is clicked
-	console.log("Is Logged In: "+is_loggedin);
-	if(is_loggedin == false){
-		$(".custom-fb-message").show();
-		$(".menucontainer").attr('style','background: grey; opacity: 0.5; pointer-events: none;');
-		$(".maincontainer").attr('style','background: grey; opacity: 0.5; pointer-events: none;');
-	}
-		
+    apptaAgent.getLoginDetails(function(data){
+        if(data.is_logged_in === false){
+			console.log("is_loggedin(true): "+is_loggedin);
+            is_loggedin=data.is_logged_in;
+			$(".custom-fb-message").show();
+			$(".menucontainer").attr('style','background: grey; opacity: 0.5; pointer-events: none;');
+			$(".maincontainer").attr('style','background: grey; opacity: 0.5; pointer-events: none;');
+        }else{
+            is_loggedin=data.is_logged_in;
+			console.log("is_loggedin(false): "+is_loggedin);
+            hideFacebookInformation();
+        }
+    });
 }
 
 function hideFacebookInformation(){
@@ -100,6 +116,7 @@ function fbLogout(){
 	$(".userimagecontainer").empty();
 	$(".userimagecontainer").append(html);
 	var is_loggedin=false;
+	$(".privacyOptions").hide();
 }
 
 function loadEnglish(){

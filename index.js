@@ -47,10 +47,11 @@ $( document ).ready(function(){
 	
 function fbLogin(){
   apptaAgent.getLoginDetails(function(data){
-  	is_loggedin=data.is_logged_in;
     if(data.is_logged_in === false){
+  	  is_loggedin=data.is_logged_in;
       apptaAgent.login(function(data){
       	if(data.is_logged_in=== true){
+  			$(".privacyOptions").show();
     	    firstname = data.name;
     	    image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
           $(".userimagecontainer").empty();
@@ -60,6 +61,8 @@ function fbLogin(){
     		}
   	  });
     }else{
+  			$(".privacyOptions").hide();
+  	  is_loggedin=data.is_logged_in;
       html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
       $(".userimagecontainer").append(html);
   		if($(".friendsList").children().length === 0){

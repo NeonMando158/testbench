@@ -108,13 +108,19 @@
 	</div>
 	<div class="custom-fb-message" style="display: none;">
 		<h4>Login using Facebook to see what your friends are watching!</h4>
-<p>By logging in through Facebook, Telemundo will receive your first and last name, your avatar, your location, your email address, and your friends list from your Facebook profile. Telemundo will collect these basic information to provide you with better recommendation on what you'd love to watch and allow you to interact and watch together with your friends. Telemundo does not share your personal information  with anyone without your permission. </p> 
-<p>Once you log in, your Facebook friends who are also logged into Telemundo.com will be able to see what content you are viewing unless you click on the privacy settings icon in the toolbar and turn this option off.</p>
+<p>
+By logging in through Facebook, Telemundo will receive your first and last name, your avatar, your email address, and your friends list from your Facebook profile. Telemundo will collect these basic information to provide you with better recommendation on what you'd love to watch and allow you to interact and watch together with your friends. 
+
+</p> 
+<p>
+Once you log in, your Facebook friends who are also logged into Telemundo.com will be able to see what content you are viewing unless you click on the privacy settings 
+icon <i class="fa fa-eye" style="padding: 2px; background: darkred; color: white;"></i> in the toolbar and turn this option off.
+</p>
 		 <label>
             <input class="landingPrivacySetting" onclick="privacyUpdate(this)" type="radio" name="optradio" value="1"/>
             <input class="landing" type="hidden" name="landing" value="999"/>
 			
-			<span>By checking here I agree that Telemundo may share personal information about me, including my viewing choices with third parties, and that I have read and agree to the Telemundo Terms of Use and Telemundo privacy policy.</span>
+			<span>By checking here I agree that Telemundo may share personal information about me, including my viewing choices with third parties, and that I have read and agree to the <a href="http://www.nbcuniversal.com/terms">Telemundo Terms of Use</a> and <a href="http://www.telemundocolumbus.tv/politica-de-privacidad/">Telemundo privacy policy</a>.</span>
 			
          </label>
 		<div class="" style="position: relative; left: 74%;">
