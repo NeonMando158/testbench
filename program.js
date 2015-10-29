@@ -39,6 +39,7 @@
 		}, 120000);
         apptaAgent.getLoginDetails(function(data){
 	     	if(data.is_logged_in === false){
+				//apptaAgent.login();	
 	        	is_loggedin=data.is_logged_in;
 				showFacebookInformation();
 	  		}else{

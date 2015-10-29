@@ -74,7 +74,7 @@
       </nav>
     </div>
   </div>  
-  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; border-radius: 5px; font-family: Open Sans;">
+  <div class="container" style="position: fixed; z-index: 99999; width: 500px ! important; border-radius: 5px; font-family: Open Sans; text-transform: none !important;">
 	 <div id="custom-privacy" class="custom-privacy-message" style="display: none;">
 		<input type="hidden" value="0" class="privystatus" name="privystatus"/>
 		<p>This setting enables you to let Telemundo know what you watch and publish that to your friends, 
