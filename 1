@@ -34,11 +34,9 @@
 		setInterval(function() {
 		  	console.log("timere called");
 		}, 60000);
-		testAjaxTweets();
-		/*setInterval(function() {
+		setInterval(function() {
 		  	getPublicComments();
-			console.log("publicCommentsget");
-		}, 15000);*/
+		}, 120000);
         apptaAgent.getLoginDetails(function(data){
 	     	if(data.is_logged_in === false){
 				//apptaAgent.login();	
@@ -203,24 +201,18 @@
 	function getTweets(hash){
 		//api to get twitter feeds
 		hash_tag=hash;
-		console.log(hash_tag);
 		apptaAgent.getTweets(hash_tag, program_id,function(data){
-			console.log("data tweets");
-			console.log(data.tweets);
-			renderTwitterComments(data.tweets);
+		renderTwitterComments(data.tweets);
 		});
 	}
 		
 	function getPublicComments(){
-		console.log("public comments called");
-
 		type="public";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
 			public_conversations=data.conversations;
-			console.log("public_conversations");
 			console.log(public_conversations);
 			renderPublicComments(public_conversations);
-			//reverseRenderedData();
+			reverseRenderedData();
 		});
 	}
 	function reverseRenderedData(data){
@@ -231,12 +223,10 @@
 			});
 			
 	}
-
 	function renderPublicComments(public_conversations){
 		$(".teletango-data").remove();
 		renderConversations(public_conversations);
 	}
-
 	function getPrivateComments(){
 		type="private";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
@@ -341,19 +331,7 @@
 		hours = hours-(days*24);
         minutes = minutes-(days*24*60)-(hours*60);
         seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60);
-		//var time = days+" days "+hours+" hrs "+minutes+" mins "+seconds+" seconds ago";
-		
-		if(days > 0){
-			var time = days+" days ago";
-		}else if(days <=0 && hours > 0){
-			var time = hours+" hrs ago";
-		}else if(days <=0 && hours > 0){
-			var time = minutes+" mins ago";
-		}else{
-			var time = "moments ago";
-		}
-		//var time = days+" days "+hours+" hrs "+minutes+" mins "+seconds+" seconds ago";
-	
+		var time = days+" days "+hours+" hrs "+minutes+" mins "+seconds+" seconds ago";
 		return time				
 	}
 
@@ -386,14 +364,8 @@
 		
 	function renderConversations(data){
 		for(var b=0; b<data.length;b++){
-			if(data[b].likes == 0){
-				var likestatus = '<a class="teletangoLike" id="comment-'+data[b].conversation_id+'" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i><span class="comment-'+data[b].conversation_id+'">Like</span></a>'; 
-			}else{
-				var likestatus = '<a class="teletangoLike" style="color: darkred;"><i class="fa fa-thumbs-up"></i><span class="comment-'+data[b].conversation_id+'">Liked</span></a>'; 
-			}
 			var ctime = timeAgoComments(data[b].created);
-
-			console.log(data[b].conversation_id);
+			console.log(ctime);
 			if(parseInt(ctime)<0){ctime=0+" seconds ago";}
 			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
@@ -416,10 +388,8 @@
 			chtml += ' 	<span  style="font-size: 10px; float: right;">'+ctime+'</span>';
 			chtml += ' 	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
-			//chtml += '		<a class="teletangoLike" id="comment-'+data[b].conversation_id+'" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i><span class="comment-'+data[b].conversation_id+'">Like</span></a>';
-			chtml += likestatus;
+			chtml += '		<a class="teletangoLike" id="comment-'+data[b].conversation_id+'" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i> Like</a>';
 			chtml += '	</div>';
-
 			chtml += '</div>'; 
 			//$(".chatconversationslist").append(html);
 			$(".program-social-data").append(chtml);
@@ -431,12 +401,7 @@
 		var comment_id=id;
 		var type="public";
 		apptaAgent.likeProgramComment(program_id,program_name,comment_id,type, function(){
-			$(".comment-"+comment_id).text("Liked");
-			$("#comment-"+comment_id).attr('style','color: darkred');
-			//currentlikecount = parseInt($('.likeprogram').text());
-			//currentlikecount += 1;
-			//$(".likeprogram").text(currentlikecount);
-			
+			alert("Liked");
 		});
 	}
     function fbLogin(){
@@ -465,7 +430,7 @@
 		var type="program";
 		apptaAgent.postComment(program_id,program_name,comment_text,type);
 		apptaAgent.getComments(program_id,program_name,type, function(data){ 
-				getPublicComments();
+				//getPublicComments();
 				$(".commentprogramicon").attr('style','color: blue');
 				var total_comment_count = $(".commentprogram").text();
 				$(".commentprogram").text(parseInt(total_comment_count)+1);
@@ -482,7 +447,6 @@
 			comment_text=$(".privatechat").val();
 			type = "private";
 			apptaAgent.postComment(program_id,program_name,comment_text,type);
-			$('.privatechat').val("");
 			getPrivateComments();
 		}else if(is_loggedin === false){
 			apptaAgent.login();
@@ -549,26 +513,7 @@
 		$("#videoloaderiframe").playVideo();
 	
 	}
-	
-	function testAjaxTweets(hash_tag){
-		var url = "https://api.twitter.com/1.1/search/tweets.json?q=%23telemundo";
-		$.ajax({
-		   url: url,
-		   headers: {"Content-Type":"application/json", "Accept":"application/json","Authorization":"OAuth oauth_consumer_key='DC0sePOBbQ8bYdC8r4Smg',oauth_signature_method='HMAC-SHA1',oauth_timestamp='1446182763',oauth_nonce='1107648671',oauth_version='1.0',oauth_token='72164110-c6gSCcyluqjoBRnnHXX3DksJFFeXrMFBkbQFtlxUh',oauth_signature='goCAxkpNAWmB%2BA3bob36N2PpAWw%3D'"},
-		   data: {
-		      format: 'json'
-		   },
-		   error: function() {
-		     console.log('An error has occurred');
-		   },
-		   dataType: 'jsonp',
-		   success: function(data) {
-				console.log(data);
-		   },
-		   type: 'GET'
-		});	
-	}
-	
+		
 	function callPlayer(frame_id, func, args){
 		frame_id="videoloaderiframe";
 		
