@@ -32,9 +32,14 @@
 	//	callPlayer();
 		jQuery.noConflict();
 		setInterval(function() {
-		  	console.log("timere called");
+        	getProgramDetails(window.location.search.replace("?id=", ""));
+			//$(".program-meta-friends").click(function() { 
+			//    $(".leaderboard").toggle();
+			//	console.log("leaderboard");
+			//});
+			getPrivateComments();
+			
 		}, 60000);
-		testAjaxTweets();
 		/*setInterval(function() {
 		  	getPublicComments();
 			console.log("publicCommentsget");
@@ -116,7 +121,9 @@
 	}
 
 	function userLikes(data){
+	
 		if(data!=null){
+			$(".likefriends").remove();
 			html='<ul class="likefriends">';
 			for(var m=0; m<data.length;m++){
 			  if(data[m].fb_user_id===null){
@@ -127,7 +134,7 @@
 			}
 			html+='</ul>';
 			$(".leaderboard").append(html);
-			$(".program-meta-friends").attr('style','padding: 0px; margin: 0px; background: grey; color: white; text-align: center; font-size: 14px; cursor: pointer;');
+			$(".program-meta-friends").attr('style','padding: 0px; margin: 0px; background: grey; color: white; text-align: center; font-size: 14px; cursor: pointer; margin: 0 0 37px;');
 			var likefriends = $(".likefriends").children().length;
 			if(likefriends != 0){
 				$(".program-meta-friends > span").text(likefriends+" friends like this video");
@@ -550,24 +557,21 @@
 	
 	}
 	
-	function testAjaxTweets(hash_tag){
-		var url = "https://api.twitter.com/1.1/search/tweets.json?q=%23telemundo";
-		$.ajax({
-		   url: url,
-		   headers: {"Content-Type":"application/json", "Accept":"application/json","Authorization":"OAuth oauth_consumer_key='DC0sePOBbQ8bYdC8r4Smg',oauth_signature_method='HMAC-SHA1',oauth_timestamp='1446182763',oauth_nonce='1107648671',oauth_version='1.0',oauth_token='72164110-c6gSCcyluqjoBRnnHXX3DksJFFeXrMFBkbQFtlxUh',oauth_signature='goCAxkpNAWmB%2BA3bob36N2PpAWw%3D'"},
-		   data: {
-		      format: 'json'
-		   },
-		   error: function() {
-		     console.log('An error has occurred');
-		   },
-		   dataType: 'jsonp',
-		   success: function(data) {
-				console.log(data);
-		   },
-		   type: 'GET'
-		});	
+	function randomNum(hi){
+	    return Math.floor(Math.random()*hi);
+	} 
+	function randomChar(){
+	    return String.fromCharCode(randomNum(100));
 	}
+	function randomString(length){
+	   var str = "";
+	   for(var i = 0; i < length; ++i){
+	        str += randomChar();
+	   }
+	   return str;
+	}
+	var RandomString = randomString(32); //32 length string
+
 	
 	function callPlayer(frame_id, func, args){
 		frame_id="videoloaderiframe";

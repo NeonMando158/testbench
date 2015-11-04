@@ -204,7 +204,8 @@ body {
     float: right;
     list-style: outside none none;
     text-align: right;
-	height:	124px;
+	//height:	124px;
+	height: 91px;
 }
 .chatconversation ul li{
   border-radius: 10px;
