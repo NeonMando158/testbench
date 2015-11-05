@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
+	<!-- <script type="text/javascript" src="commons/commons.js"></script>
+    <script type="text/javascript" src="events/events.js"/></script>
+    <script type="text/javascript" src="gamification/gamification.js"/></script>
+    <script type="text/javascript" src="social/social.js"/></script> -->
     <script src="index.js"></script>
     <script src="commons.js"></script>
     <script src="menu.js"></script>

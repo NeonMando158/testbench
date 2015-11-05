@@ -7,6 +7,7 @@
 	var program_id;
 	var program_name;
 	var facebook_object_id;
+	var friend_fb_user_id;
 	var link =window.location.href;
 	var message="";
 	var likeuserlist;
@@ -26,23 +27,21 @@
 	var hash_tag;
 	var is_fav;
 	var program_data;
+	var app_user_id;
 
     $( document ).ready(function(){
-		console.log("Login Status:"+is_loggedin);
 	//	callPlayer();
 		jQuery.noConflict();
 		setInterval(function() {
         	getProgramDetails(window.location.search.replace("?id=", ""));
 			//$(".program-meta-friends").click(function() { 
 			//    $(".leaderboard").toggle();
-			//	console.log("leaderboard");
 			//});
 			getPrivateComments();
 			
-		}, 60000);
+		}, 6000000);
 		/*setInterval(function() {
 		  	getPublicComments();
-			console.log("publicCommentsget");
 		}, 15000);*/
         apptaAgent.getLoginDetails(function(data){
 	     	if(data.is_logged_in === false){
@@ -109,6 +108,7 @@
 			fb_profileurl=data.image_url;
 			fb_username=data.name;
 			fb_user_id=data.fb_id;
+			friend_fb_user_id=data.fb_id;
 		});
         apptaAgent.getProgram(id, function sendData(data){
           renderProgramData(data);
@@ -116,7 +116,6 @@
     }
 
 	function fbshare(){
-//		console.log(link);
 		apptaAgent.postFBShare(program_id,program_name,link,message);
 	}
 
@@ -186,12 +185,17 @@
 		getTweets(hash_tag);
 		userLikes(likeuserlist);
 		updateCommentCount();
-		//getLeaderBoard();	
+		getLeaderBoard();	
     }
 
 	function getLeaderBoard(){
-//		console.log("leaderboard called");
-		apptaAgent.getLeaderBoard(program_id,program_name,function(data){console.log(data);});
+		//apptaAgent.getLeaderBoard(program_id,program_name,function(data){console.log(data);});
+		//console.log("get program Leader Board");
+		//apptaAgent.getProgramLeaderBoard(program_id,program_name,function(data){console.log(data);});
+		//console.log("get global Leader Board");
+		//apptaAgent.getGlobalLeaderBoard(friend_fb_user_id,function(data){console.log(data);});
+		console.log("get User Wall");
+		apptaAgent.getUserWall('623',fb_user_id,function(data){console.log(data);});
 	}
 
 	function updateCommentCount(){
@@ -203,29 +207,21 @@
 		if(likeuserlist){
 			userlikes(likeuserlist);
 		}else{
-			console.log("no user likes the list");
 		}
 	}
 
 	function getTweets(hash){
 		//api to get twitter feeds
 		hash_tag=hash;
-		console.log(hash_tag);
 		apptaAgent.getTweets(hash_tag, program_id,function(data){
-			console.log("data tweets");
-			console.log(data.tweets);
 			renderTwitterComments(data.tweets);
 		});
 	}
 		
 	function getPublicComments(){
-		console.log("public comments called");
-
 		type="public";
 		apptaAgent.getComments(program_id,program_name,type, function(data){
 			public_conversations=data.conversations;
-			console.log("public_conversations");
-			console.log(public_conversations);
 			renderPublicComments(public_conversations);
 			//reverseRenderedData();
 		});
@@ -254,11 +250,19 @@
 	}
 	
 	function renderPrivateComments(private_comments){
+		console.log(private_comments);
 		$(".chatconversationslist").empty();
 		for(var n=0; n<private_comments.length; n++){
-			html = '<li>';
-			html +='	<span>'+private_comments[n].text+'</span>';
-			html +='</li>';
+			html = '<li style="width: 300px; float: right" class="">';
+			html += '	<div style="padding: 0px;" class="col-md-10">';
+			html +='		<span>'+private_comments[n].text+'</span>';
+			html += '		<span style="font-size: 10px; float: right; color: grey;">'+private_comments[n].name+'</span>';
+			html += '	</div>';
+			html += '	<div class="col-md-2" style="padding: 0px;">';
+			html += '		<img src="http://graph.facebook.com/'+fb_user_id+'/picture?type=small" style="" alt="">';
+			//html += '		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
+			html += '	</div>';
+			html += '</li>';
 			$(".chatconversationslist").append(html);
 		}
 	}
@@ -400,7 +404,6 @@
 			}
 			var ctime = timeAgoComments(data[b].created);
 
-			console.log(data[b].conversation_id);
 			if(parseInt(ctime)<0){ctime=0+" seconds ago";}
 			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
@@ -434,7 +437,6 @@
 	}
 
 	function teletangoLike(id){
-		console.log("teletango like clicked");
 		var comment_id=id;
 		var type="public";
 		apptaAgent.likeProgramComment(program_id,program_name,comment_id,type, function(){
@@ -531,13 +533,11 @@
 	}
 
 	function getProgramsofChannel(channel_passed){
-		console.log("getProgramsofChannel");
 		var filter_object={
 			channel_name:channel_passed,
 			page_size:15,
 		};
 		apptaAgent.getLounge(filter_object,function(data){
-			console.log(data);
 			renderProgramsinChannel(data.loungePrograms);
 		});			
 	}	
