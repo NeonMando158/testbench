@@ -11,9 +11,10 @@ var columnPrograms2=[];
 var columnPrograms3=[];
 var requested_page_size=10;
 var is_loggedin;
+var unique_id;
 
-//Load Lounge on ready
-$( document ).ready(function(){
+	//Load Lounge on ready
+	$( document ).ready(function(){
 		var channel_name = location.href.split('?channel_name=')[1];
 		if(channel_name === "Entretenimiento"){
 			loadEnt();
@@ -22,28 +23,28 @@ $( document ).ready(function(){
 		}else if(channel_name === "Novelas"){
 			loadNovelas();
 		}else if(channel_name === "all" || channel_name == undefined){
-     	getLoungeInfo();
+     		getLoungeInfo();
 		}
 		apptaAgent.getLoginDetails(function(data){
-     	if(data.is_logged_in === false){
-        is_loggedin=data.is_logged_in;
-			  showFacebookInformation();
-  		}else{
-        is_loggedin=data.is_logged_in;
-  			hideFacebookInformation();
-
-  			$(".facebookOnce").val(1);
-  			$(".privacyOptions").show();
-  			$(".custom-fb-message").hide();
-  			firstname = data.name;
-  		  image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
-        $(".userimagecontainer").empty();
-        $(".customfblogin").text(firstname);
-        html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
-        $(".userimagecontainer").append(html);
-  		}
-  });
-});
+     		if(data.is_logged_in === false){
+	    	    is_loggedin=data.is_logged_in;
+				showFacebookInformation();
+  			}else{
+    		    is_loggedin=data.is_logged_in;
+  				hideFacebookInformation();
+	
+	  			$(".facebookOnce").val(1);
+	  			$(".privacyOptions").show();
+	  			$(".custom-fb-message").hide();
+	  			firstname = data.name;
+	  		  	image = 'http://graph.facebook.com/'+data.fb_id+'/picture?type=small';
+	        	$(".userimagecontainer").empty();
+	        	$(".customfblogin").text(firstname);
+   	     		html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
+   	     		$(".userimagecontainer").append(html);
+  			}
+  		});
+	});
 	
 function fbLogin(){
   apptaAgent.getLoginDetails(function(data){
@@ -61,7 +62,8 @@ function fbLogin(){
     		}
   	  });
     }else{
-  			$(".privacyOptions").hide();
+	  
+  	  $(".privacyOptions").hide();
   	  is_loggedin=data.is_logged_in;
       html = '<img src="'+image+'" alt="'+firstname+'" style="border-radius: 50px; padding: 5px; height: 40px; width: 40px;" class="userimagesrc"/>';
       $(".userimagecontainer").append(html);
@@ -137,15 +139,18 @@ function getColumn1(){
     }
 */
 
-    function checkinProgram(id,name){
-      var event_data = {'program_id':id, 'program_name':name };
-      var event_type = 'CHECK_IN_TO_PROGRAM';
-      apptaAgent.eventLog(event_type, event_data);
-      window.location.href = "http://telemundo.teletango.com/ref_01_05/program.php?id="+id;
+    function checkinProgram(id, unid){
+      //var event_data = {'program_id':id, 'program_name':name };
+      //var event_type = 'CHECK_IN_TO_PROGRAM';
+      //apptaAgent.eventLog(event_type, event_data);
+      window.location.href = "http://telemundo.teletango.com/ref_01_07/program.php?id="+id+"&unique_id="+unique_id;
     }
 
     function renderLoungeData(channel, data){
       	var programs = data;
+		unique_id=programs.unique_id;
+		//console.log("unique_id");
+		//console.log(unique_id);
 		if(channel === "English"){
     	  	for(var b=0; b<programs.loungePrograms.length;b++){
     		      columnPrograms1.push(programs.loungePrograms[b]);
@@ -174,7 +179,8 @@ function getColumn1(){
 	    for(var a=0; a<defaultPrograms.length;a++){
 			if(defaultPrograms[a].channel==="English"){
 				if(defaultPrograms[a].thumbnail){
-        			ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+')">';
+					console.log(unique_id);
+        			ahtml = '<div data-program="'+defaultPrograms[a].id+'" class="default programs col-md-12" style="cursor:pointer; border: 1px solid #cecece;" onclick="checkinProgram('+defaultPrograms[a].id+','+unique_id+')">';
         			ahtml +='  <div class="col-md-12" style="padding: 0px; margin: 0px;">';
         			ahtml +='    <img src="'+defaultPrograms[a].thumbnail+'" class="img-responsive" style="width: 100% ">';
         			ahtml +='    <span style="font-weight: 10px; color: red;">'+defaultPrograms[a].channel+'</span><br/>';

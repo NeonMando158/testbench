@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/lib/ajaxq.js"/></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/lib/jstz-1.0.4.min.js"/></script> -->
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
-	<!-- <script type="text/javascript" src="commons/commons.js"></script>
-    <script type="text/javascript" src="events/events.js"/></script>
-    <script type="text/javascript" src="gamification/gamification.js"/></script>
-    <script type="text/javascript" src="social/social.js"/></script> -->
+	<!-- <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/commons/commons.js"></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/events/events.js"/></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/gamification/gamification.js"/></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/social/social.js"/></script>-->
     <script src="index.js"></script>
     <script src="commons.js"></script>
     <script src="menu.js"></script>
@@ -70,7 +72,7 @@
             		</a>
           		</li>
           		<li class="userimage" style="background: #9cbdff; padding: 3px;">
-           		 	<a style="padding: 3px;" class="userimagecontainer" href="#"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
+           		 	<a data-toggle="modal" data-target="#GLeaderBoard" style="padding: 3px;" class="userimagecontainer" href="javascript:void(0)" onclick="GlobalLeaderBoard();"><i class="fa fa-user" style="font-size: 36px; padding: 2px;"></i></a>
           		</li>
 				<li onclick="fbLogout()"><i class="fa fa-power-off" style="font-size: 26px; padding: 13px; background: white; cursor: pointer"></i></li>
         	</ul>
@@ -144,5 +146,84 @@
     <div class="col-md-4 column3">
     </div>
   </div>
+	<!-- Global LeaderBoard -->
+      <div class="modal fade" id="GLeaderBoard" role="dialog">
+		<div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Global LeaderBoard</h4>
+            </div>
+            <div class="modal-body" style="background: #222; padding: 0px;">
+				<div class="profile_container" style="height: 420px;">
+					<div class="col-md-4" style="text-align: center;">
+						<div class="col-md-12" style="height: 50px; color: white; font-size: 18px; font-weight: bold; margin-top: 80px;">
+							<span >Rank</span>
+						</div>
+						<div class="col-md-12" style="height: 70px;">
+							<i class="fa fa-trophy" style="font-size: 60px; color: white; position: relative; padding: 0px 20px;"></i>
+						</div>
+						<div class="col-md-12" style="color: white; font-size: 25px; font-weight: bold;">
+							<span class="rank">
+								<a  data-toggle="modal" data-target="#GRankBoard" class="btn btn-lg btn-warning glb_rankvalue" href="javascript:void(0)"></a>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-4" style="color: white; text-align: center;">
+						<div class="col-md-12" style="height: 50px; color: white; font-size: 18px; font-weight: bold; margin-top: 40px;">
+							<span class="glb_username"></span>
+						</div>
+						<div class="col-md-12">
+							<img src="" style="border-radius: 150px;" class="glb_userimage"/>
+						</div>
+						<div class="col-md-12" style="color: white;">
+						</div>
+					</div>
+					<div class="col-md-4" style="text-align: center;">
+						<div class="col-md-12" style="height: 50px; color: white; font-size: 18px; font-weight: bold; margin-top: 80px;">
+							<span>Points</span>
+						</div>
+						<div class="col-md-12" style="height: 70px;">
+							<i class="fa fa-diamond" style="font-size: 60px; color: white; position: relative; padding: 0px 20px;"></i>
+						</div>
+						<div class="col-md-12" style="color: white; font-size: 25px; font-weight: bold;">
+							<span class="rank">
+								<a class="btn btn-lg btn-success glb_leaderboard" href="javascript:void(0)"></a>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-12" style="border-top: 1px solid #f5f5f5; margin-top: 20px; color: white; display: none;">
+						<h4>Teletango Friends</h4>
+					</div>
+				</div>
+            </div>
+            <div class="modal-footer" style="background: #000; padding: 10px; display: none;">
+              <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>	
+	<!-- Global LeaderBoard ends here-->
+	<!-- Ranking Leaderboard tobe called within from global leaderboard-->
+      <div class="modal fade" id="GRankBoard" role="dialog">
+		<div class="modal-dialog modal-sm" style="margin-top: 100px;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Ranking LeaderBoard</h4>
+            </div>
+            <div class="modal-body" style="background: #aaa; padding: 0px;">
+				<div class="rank_container">
+					<ul style="list-style: none;  padding: 10px; height: 200px;" class="glb_rankboard">
+					</ul>
+				</div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>	
+	<!-- Ranking Leaderboard stops -->
 </body>
 </html>

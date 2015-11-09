@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://mydrive.apptarix.com:8080/apptajs/appta.js"></script>
+    <!--<script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/lib/ajaxq.js"/></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/lib/jstz-1.0.4.min.js"/></script>
+	<script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/commons/commons.js"></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/events/events.js"/></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/gamification/gamification.js"/></script>
+    <script type="text/javascript" src="http://mydrive.apptarix.com:8080/apptajs/social/social.js"/></script>-->
     <script src="program.js"></script>
     <script src="commons.js"></script>
     <script src="menu.js"></script>
@@ -31,7 +37,7 @@
       <div class="collapse navbar-collapse js-navbar-collapse">
     		<ul class="nav navbar-nav">
           		<li class="dropdown mega-dropdown">
-          			<a href="http://telemundo.teletango.com/ref_01_05/" onclick="loadNovelas()" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
+          			<a href="http://telemundo.teletango.com/ref_01_07/" onclick="loadNovelas()" class="dropdown-toggle" data-toggle="dropdown">NOVELAS</a>       
           		</li>
           		<li class="dropdown mega-dropdown">
             		<a href="javascript:void(0)" onclick="loadEnglish()" class="dropdown-toggle" data-toggle="dropdown">SHOWS</a>        

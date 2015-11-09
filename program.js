@@ -28,12 +28,15 @@
 	var is_fav;
 	var program_data;
 	var app_user_id;
-
+	var unique_id;
+		
     $( document ).ready(function(){
 	//	callPlayer();
 		jQuery.noConflict();
+		unique_id = window.location.search.substring(18);
+		console.log(unique_id);
 		setInterval(function() {
-        	getProgramDetails(window.location.search.replace("?id=", ""));
+        	getProgramDetails(window.location.search.replace("?id=", ""), unique_id);
 			//$(".program-meta-friends").click(function() { 
 			//    $(".leaderboard").toggle();
 			//});
@@ -41,7 +44,6 @@
 			
 		}, 6000000);
 		/*setInterval(function() {
-		  	getPublicComments();
 		}, 15000);*/
         apptaAgent.getLoginDetails(function(data){
 	     	if(data.is_logged_in === false){
@@ -63,7 +65,7 @@
 	  		}
 	    });
 
-        getProgramDetails(window.location.search.replace("?id=", ""));
+        getProgramDetails(window.location.search.replace("?id=", ""), unique_id);
 		$(".program-meta-friends").click(function() { 
 		    $(".leaderboard").toggle();
 		});
@@ -102,7 +104,7 @@
         }
     }
 
-    function getProgramDetails(id){
+    function getProgramDetails(id, unqid){
 		apptaAgent.getLoginDetails(function(data){
 			is_loggedin = data.is_logged_in;
 			fb_profileurl=data.image_url;
@@ -110,7 +112,7 @@
 			fb_user_id=data.fb_id;
 			friend_fb_user_id=data.fb_id;
 		});
-        apptaAgent.getProgram(id, function sendData(data){
+        apptaAgent.getProgram(id, unqid, function sendData(data){
           renderProgramData(data);
         });
     }
@@ -146,6 +148,8 @@
         var details = data;
 		
 		program_id=details.program.id;
+		//unique id
+		program_unique_id=details.program.unique_id;
 		program_meta=details.program.name.split('|');
 		program_name=program_meta.pop(0);
 		program_episode=program_meta.pop(1);
@@ -238,6 +242,7 @@
 	function renderPublicComments(public_conversations){
 		$(".teletango-data").remove();
 		renderConversations(public_conversations);
+		$('.teletango-data').sort(function(a, b){return a-b});
 	}
 
 	function getPrivateComments(){
@@ -353,12 +358,11 @@
         minutes = minutes-(days*24*60)-(hours*60);
         seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60);
 		//var time = days+" days "+hours+" hrs "+minutes+" mins "+seconds+" seconds ago";
-		
 		if(days > 0){
 			var time = days+" days ago";
 		}else if(days <=0 && hours > 0){
 			var time = hours+" hrs ago";
-		}else if(days <=0 && hours > 0){
+		}else if(days <=0 && hours <=0 && minutes > 0){
 			var time = minutes+" mins ago";
 		}else{
 			var time = "moments ago";
@@ -396,7 +400,11 @@
 	}
 		
 	function renderConversations(data){
+		console.log(data);
 		for(var b=0; b<data.length;b++){
+			console.log("data rendering");
+			console.log(data[b]);
+			console.log("data rendering:"+data[b].conversation_id);
 			if(data[b].likes == 0){
 				var likestatus = '<a class="teletangoLike" id="comment-'+data[b].conversation_id+'" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i><span class="comment-'+data[b].conversation_id+'">Like</span></a>'; 
 			}else{
@@ -405,8 +413,9 @@
 			var ctime = timeAgoComments(data[b].created);
 
 			if(parseInt(ctime)<0){ctime=0+" seconds ago";}
-			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data">';
+			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data teletango-data-'+data[b].conversation_id+'">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
+			console.log(is_loggedin+" loggedin");
 			chtml += '		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
 			//chtml += '	  <img style="border-radius: 50px;" alt="" src="'+data[b].app_user_id+'">';
 			chtml += '	</div>';
@@ -423,6 +432,7 @@
 			chtml += '	</div>';
 			chtml += '	<div class="time-ago col-md-12">';
 			//chtml += ' 	<span  style="font-size: 10px; float: right;">'+data[b].created+'</span>';
+			console.log(ctime);
 			chtml += ' 	<span  style="font-size: 10px; float: right;">'+ctime+'</span>';
 			chtml += ' 	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
@@ -433,6 +443,8 @@
 			chtml += '</div>'; 
 			//$(".chatconversationslist").append(html);
 			$(".program-social-data").append(chtml);
+			$('.teletango-data').sort(function(a, b){return a-b});
+
 		}
 	}
 
@@ -455,12 +467,14 @@
     }
 	
 	function programLike(){
-		if(is_fav == 0){
+		if(is_fav == 0){	
+			
 			apptaAgent.likeProgram(program_id,program_name);	
 			$(".likeprogramicon").attr('style','color: blue');
 			var likevalue = $(".likeprogram").text();
 			$(".likeprogram").text(parseInt(likevalue)+1);
 			$(".programLikeText").text("LIKED");
+			is_fav=1;
 		}else if(is_fav == 1){
 			$(".programLikeText").text("LIKED");
 		}

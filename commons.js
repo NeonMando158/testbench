@@ -15,6 +15,9 @@ $( document ).ready(function(){
 			hideFacebookInformation();
 		}
 	});
+	//GlobalLeaderBoard();
+	//ProgramLeaderBoard();
+	UserWall();
 /*	var facebookShowStatus = $('.facebookOnce').val();
 	if(facebookShowStatus == 0){
 		showFacebookInformation();
@@ -24,6 +27,47 @@ $( document ).ready(function(){
 */
 		
 });
+
+function GlobalLeaderBoard(){
+	console.log("Global Leader Board");
+	apptaAgent.getGlobalLeaderBoard(function(data){
+		console.log(data);	
+		renderLeaderBoard(data);
+	});	
+}
+
+function renderLeaderBoard(data){
+	$(".glb_username").text(data.first_name+" "+data.last_name);
+	$(".glb_userimage").attr("src","https://graph.facebook.com/"+data.fb_user_id+"/picture?type=large");
+	$(".glb_rankvalue").text(data.rank);
+	$(".glb_leaderboard").text(data.points);
+	$(".glb_rankboard").empty();
+	for(var m=0; m<data.friends.length;m++){	
+		//append the rankings 
+    	html = '<li style="height: 30px; margin: 0px 0px;">';
+		html+= '	<div class="col-md-12" style="background: white; margin: 2px 0px;">';
+    	html+= '       	<div class="col-md-3" style="padding: 0px;">';
+    	html+= '	       	<img style="height: 50px; width: 50px; border-radius: 50px; padding: 4px;" alt="" src="'+data.friends[m].image_url+'">';
+    	html+= '        </div>';
+    	html+= '        <div class="col-md-9" style="padding: 0px;">';
+    	html+= '         	<p style="margin-bottom: 1px">'+data.friends[m].first_name+" "+data.friends[m].last_name+'</p>';
+    	html+= '            <span style="font-size: 12px;">Total Points : '+data.friends[m].points+'</span><br>';
+    	html+= '            <span style="font-size: 12px;">Rank: '+data.friends[m].rank+'</span>';
+    	html+= '        </div>';
+    	html+= '    </div>';
+    	html+= '</li>';
+		$(".glb_rankboard").append(html);
+	}
+}
+
+function UserWall(){
+	console.log("UserWall");
+	var app_user_id="623";
+	var fb_id="760586213";
+	apptaAgent.getUserWall(app_user_id,fb_id,function(data){
+		console.log(data);
+	});
+}
 
 function settings(){
 	if($("[name='privacy-checkbox']").is(':checked') === true){
@@ -121,10 +165,10 @@ function fbLogout(){
 
 function loadEnglish(){
 	    var url = location.href;
-        var loc = url.split('ref_01_05/');
+        var loc = url.split('ref_01_07/');
         var loc2 = loc[1].split('?');
         if(loc2[0] === "program.php"){
-            document.location.href="http://telemundo.teletango.com/ref_01_05/index.php?channel_name=English";
+            document.location.href="http://telemundo.teletango.com/ref_01_07/index.php?channel_name=English";
             var filter_object={
                 channel_name:'Telemundo',
                 page_size:30,
@@ -148,10 +192,10 @@ function loadEnglish(){
 
 function loadEnt(){
         var url = location.href;
-        var loc = url.split('ref_01_05/');
+        var loc = url.split('ref_01_07/');
         var loc2 = loc[1].split('?');
         if(loc2[0] === "program.php"){
-            document.location.href="http://telemundo.teletango.com/ref_01_05/index.php?channel_name=Novelas";
+            document.location.href="http://telemundo.teletango.com/ref_01_07/index.php?channel_name=Novelas";
             var filter_object={
 				channel_name:'Entretenimiento',
                 page_size:30,
@@ -175,10 +219,10 @@ function loadEnt(){
 
 function loadNovelas(){
 		var url = location.href;
-		var loc = url.split('ref_01_05/');
+		var loc = url.split('ref_01_07/');
 		var loc2 = loc[1].split('?');
 		if(loc2[0] === "program.php"){
-            document.location.href="http://telemundo.teletango.com/ref_01_05/index.php?channel_name=Novelas";
+            document.location.href="http://telemundo.teletango.com/ref_01_07/index.php?channel_name=Novelas";
 			var filter_object={
 				channel_name:'Novelas',
 				page_size:30,
