@@ -29,14 +29,18 @@
 	var program_data;
 	var app_user_id;
 	var unique_id;
+	var facebook_object_id=99881661864;
 		
     $( document ).ready(function(){
 	//	callPlayer();
 		jQuery.noConflict();
 		unique_id = window.location.search.substring(18);
-		console.log(unique_id);
+		var urlpid=	getParameterByName('id');
+		var urluniqueid=getParameterByName('unique_id');
 		setInterval(function() {
-        	getProgramDetails(window.location.search.replace("?id=", ""), unique_id);
+        	//getProgramDetails(window.location.search.replace("?id=", ""), unique_id);
+        	getProgramDetails(urlpid, urluniqueid);
+
 			//$(".program-meta-friends").click(function() { 
 			//    $(".leaderboard").toggle();
 			//});
@@ -65,15 +69,24 @@
 	  		}
 	    });
 
-        getProgramDetails(window.location.search.replace("?id=", ""), unique_id);
+        //getProgramDetails(window.location.search.replace("?id=", ""), unique_id);
+        getProgramDetails(urlpid, urluniqueid);
 		$(".program-meta-friends").click(function() { 
 		    $(".leaderboard").toggle();
 		});
 		getPrivateComments();
+		getFacebookComments();
 		facebookLogin();
 		//getProgramsofChannel(program_channel);
     });
-	
+
+	function getParameterByName(name){
+		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
 	function getCommentsData(){
 		var type="program";
 		apptaAgent.getComments(program_id,program_name,type,function(data){});	
@@ -198,7 +211,6 @@
 		//apptaAgent.getProgramLeaderBoard(program_id,program_name,function(data){console.log(data);});
 		//console.log("get global Leader Board");
 		//apptaAgent.getGlobalLeaderBoard(friend_fb_user_id,function(data){console.log(data);});
-		console.log("get User Wall");
 		apptaAgent.getUserWall('623',fb_user_id,function(data){console.log(data);});
 	}
 
@@ -252,6 +264,19 @@
 			renderPrivateComments(private_conversations);
 		});
 
+	}
+	
+	function getFacebookComments(){
+		facebook_object_id="99881661864";
+		console.log("get Facebook Comments");
+		apptaAgent.getFBComments(program_id,program_name,facebook_object_id,function(data){
+				processFacebookComments(data);
+		});	
+	}
+
+	function processFacebookComments(posts){
+		console.log(posts.length);
+		
 	}
 	
 	function renderPrivateComments(private_comments){
@@ -400,11 +425,7 @@
 	}
 		
 	function renderConversations(data){
-		console.log(data);
 		for(var b=0; b<data.length;b++){
-			console.log("data rendering");
-			console.log(data[b]);
-			console.log("data rendering:"+data[b].conversation_id);
 			if(data[b].likes == 0){
 				var likestatus = '<a class="teletangoLike" id="comment-'+data[b].conversation_id+'" onclick="teletangoLike('+data[b].conversation_id+')"><i class="fa fa-thumbs-up"></i><span class="comment-'+data[b].conversation_id+'">Like</span></a>'; 
 			}else{
@@ -415,7 +436,6 @@
 			if(parseInt(ctime)<0){ctime=0+" seconds ago";}
 			chtml = '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 teletango-data teletango-data-'+data[b].conversation_id+'">';
 			chtml += '	<div class="col-md-3 program-social-data-image">';
-			console.log(is_loggedin+" loggedin");
 			chtml += '		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
 			//chtml += '	  <img style="border-radius: 50px;" alt="" src="'+data[b].app_user_id+'">';
 			chtml += '	</div>';
@@ -432,7 +452,6 @@
 			chtml += '	</div>';
 			chtml += '	<div class="time-ago col-md-12">';
 			//chtml += ' 	<span  style="font-size: 10px; float: right;">'+data[b].created+'</span>';
-			console.log(ctime);
 			chtml += ' 	<span  style="font-size: 10px; float: right;">'+ctime+'</span>';
 			chtml += ' 	</div>';
 			chtml += '	<div class="social-actions col-md-12">';
