@@ -126,6 +126,7 @@
 			friend_fb_user_id=data.fb_id;
 		});
         apptaAgent.getProgram(id, unqid, function sendData(data){
+        	console.log(data);
           renderProgramData(data);
         });
     }
