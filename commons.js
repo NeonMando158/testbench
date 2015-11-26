@@ -17,7 +17,7 @@ $( document ).ready(function(){
 	});
 	//GlobalLeaderBoard();
 	//ProgramLeaderBoard();
-	UserWall();
+	//UserWall();
 /*	var facebookShowStatus = $('.facebookOnce').val();
 	if(facebookShowStatus == 0){
 		showFacebookInformation();
@@ -60,14 +60,14 @@ function renderLeaderBoard(data){
 	}
 }
 
-function UserWall(){
-	console.log("UserWall");
-	var app_user_id="623";
-	var fb_id="760586213";
-	apptaAgent.getUserWall(app_user_id,fb_id,function(data){
-		console.log(data);
-	});
-}
+// function UserWall(){
+// 	console.log("UserWall");
+// 	var app_user_id="623";
+// 	var fb_id="760586213";
+// 	apptaAgent.getUserWall(app_user_id,fb_id,function(data){
+// 		console.log(data);
+// 	});
+// }
 
 function settings(){
 	if($("[name='privacy-checkbox']").is(':checked') === true){
