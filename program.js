@@ -212,7 +212,7 @@
 		//apptaAgent.getProgramLeaderBoard(program_id,program_name,function(data){console.log(data);});
 		//console.log("get global Leader Board");
 		//apptaAgent.getGlobalLeaderBoard(friend_fb_user_id,function(data){console.log(data);});
-		apptaAgent.getUserWall(app_user_id,fb_user_id,function(data){console.log(data);});
+		//apptaAgent.getUserWall(app_user_id,fb_user_id,function(data){console.log(data);});
 	}
 
 	function updateCommentCount(){
