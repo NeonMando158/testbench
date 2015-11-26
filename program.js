@@ -119,6 +119,7 @@
 
     function getProgramDetails(id, unqid){
 		apptaAgent.getLoginDetails(function(data){
+			console.log(data);
 			is_loggedin = data.is_logged_in;
 			fb_profileurl=data.image_url;
 			fb_username=data.name;
@@ -126,7 +127,6 @@
 			friend_fb_user_id=data.fb_id;
 		});
         apptaAgent.getProgram(id, unqid, function sendData(data){
-        	console.log(data);
           renderProgramData(data);
         });
     }
