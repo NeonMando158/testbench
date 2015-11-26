@@ -275,8 +275,39 @@
 		});	
 	}
 
-	function processFacebookComments(posts){
-		console.log(posts.length);
+	function facebookCommentToggle(){
+			$(".comment-holder").toggle();
+	}
+	function processFacebookComments(obj){
+		console.log(obj.posts.data.length);
+		for(var p=1; p<=obj.posts.data.length; p++){
+			html= '<div style="padding: 18px 0px; margin: 4px 0px; background: white;" class="col-md-12 facebook-data facebook-data-#id">';
+			html+='	<div class="col-md-2 program-social-data-image">';
+			html+='		<i class="fa fa-user" style="font-size: 30px; color: grey; padding: 7px 10px; border-radius: 50px; background: #f5f5f5; border: 1px solid lightgrey;"></i>';
+			html+='	</div>';
+			html+='	<div class="col-md-10 program-social-data-srcmedia">';
+			html+='		<img style="border-radius: 50px; height: 20px; width: 20px; float: right;" alt="" src="images/facebooklogo.png">';
+			html+='	</div>';
+			html+=' <div class="col-sm-12" style="margin-top: 10px; text-align: left;">';
+			html+=' 	<img src="'+obj.posts.data[p].picture+'" alt="fbImage" style="max-height: 100px; max-width: 200px;width: 78%;background: lightgrey;border-radius: 4px;box-shadow: 0px 1px 4px 0px grey;"/>';
+			html+=' </div>';
+			html+=' <div class="col-sm-12" style="text-align: left;">';
+			html+=' 	<span style="font-size: 10px;">'+obj.posts.data[p].message+'</span>';
+			html+=' </div>';
+			html+='	<div class="social-actions col-md-12">';
+			html+='		<a class="col-sm-3 facebookLike" id="comment-#id" onclick="facebookLike(#id)" style="padding: 10px 27px;">';
+			html+='		</a>';
+			html+='		<a class="col-sm-3 facebookComment" id="comment-#id" onclick="facebookCommentToggle()" style="font-size: 12px; padding: 1px 2px; cursor: pointer;width: 86px;color: darkblue;position: relative;top: 5px;border-radius: 4px;box-shadow: 0px 0px 0px 1px lightblue;background: #eff3f6;">';
+			html+='		<i class="fa fa-comment-o" style="padding: 0px 5px;"></i>Comment</a>';
+			html+='			<div class="comment-holder col-sm-12" style="font-size: 9px; margin-top: 10px; display: none;">';
+			for(var q=1; q<obj.posts.data[p].comments.data.length; q++){
+				html+=' <div class="well col-md-12" style="padding: 6px; margin: 0px; text-align: left; "><span>'+obj.posts.data[p].comments.data[q].message+'</span></div>';
+			}
+			html+='			</div>';
+			html+='	</div>';
+			html+='</div>'; 
+			$("#facebookPosts").append(html);
+		}
 		
 	}
 	

@@ -225,6 +225,11 @@
             </div>
             <div class="col-md-12 program-social-data" style="overflow-y: scroll; height: 400px; padding: 2px 3px; margin: 0px;">
             </div>
+			<hr/>
+			<div class="col-md-12" id="facebookPosts" style="overflow-y:scroll; height: 400px; padding: 2px 3px; margin-top: 20px; border: 1px solid lightgrey;">
+
+			</div>
+			<div id="facebookComments"></div>
         </div>
         <div class="col-md-9 program-grid">
           <div class="col-md-12 program-grid-control">
